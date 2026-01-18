@@ -7,21 +7,12 @@ export default function Page() {
         <ProductCard
           imageUrl="/images/levelukk8.jpeg"
           title="Test Product"
-          rating={4.6}
-          ratingsCount={19106}
-          reviewsCount={793}
-          specifications={[
-            "Spec 1",
-            "Spec 2",
-            "Spec 3",
-            "Spec 4",
-            "Spec 5",
-          ]}
+          specifications={["Spec 1", "Spec 2", "Spec 3", "Spec 4", "Spec 5"]}
           price={64999}
           originalPrice={79999}
           isAssured={true}
           exchangeOffer="52,450"
-          bankOffer="Bank Offer"
+          bankOffer="Secure checkout (Stripe soon)"
         />
       </div>
     </main>

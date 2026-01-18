@@ -14,9 +14,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   title: string;
   specifications: string[];
   price: number;
-  originalPrice: number;
   isAssured: boolean;
-  exchangeOffer: string; // kept for compatibility, no longer rendered
   bankOffer: string;
 };
 
@@ -28,7 +26,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       title,
       specifications,
       price,
-      originalPrice,
       isAssured,
       bankOffer,
       ...props
@@ -37,8 +34,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   ) => {
     const formatNumber = (num: number) =>
       new Intl.NumberFormat("en-AU").format(num);
-
-    const safeOriginal = originalPrice > 0 ? originalPrice : price;
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -67,9 +62,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
-          {/* Column 1: Image */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
+          {/* Image */}
+          <div className="flex justify-center">
+            <div className="relative w-full aspect-square max-w-[200px] overflow-hidden rounded-lg">
               <Image
                 src={imageUrl}
                 alt={title}
@@ -80,7 +75,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
           </div>
 
-          {/* Column 2: Product Details */}
+          {/* Details */}
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold">{title}</h2>
 
@@ -97,8 +92,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </ul>
           </div>
 
-          {/* Column 3: Pricing */}
-          <div className="flex flex-col gap-1">
+          {/* Pricing */}
+          <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
               {isAssured && (
@@ -109,14 +104,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               )}
             </div>
 
-            <div className="flex items-center gap-3 text-sm">
-              <span className="text-muted-foreground line-through">
-                ${formatNumber(safeOriginal)}
-              </span>
-            </div>
-
-            {/* Payment info only */}
-            <p className="text-sm font-medium text-green-600 mt-2">
+            <p className="text-sm font-medium text-green-600">
               {bankOffer}
             </p>
           </div>

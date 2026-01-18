@@ -82,7 +82,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             {/* Checkout trust badge */}
             <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
               <ShieldCheck className="h-4 w-4" strokeWidth={2} />
-              Contact for Procurement (Financing Available)
+              Contact for Procurement
             </div>
 
             <ul className="space-y-2 text-sm list-disc list-inside text-muted-foreground pt-2">

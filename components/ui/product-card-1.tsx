@@ -64,15 +64,15 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
-            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
-              {/* Mobile: snug fill */}
-              <div className="absolute inset-0 block md:hidden">
+            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg bg-black/30">
+              {/* Mobile: render FULL image (no cropping) */}
+              <div className="absolute inset-0 block md:hidden p-2">
                 <Image
                   src="/images/productk8.png"
                   alt={`${title} schematic`}
                   fill
                   sizes="(max-width: 768px) 200px"
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
               </div>
@@ -109,9 +109,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-3xl font-bold">
-              ${formatNumber(price)}
-            </h3>
+            <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
 
             {isAssured && (
               <p className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -119,9 +117,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            <p className="text-sm font-medium text-green-600 mt-2">
-              {bankOffer}
-            </p>
+            <p className="text-sm font-medium text-green-600 mt-2">{bankOffer}</p>
           </div>
         </div>
       </motion.div>

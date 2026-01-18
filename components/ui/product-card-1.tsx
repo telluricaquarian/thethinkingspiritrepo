@@ -2,15 +2,16 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Heart, Star, ShieldCheck } from "lucide-react";
 
 import { cn } from "../../lib/utils";
 import { Checkbox } from "./checkbox";
 import { Button } from "./button";
 
-// Define the types for the component props
-interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
+type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
+
+type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrl: string;
   title: string;
   rating: number;
@@ -22,7 +23,7 @@ interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   isAssured: boolean;
   exchangeOffer: string;
   bankOffer: string;
-}
+};
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   (
@@ -45,20 +46,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   ) => {
     const [isWishlisted, setIsWishlisted] = React.useState(false);
 
-    // Format numbers with commas for readability
-    const formatNumber = (num: number) =>
-      new Intl.NumberFormat("en-IN").format(num);
+    const formatNumber = (num: number) => new Intl.NumberFormat("en-IN").format(num);
 
-    // Calculate discount percentage
-    const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
+    const safeOriginal = originalPrice > 0 ? originalPrice : price;
+    const discount =
+      safeOriginal > 0 ? Math.round(((safeOriginal - price) / safeOriginal) * 100) : 0;
 
-    // Animation variants for framer-motion
-    const cardVariants = {
+    // ✅ Fix 1: Variants typed + ease is NOT a string (use cubic-bezier array)
+    const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
       visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: "easeOut" },
+        transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
       },
     };
 
@@ -90,11 +90,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 height={200}
                 className="object-contain w-full h-full"
               />
+
               <Button
+                type="button"
                 variant="ghost"
                 size="icon"
                 className="absolute top-2 right-2 rounded-full"
-                onClick={() => setIsWishlisted(!isWishlisted)}
+                onClick={() => setIsWishlisted((v) => !v)}
                 aria-label="Toggle Wishlist"
               >
                 <Heart
@@ -105,10 +107,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 />
               </Button>
             </div>
+
             <div className="flex items-center space-x-2 self-start md:self-center pt-4">
-              <Checkbox id="compare" />
+              <Checkbox id={`compare-${title}`} />
               <label
-                htmlFor="compare"
+                htmlFor={`compare-${title}`}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 Add to Compare
@@ -119,18 +122,21 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Column 2: Product Details */}
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div className="bg-green-600 text-white px-2 py-0.5 rounded-md flex items-center gap-1">
-                <span>{rating.toFixed(1)}</span>
+                <span>{Number.isFinite(rating) ? rating.toFixed(1) : "—"}</span>
                 <Star className="h-3 w-3 fill-white" />
               </div>
+
               <span>
-                {formatNumber(ratingsCount)} Ratings & {formatNumber(reviewsCount)} Reviews
+                {formatNumber(ratingsCount)} Ratings &amp; {formatNumber(reviewsCount)} Reviews
               </span>
             </div>
+
             <ul className="space-y-2 text-sm list-disc list-inside text-muted-foreground pt-2">
               {specifications.map((spec, index) => (
-                <li key={index}>{spec}</li>
+                <li key={`${spec}-${index}`}>{spec}</li>
               ))}
             </ul>
           </div>
@@ -139,16 +145,16 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <h3 className="text-3xl font-bold">₹{formatNumber(price)}</h3>
-              {isAssured && (
-                <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />
-              )}
+              {isAssured && <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />}
             </div>
+
             <div className="flex items-center gap-3 text-sm">
               <span className="text-muted-foreground line-through">
-                ₹{formatNumber(originalPrice)}
+                ₹{formatNumber(safeOriginal)}
               </span>
               <span className="text-green-600 font-semibold">{discount}% off</span>
             </div>
+
             <p className="text-sm font-medium mt-2">Upto ₹{exchangeOffer} Off on Exchange</p>
             <p className="text-sm font-medium text-green-600 cursor-pointer hover:underline">
               {bankOffer}

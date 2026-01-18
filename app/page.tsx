@@ -1,4 +1,4 @@
-import { ProductCard } from "./components/ui/product-card-1";
+import { ProductCard } from "../components/ui/product-card-1";
 
 export default function Page() {
   return (

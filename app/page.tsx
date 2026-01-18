@@ -14,10 +14,8 @@ export default function Page() {
             "Reduced deuterium concentration vs. standard water",
             "Designed for long-term daily use & durability",
           ]}
-          price={6787}          // ✅ Correct AUD total (GST incl.)
-          originalPrice={6787}  // No fake discount
+          price={6787}
           isAssured={true}
-          exchangeOffer=""      // Not used anymore
           bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
         />
       </div>

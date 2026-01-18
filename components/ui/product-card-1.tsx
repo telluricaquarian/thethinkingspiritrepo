@@ -52,7 +52,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const discount =
       safeOriginal > 0 ? Math.round(((safeOriginal - price) / safeOriginal) * 100) : 0;
 
-    // ✅ Fix 1: Variants typed + ease is NOT a string (use cubic-bezier array)
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
       visible: {
@@ -61,6 +60,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
       },
     };
+
+    const compareId = `compare-${title.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
       <motion.div
@@ -82,7 +83,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Column 1: Image & Compare */}
           <div className="flex flex-col items-center gap-4">
-            <div className="relative group w-full aspect-square max-w-[200px] mx-auto">
+            {/* ✅ Rounded corners + clipping happen here */}
+            <div className="relative group w-full aspect-square max-w-[200px] mx-auto rounded-lg overflow-hidden">
               <Image
                 src={imageUrl}
                 alt={title}
@@ -109,9 +111,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
 
             <div className="flex items-center space-x-2 self-start md:self-center pt-4">
-              <Checkbox id={`compare-${title}`} />
+              <Checkbox id={compareId} />
               <label
-                htmlFor={`compare-${title}`}
+                htmlFor={compareId}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 Add to Compare

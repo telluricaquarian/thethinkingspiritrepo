@@ -54,39 +54,32 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         variants={cardVariants}
         initial="hidden"
         animate="visible"
-        whileHover={{
-          boxShadow: "0px 10px 30px -5px hsl(var(--foreground) / 0.1)",
-          y: -5,
-        }}
-        transition={{ duration: 0.3 }}
         {...props}
       >
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
-            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg bg-black/30">
-              {/* Mobile: render FULL image (no cropping) */}
-              <div className="absolute inset-0 block md:hidden p-2">
-                <Image
-                  src="/images/productk8.png"
-                  alt={`${title} schematic`}
-                  fill
-                  sizes="(max-width: 768px) 200px"
-                  className="object-contain"
-                  priority
-                />
-              </div>
+            {/* MOBILE IMAGE */}
+            <div className="relative w-full md:hidden aspect-[16/9] rounded-xl bg-black/40 overflow-hidden">
+              <Image
+                src="/images/productk8.png"
+                alt={`${title} schematic`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
 
-              {/* Desktop: original behavior */}
-              <div className="hidden md:block w-full h-full">
-                <Image
-                  src={imageUrl}
-                  alt={title}
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              </div>
+            {/* DESKTOP IMAGE */}
+            <div className="relative hidden md:block w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
+              <Image
+                src={imageUrl}
+                alt={title}
+                width={200}
+                height={200}
+                className="object-cover w-full h-full rounded-lg"
+              />
             </div>
           </div>
 
@@ -94,7 +87,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold">{title}</h2>
 
-            {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
               <ShieldCheck className="h-4 w-4" strokeWidth={2} />
               Contact for Procurement
@@ -117,7 +109,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            <p className="text-sm font-medium text-green-600 mt-2">{bankOffer}</p>
+            <p className="text-sm font-medium text-green-600 mt-2">
+              {bankOffer}
+            </p>
           </div>
         </div>
       </motion.div>

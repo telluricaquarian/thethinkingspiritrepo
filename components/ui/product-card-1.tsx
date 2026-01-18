@@ -137,7 +137,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-3xl font-bold">₹{formatNumber(price)}</h3>
+              <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
               {isAssured && (
                 <ShieldCheck
                   className="h-6 w-6 text-primary"
@@ -148,7 +148,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
             <div className="flex items-center gap-3 text-sm">
               <span className="text-muted-foreground line-through">
-                ₹{formatNumber(safeOriginal)}
+                ${formatNumber(safeOriginal)}
               </span>
               <span className="text-green-600 font-semibold">
                 {discount}% off
@@ -156,7 +156,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
 
             <p className="text-sm font-medium mt-2">
-              Upto ₹{exchangeOffer} Off on Exchange
+              Upto ${exchangeOffer} Off on Exchange
             </p>
             <p className="text-sm font-medium text-green-600">
               {bankOffer}

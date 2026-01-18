@@ -20,7 +20,16 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   (
-    { className, imageUrl, title, specifications, price, isAssured, bankOffer, ...props },
+    {
+      className,
+      imageUrl,
+      title,
+      specifications,
+      price,
+      isAssured,
+      bankOffer,
+      ...props
+    },
     ref
   ) => {
     const formatNumber = (num: number) =>
@@ -56,19 +65,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
-              {/* Mobile image */}
-              <div className="block md:hidden w-full h-full">
+              {/* Mobile: snug fill */}
+              <div className="absolute inset-0 block md:hidden">
                 <Image
                   src="/images/productk8.png"
                   alt={`${title} schematic`}
-                  width={200}
-                  height={200}
-                  className="object-contain w-full h-full rounded-lg"
+                  fill
+                  sizes="(max-width: 768px) 200px"
+                  className="object-cover"
                   priority
                 />
               </div>
 
-              {/* Desktop image */}
+              {/* Desktop: original behavior */}
               <div className="hidden md:block w-full h-full">
                 <Image
                   src={imageUrl}
@@ -85,7 +94,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold">{title}</h2>
 
-            {/* Checkout trust badge */}
+            {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
               <ShieldCheck className="h-4 w-4" strokeWidth={2} />
               Contact for Procurement
@@ -100,17 +109,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
+            <h3 className="text-3xl font-bold">
+              ${formatNumber(price)}
+            </h3>
 
-            {/* ISO certifications (replaces shield icon near price) */}
             {isAssured && (
               <p className="text-xs uppercase tracking-wide text-muted-foreground">
                 ISO 9001 · ISO 13485 · ISO 14001
               </p>
             )}
 
-            {/* Payment info */}
-            <p className="text-sm font-medium text-green-600 mt-2">{bankOffer}</p>
+            <p className="text-sm font-medium text-green-600 mt-2">
+              {bankOffer}
+            </p>
           </div>
         </div>
       </motion.div>

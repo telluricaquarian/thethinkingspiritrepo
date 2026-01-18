@@ -43,8 +43,9 @@ export default function Page() {
       <div className="w-full">
         <ProfilePill />
 
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-4xl mx-auto space-y-6">
           <ProductCard
+            accent="green"
             imageUrl="/images/schematic.png"
             title="Leveluk K8 Water Ionizer"
             specifications={[
@@ -55,11 +56,12 @@ export default function Page() {
               "Designed for long-term daily use & durability",
             ]}
             price={6787}
+            currencyLabel="AUD"
             isAssured={true}
-            bankOffer={
-              "Payment options available · From ~$252/mo (E-Payment or finance)"
-            }
+            bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
           />
+
+          {/* Next: drop your Areculateir service card here using accent="orange" */}
         </div>
       </div>
     </main>

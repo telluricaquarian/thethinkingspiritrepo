@@ -20,16 +20,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   (
-    {
-      className,
-      imageUrl,
-      title,
-      specifications,
-      price,
-      isAssured,
-      bankOffer,
-      ...props
-    },
+    { className, imageUrl, title, specifications, price, isAssured, bankOffer, ...props },
     ref
   ) => {
     const formatNumber = (num: number) =>
@@ -65,13 +56,28 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
-              <Image
-                src={imageUrl}
-                alt={title}
-                width={200}
-                height={200}
-                className="object-cover w-full h-full rounded-lg"
-              />
+              {/* Mobile image */}
+              <div className="block md:hidden w-full h-full">
+                <Image
+                  src="/images/productk8.png"
+                  alt={`${title} schematic`}
+                  width={200}
+                  height={200}
+                  className="object-contain w-full h-full rounded-lg"
+                  priority
+                />
+              </div>
+
+              {/* Desktop image */}
+              <div className="hidden md:block w-full h-full">
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  width={200}
+                  height={200}
+                  className="object-cover w-full h-full rounded-lg"
+                />
+              </div>
             </div>
           </div>
 
@@ -94,9 +100,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-3xl font-bold">
-              ${formatNumber(price)}
-            </h3>
+            <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
 
             {/* ISO certifications (replaces shield icon near price) */}
             {isAssured && (
@@ -106,9 +110,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             )}
 
             {/* Payment info */}
-            <p className="text-sm font-medium text-green-600 mt-2">
-              {bankOffer}
-            </p>
+            <p className="text-sm font-medium text-green-600 mt-2">{bankOffer}</p>
           </div>
         </div>
       </motion.div>

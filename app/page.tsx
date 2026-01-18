@@ -5,7 +5,7 @@ export default function Page() {
     <main className="min-h-screen bg-black text-white flex items-center justify-center p-6">
       <div className="w-full max-w-4xl">
         <ProductCard
-          imageUrl="/next.svg"
+          imageUrl="/images/levelukk8.jpeg"
           title="Test Product"
           rating={4.6}
           ratingsCount={19106}

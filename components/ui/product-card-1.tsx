@@ -86,13 +86,20 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Image */}
           <div className="flex flex-col items-center gap-4">
-            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
+            {/* 
+              FIX:
+              - mobile: use a wider aspect so images aren't cropped
+              - use object-contain so the whole schematic is visible
+              - keep desktop behaving nicely (still constrained, but not forced square)
+            */}
+            <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px]">
               <Image
                 src={imageUrl}
                 alt={title}
-                width={200}
-                height={200}
-                className="object-cover w-full h-full"
+                fill
+                sizes="(max-width: 768px) 100vw, 200px"
+                className="object-contain"
+                priority
               />
             </div>
           </div>

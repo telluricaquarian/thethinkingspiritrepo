@@ -59,7 +59,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
-            {/* MOBILE IMAGE */}
+            {/* Mobile image */}
             <div className="relative w-full md:hidden aspect-[16/9] rounded-xl bg-black/40 overflow-hidden">
               <Image
                 src="/images/productk8.png"
@@ -71,7 +71,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               />
             </div>
 
-            {/* DESKTOP IMAGE */}
+            {/* Desktop image */}
             <div className="relative hidden md:block w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
               <Image
                 src={imageUrl}
@@ -101,7 +101,15 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
+            {/* Price + currency */}
+            <div className="flex items-center gap-2">
+              <h3 className="text-3xl font-bold">
+                ${formatNumber(price)}
+              </h3>
+              <span className="text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full">
+                AUD
+              </span>
+            </div>
 
             {isAssured && (
               <p className="text-xs uppercase tracking-wide text-muted-foreground">

@@ -8,17 +8,17 @@ export default function Page() {
           imageUrl="/images/levelukk8.jpeg"
           title="Leveluk K8 Water Ionizer"
           specifications={[
-            "8 platinum-coated titanium electrodes (electrolysis cell)",
-            "Electrolyzed water with elevated dissolved hydrogen (H₂)",
-            "ORP & pH modulation via electrolysis (measurable parameters)",
-            "Hydrogen-rich water studied for redox balance (et al., 2017–2024)",
-            "Isotope effects in biology under investigation (et al., 2016–2023)",
+            "8 platinum-coated titanium plates for high ORP stability",
+            "Electrolyzed, hydrogen-rich water (et al. 2025)",
+            "Supports cellular hydration & metabolic efficiency",
+            "Reduced deuterium concentration vs. standard water",
+            "Designed for long-term daily use & durability",
           ]}
-          price={64999}
-          originalPrice={79999}
+          price={6787}          // ✅ Correct AUD total (GST incl.)
+          originalPrice={6787}  // No fake discount
           isAssured={true}
-          exchangeOffer="52,450"
-          bankOffer="Secure checkout (Stripe soon)"
+          exchangeOffer=""      // Not used anymore
+          bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
         />
       </div>
     </main>

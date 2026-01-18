@@ -44,22 +44,39 @@ export default function Page() {
         <ProfilePill />
 
         <div className="w-full max-w-4xl mx-auto space-y-6">
-          <ProductCard
-            accent="green"
-            imageUrl="/images/schematic.png"
-            title="Leveluk K8 Water Ionizer"
-            specifications={[
-              "8 platinum-coated titanium plates for high ORP stability",
-              "Electrolyzed, hydrogen-rich water (et al. 2025)",
-              "Supports cellular hydration & metabolic efficiency",
-              "Reduced deuterium concentration vs. standard water",
-              "Designed for long-term daily use & durability",
-            ]}
-            price={6787}
-            currencyLabel="AUD"
-            isAssured={true}
-            bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-          />
+          {/* MOBILE ONLY: render a different image than desktop */}
+          <div className="block md:hidden w-full">
+            <div className="relative w-full overflow-hidden rounded-lg border border-white/10 bg-black/40 aspect-[16/10]">
+              <Image
+                src="/images/productk8.png" // <-- mobile-only image (change if you want)
+                alt="Leveluk K8 product overview"
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* DESKTOP ONLY: keep existing card as-is */}
+          <div className="hidden md:block">
+            <ProductCard
+              accent="green"
+              imageUrl="/images/schematic.png"
+              title="Leveluk K8 Water Ionizer"
+              specifications={[
+                "8 platinum-coated titanium plates for high ORP stability",
+                "Electrolyzed, hydrogen-rich water (et al. 2025)",
+                "Supports cellular hydration & metabolic efficiency",
+                "Reduced deuterium concentration vs. standard water",
+                "Designed for long-term daily use & durability",
+              ]}
+              price={6787}
+              currencyLabel="AUD"
+              isAssured={true}
+              bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
+            />
+          </div>
 
           {/* Next: drop your Areculateir service card here using accent="orange" */}
         </div>

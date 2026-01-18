@@ -45,7 +45,7 @@ export default function Page() {
 
         <div className="w-full max-w-4xl mx-auto">
           <ProductCard
-            imageUrl="/images/levelukk8.jpeg"
+            imageUrl="/images/schematic.png"
             title="Leveluk K8 Water Ionizer"
             specifications={[
               "8 platinum-coated titanium plates for high ORP stability",

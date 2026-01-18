@@ -6,8 +6,14 @@ export default function Page() {
       <div className="w-full max-w-4xl">
         <ProductCard
           imageUrl="/images/levelukk8.jpeg"
-          title="Test Product"
-          specifications={["Spec 1", "Spec 2", "Spec 3", "Spec 4", "Spec 5"]}
+          title="Leveluk K8 Water Ionizer"
+          specifications={[
+            "8 platinum-coated titanium electrodes (electrolysis cell)",
+            "Electrolyzed water with elevated dissolved hydrogen (H₂)",
+            "ORP & pH modulation via electrolysis (measurable parameters)",
+            "Hydrogen-rich water studied for redox balance (et al., 2017–2024)",
+            "Isotope effects in biology under investigation (et al., 2016–2023)",
+          ]}
           price={64999}
           originalPrice={79999}
           isAssured={true}

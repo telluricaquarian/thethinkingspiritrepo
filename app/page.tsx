@@ -44,47 +44,42 @@ export default function Page() {
         <ProfilePill />
 
         <div className="w-full max-w-4xl mx-auto space-y-6">
-          {/* MOBILE: keep ALL info, but use a different image */}
-          <div className="block md:hidden">
-            <ProductCard
-              accent="green"
-              imageUrl="/images/productk8.png" // mobile-only image
-              title="Leveluk K8 Water Ionizer"
-              specifications={[
-                "8 platinum-coated titanium plates for high ORP stability",
-                "Electrolyzed, hydrogen-rich water (et al. 2025)",
-                "Supports cellular hydration & metabolic efficiency",
-                "Reduced deuterium concentration vs. standard water",
-                "Designed for long-term daily use & durability",
-              ]}
-              price={6787}
-              currencyLabel="AUD"
-              isAssured={true}
-              bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-            />
-          </div>
+          {/* K8 card */}
+          <ProductCard
+            accent="green"
+            imageUrl="/images/schematic.png"
+            title="Leveluk K8 Water Ionizer"
+            specifications={[
+              "8 platinum-coated titanium plates for high ORP stability",
+              "Electrolyzed, hydrogen-rich water (et al. 2025)",
+              "Supports cellular hydration & metabolic efficiency",
+              "Reduced deuterium concentration vs. standard water",
+              "Designed for long-term daily use & durability",
+            ]}
+            price={6787}
+            currencyLabel="AUD"
+            isAssured={true}
+            bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
+            ctaLabel="Contact for Procurement"
+          />
 
-          {/* DESKTOP: leave as-is */}
-          <div className="hidden md:block">
-            <ProductCard
-              accent="green"
-              imageUrl="/images/schematic.png" // desktop image stays the same
-              title="Leveluk K8 Water Ionizer"
-              specifications={[
-                "8 platinum-coated titanium plates for high ORP stability",
-                "Electrolyzed, hydrogen-rich water (et al. 2025)",
-                "Supports cellular hydration & metabolic efficiency",
-                "Reduced deuterium concentration vs. standard water",
-                "Designed for long-term daily use & durability",
-              ]}
-              price={6787}
-              currencyLabel="AUD"
-              isAssured={true}
-              bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-            />
-          </div>
-
-          {/* Next: drop your Areculateir service card here using accent="orange" */}
+          {/* ORANGE: Areculateir service delivery */}
+          <ProductCard
+            accent="orange"
+            imageUrl="/images/onitos.png"
+            title="Full-Stack Build"
+            specifications={[
+              "High-end UI build with conversion-first layout + polish",
+              "Automation & integrations (forms, email, CRM, Sheets, etc.)",
+              "Fast iteration: ship in stages (prototype → MVP → scale)",
+              "Optional AI/agentic workflows where it actually helps",
+            ]}
+            price={2800}
+            currencyLabel="AUD"
+            bankOffer="Payment options also available"
+            ctaLabel="Contact to join Waitlist"
+            toolingLine="VS Code · Claude Code · UI Libraries"
+          />
         </div>
       </div>
     </main>

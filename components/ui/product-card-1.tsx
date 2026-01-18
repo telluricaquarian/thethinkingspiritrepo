@@ -3,11 +3,9 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { Heart, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 import { cn } from "../../lib/utils";
-import { Checkbox } from "./checkbox";
-import { Button } from "./button";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
@@ -18,7 +16,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   price: number;
   originalPrice: number;
   isAssured: boolean;
-  exchangeOffer: string;
+  exchangeOffer: string; // kept for compatibility, no longer rendered
   bankOffer: string;
 };
 
@@ -32,16 +30,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       price,
       originalPrice,
       isAssured,
-      exchangeOffer,
       bankOffer,
       ...props
     },
     ref
   ) => {
-    const [isWishlisted, setIsWishlisted] = React.useState(false);
-
     const formatNumber = (num: number) =>
-      new Intl.NumberFormat("en-IN").format(num);
+      new Intl.NumberFormat("en-AU").format(num);
 
     const safeOriginal = originalPrice > 0 ? originalPrice : price;
     const discount =
@@ -78,7 +73,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
-            <div className="relative group w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
+            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
               <Image
                 src={imageUrl}
                 alt={title}
@@ -86,34 +81,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 height={200}
                 className="object-cover w-full h-full rounded-lg"
               />
-
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="absolute top-2 right-2 rounded-full bg-black/40 backdrop-blur"
-                onClick={() => setIsWishlisted((v) => !v)}
-                aria-label="Toggle Wishlist"
-              >
-                <Heart
-                  className={cn(
-                    "h-5 w-5 transition-colors",
-                    isWishlisted
-                      ? "fill-red-500 text-red-500"
-                      : "text-white"
-                  )}
-                />
-              </Button>
-            </div>
-
-            <div className="flex items-center space-x-2 self-start md:self-center pt-4">
-              <Checkbox id={`compare-${title}`} />
-              <label
-                htmlFor={`compare-${title}`}
-                className="text-sm font-medium leading-none"
-              >
-                Add to Compare
-              </label>
             </div>
           </div>
 
@@ -121,7 +88,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold">{title}</h2>
 
-            {/* ✅ TRUST BADGE (replaces ratings entirely) */}
+            {/* Trust badge */}
             <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
               <ShieldCheck className="h-4 w-4" strokeWidth={2} />
               Secure checkout (Stripe soon)
@@ -137,7 +104,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Column 3: Pricing */}
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-3xl font-bold">${formatNumber(price)}</h3>
+              <h3 className="text-3xl font-bold">
+                ${formatNumber(price)}
+              </h3>
               {isAssured && (
                 <ShieldCheck
                   className="h-6 w-6 text-primary"
@@ -155,10 +124,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </span>
             </div>
 
-            <p className="text-sm font-medium mt-2">
-              Upto ${exchangeOffer} Off on Exchange
-            </p>
-            <p className="text-sm font-medium text-green-600">
+            {/* Payment info only */}
+            <p className="text-sm font-medium text-green-600 mt-2">
               {bankOffer}
             </p>
           </div>

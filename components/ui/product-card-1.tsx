@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
-import { Heart, Star, ShieldCheck } from "lucide-react";
+import { Heart, ShieldCheck } from "lucide-react";
 
 import { cn } from "../../lib/utils";
 import { Checkbox } from "./checkbox";
@@ -14,9 +14,6 @@ type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrl: string;
   title: string;
-  rating: number;
-  ratingsCount: number;
-  reviewsCount: number;
   specifications: string[];
   price: number;
   originalPrice: number;
@@ -31,9 +28,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       className,
       imageUrl,
       title,
-      rating,
-      ratingsCount,
-      reviewsCount,
       specifications,
       price,
       originalPrice,
@@ -46,11 +40,14 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
   ) => {
     const [isWishlisted, setIsWishlisted] = React.useState(false);
 
-    const formatNumber = (num: number) => new Intl.NumberFormat("en-IN").format(num);
+    const formatNumber = (num: number) =>
+      new Intl.NumberFormat("en-IN").format(num);
 
     const safeOriginal = originalPrice > 0 ? originalPrice : price;
     const discount =
-      safeOriginal > 0 ? Math.round(((safeOriginal - price) / safeOriginal) * 100) : 0;
+      safeOriginal > 0
+        ? Math.round(((safeOriginal - price) / safeOriginal) * 100)
+        : 0;
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -60,8 +57,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
       },
     };
-
-    const compareId = `compare-${title.replace(/\s+/g, "-").toLowerCase()}`;
 
     return (
       <motion.div
@@ -81,40 +76,41 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
-          {/* Column 1: Image & Compare */}
+          {/* Column 1: Image */}
           <div className="flex flex-col items-center gap-4">
-            {/* ✅ Rounded corners + clipping happen here */}
-            <div className="relative group w-full aspect-square max-w-[200px] mx-auto rounded-lg overflow-hidden">
+            <div className="relative group w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
               <Image
                 src={imageUrl}
                 alt={title}
                 width={200}
                 height={200}
-                className="object-contain w-full h-full"
+                className="object-cover w-full h-full rounded-lg"
               />
 
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="absolute top-2 right-2 rounded-full"
+                className="absolute top-2 right-2 rounded-full bg-black/40 backdrop-blur"
                 onClick={() => setIsWishlisted((v) => !v)}
                 aria-label="Toggle Wishlist"
               >
                 <Heart
                   className={cn(
-                    "h-5 w-5 text-muted-foreground transition-colors",
-                    isWishlisted && "fill-red-500 text-red-500"
+                    "h-5 w-5 transition-colors",
+                    isWishlisted
+                      ? "fill-red-500 text-red-500"
+                      : "text-white"
                   )}
                 />
               </Button>
             </div>
 
             <div className="flex items-center space-x-2 self-start md:self-center pt-4">
-              <Checkbox id={compareId} />
+              <Checkbox id={`compare-${title}`} />
               <label
-                htmlFor={compareId}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor={`compare-${title}`}
+                className="text-sm font-medium leading-none"
               >
                 Add to Compare
               </label>
@@ -123,17 +119,12 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
           {/* Column 2: Product Details */}
           <div className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+            <h2 className="text-lg font-semibold">{title}</h2>
 
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="bg-green-600 text-white px-2 py-0.5 rounded-md flex items-center gap-1">
-                <span>{Number.isFinite(rating) ? rating.toFixed(1) : "—"}</span>
-                <Star className="h-3 w-3 fill-white" />
-              </div>
-
-              <span>
-                {formatNumber(ratingsCount)} Ratings &amp; {formatNumber(reviewsCount)} Reviews
-              </span>
+            {/* ✅ TRUST BADGE (replaces ratings entirely) */}
+            <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
+              <ShieldCheck className="h-4 w-4" strokeWidth={2} />
+              Secure checkout (Stripe soon)
             </div>
 
             <ul className="space-y-2 text-sm list-disc list-inside text-muted-foreground pt-2">
@@ -147,18 +138,27 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
               <h3 className="text-3xl font-bold">₹{formatNumber(price)}</h3>
-              {isAssured && <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={1.5} />}
+              {isAssured && (
+                <ShieldCheck
+                  className="h-6 w-6 text-primary"
+                  strokeWidth={1.5}
+                />
+              )}
             </div>
 
             <div className="flex items-center gap-3 text-sm">
               <span className="text-muted-foreground line-through">
                 ₹{formatNumber(safeOriginal)}
               </span>
-              <span className="text-green-600 font-semibold">{discount}% off</span>
+              <span className="text-green-600 font-semibold">
+                {discount}% off
+              </span>
             </div>
 
-            <p className="text-sm font-medium mt-2">Upto ₹{exchangeOffer} Off on Exchange</p>
-            <p className="text-sm font-medium text-green-600 cursor-pointer hover:underline">
+            <p className="text-sm font-medium mt-2">
+              Upto ₹{exchangeOffer} Off on Exchange
+            </p>
+            <p className="text-sm font-medium text-green-600">
               {bankOffer}
             </p>
           </div>

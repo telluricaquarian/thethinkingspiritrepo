@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
@@ -13,9 +13,14 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrl: string;
   title: string;
   specifications: string[];
-  price: number;
-  isAssured: boolean;
-  bankOffer: string;
+  price?: number;
+  priceLabel?: string;
+  currencyLabel?: string;
+  isAssured?: boolean;
+  bankOffer?: string;
+  ctaLabel?: string;
+  toolingLine?: string;
+  accent?: "green" | "orange" | (string & {});
 };
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
@@ -26,14 +31,32 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       title,
       specifications,
       price,
+      priceLabel,
+      currencyLabel,
       isAssured,
       bankOffer,
+      ctaLabel,
+      toolingLine,
+      accent = "green",
       ...props
     },
     ref
   ) => {
     const formatNumber = (num: number) =>
       new Intl.NumberFormat("en-AU").format(num);
+
+    const accentClasses =
+      accent === "orange"
+        ? {
+            bg: "bg-[#FF751F]",
+            text: "text-[#FF751F]",
+            pill: "bg-[#FF751F]/15 text-[#FF751F]",
+          }
+        : {
+            bg: "bg-green-600",
+            text: "text-green-600",
+            pill: "bg-green-500/10 text-green-500",
+          };
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -43,6 +66,10 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
       },
     };
+
+    const formattedPrice =
+      priceLabel ??
+      (typeof price === "number" ? `$${formatNumber(price)}` : "");
 
     return (
       <motion.div
@@ -57,40 +84,36 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
-          {/* Column 1: Image */}
+          {/* Image */}
           <div className="flex flex-col items-center gap-4">
-            {/* Mobile image */}
-            <div className="relative w-full md:hidden aspect-[16/9] rounded-xl bg-black/40 overflow-hidden">
-              <Image
-                src="/images/productk8.png"
-                alt={`${title} schematic`}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            {/* Desktop image */}
-            <div className="relative hidden md:block w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
+            <div className="relative w-full aspect-square max-w-[200px] mx-auto overflow-hidden rounded-lg">
               <Image
                 src={imageUrl}
                 alt={title}
                 width={200}
                 height={200}
-                className="object-cover w-full h-full rounded-lg"
+                className="object-cover w-full h-full"
               />
             </div>
           </div>
 
-          {/* Column 2: Product Details */}
+          {/* Details */}
           <div className="flex flex-col gap-3">
             <h2 className="text-lg font-semibold">{title}</h2>
 
-            <div className="inline-flex items-center gap-2 bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium w-fit">
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium w-fit text-white",
+                accentClasses.bg
+              )}
+            >
               <ShieldCheck className="h-4 w-4" strokeWidth={2} />
-              Contact for Procurement
+              {ctaLabel ?? "Contact for Procurement"}
             </div>
+
+            {toolingLine && (
+              <p className="text-sm text-muted-foreground">{toolingLine}</p>
+            )}
 
             <ul className="space-y-2 text-sm list-disc list-inside text-muted-foreground pt-2">
               {specifications.map((spec, index) => (
@@ -99,17 +122,23 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </ul>
           </div>
 
-          {/* Column 3: Pricing */}
+          {/* Pricing */}
           <div className="flex flex-col gap-2">
-            {/* Price + currency */}
-            <div className="flex items-center gap-2">
-              <h3 className="text-3xl font-bold">
-                ${formatNumber(price)}
-              </h3>
-              <span className="text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full">
-                AUD
-              </span>
-            </div>
+            {formattedPrice && (
+              <div className="flex items-center gap-2">
+                <h3 className="text-3xl font-bold">{formattedPrice}</h3>
+                {currencyLabel && (
+                  <span
+                    className={cn(
+                      "text-xs font-semibold px-2 py-0.5 rounded-full",
+                      accentClasses.pill
+                    )}
+                  >
+                    {currencyLabel}
+                  </span>
+                )}
+              </div>
+            )}
 
             {isAssured && (
               <p className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -117,9 +146,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            <p className="text-sm font-medium text-green-600 mt-2">
-              {bankOffer}
-            </p>
+            {bankOffer && (
+              <p className={cn("text-sm font-medium mt-2", accentClasses.text)}>
+                {bankOffer}
+              </p>
+            )}
           </div>
         </div>
       </motion.div>

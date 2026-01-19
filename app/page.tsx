@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ProductCard } from "../components/ui/product-card-1";
+import { Footer } from "../components/ui/Footer";
 
 function ProfilePill() {
   return (
@@ -77,10 +78,13 @@ export default function Page() {
             price={2800}
             currencyLabel="AUD"
             bankOffer="Payment options also available"
-            ctaLabel="Contact to join Waitlist"
+            ctaLabel="Caontact to join Waitlist"
             toolingLine="VS Code · Claude Code · UI Libraries"
           />
         </div>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </main>
   );

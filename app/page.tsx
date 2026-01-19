@@ -12,10 +12,8 @@ function ProfilePill() {
           <Marquee
             text="Building and designing anew."
             duration={36}
-            repeat={8}
-            fontSize="xl"
-            strokeWidth="1px"
-            strokeColor="rgb(120 120 120 / 1)"
+            repeat={10}
+            className="text-[56px] font-semibold tracking-tight text-white/10"
           />
         </div>
 

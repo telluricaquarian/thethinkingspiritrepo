@@ -12,7 +12,7 @@ function ProfilePill() {
   <Marquee
     text="Building and designing anew."
     duration={18}
-    repeat={12}
+    repeat={14}
     fontSizePx={72}
     strokeWidth={1}
     strokeColor="rgba(140,140,140,0.55)"

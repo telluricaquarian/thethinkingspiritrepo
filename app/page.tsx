@@ -1,15 +1,28 @@
 import Image from "next/image";
 import { ProductCard } from "../components/ui/product-card-1";
 import { Footer } from "../components/ui/Footer";
+import { Marquee } from "../components/ui/marquee";
 
 function ProfilePill() {
   return (
     <div className="w-full max-w-4xl mx-auto mb-8">
       <div className="relative overflow-hidden rounded-[22px] border border-white/20 bg-gradient-to-r from-white/10 via-white/5 to-white/0 px-6 py-5">
+        {/* Ghost marquee background */}
+        <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.08] blur-[1px]">
+          <Marquee
+            text="Building and designing anew."
+            duration={36}
+            repeat={8}
+            fontSize="xl"
+            strokeWidth="1px"
+            strokeColor="rgb(120 120 120 / 1)"
+          />
+        </div>
+
         {/* subtle green edge accent */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[6px] bg-green-500/70" />
 
-        <div className="flex items-center gap-4">
+        <div className="relative z-10 flex items-center gap-4">
           {/* avatar */}
           <div className="relative h-14 w-14 overflow-hidden rounded-full ring-1 ring-white/20 bg-black/60">
             <Image

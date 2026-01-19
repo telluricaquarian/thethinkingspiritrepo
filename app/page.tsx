@@ -8,17 +8,15 @@ function ProfilePill() {
     <div className="w-full max-w-4xl mx-auto mb-8">
       <div className="relative overflow-hidden rounded-[22px] border border-white/20 bg-gradient-to-r from-white/10 via-white/5 to-white/0 px-6 py-5">
         {/* Ghost marquee background */}
-       <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.10] blur-[0.5px]">
+       <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.12] blur-[0.5px]">
   <Marquee
     text="Building and designing anew."
     duration={18}
     repeat={14}
-    fontSizePx={72}
-    strokeWidth={1}
-    strokeColor="rgba(140,140,140,0.55)"
     className="w-full"
   />
 </div>
+
 
         {/* subtle green edge accent */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[6px] bg-green-500/70" />

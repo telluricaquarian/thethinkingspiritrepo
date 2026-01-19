@@ -4,11 +4,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-16 border-t border-white/10">
-      <div className="mx-auto flex max-w-5xl items-start gap-6 px-6 py-10">
-        {/* Mark */}
-        <div className="shrink-0">
-          <div className="relative h-16 w-16 overflow-hidden rounded-[10px] bg-black/40 ring-1 ring-white/10">
+    <footer className="mt-10">
+      <div className="mx-auto w-full max-w-4xl px-6 pb-8">
+        <div className="flex items-start gap-5">
+          {/* Square mark (no rounding) */}
+          <div className="relative h-12 w-12 shrink-0 sm:h-14 sm:w-14">
             <Image
               src="/images/ttsfav.png"
               alt="TTS"
@@ -17,16 +17,16 @@ export function Footer() {
               priority={false}
             />
           </div>
-        </div>
 
-        {/* Copy */}
-        <div className="leading-tight">
-          <p className="text-2xl italic text-white/90">
-            Building and designing anew.
-          </p>
-          <p className="mt-2 text-lg font-medium text-green-500">
-            {year}©
-          </p>
+          {/* Copy */}
+          <div className="leading-tight">
+            <p className="text-[22px] italic text-white/90 sm:text-2xl">
+              Building and designing anew.
+            </p>
+            <p className="mt-1 text-[18px] font-medium text-green-500 sm:text-lg">
+              {year}©
+            </p>
+          </div>
         </div>
       </div>
     </footer>

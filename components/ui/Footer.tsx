@@ -6,9 +6,10 @@ export function Footer() {
   return (
     <footer className="mt-10">
       <div className="mx-auto w-full max-w-4xl px-6 pb-8">
-        <div className="flex items-start gap-5">
-          {/* Square mark (no rounding) */}
-          <div className="relative h-12 w-12 shrink-0 sm:h-14 sm:w-14">
+        {/* optical alignment with product card */}
+        <div className="flex items-start gap-4 -ml-1">
+          {/* Square mark (consistent size everywhere) */}
+          <div className="relative h-11 w-11 shrink-0">
             <Image
               src="/images/ttsfav.png"
               alt="TTS"

@@ -78,7 +78,7 @@ export default function Page() {
             price={2800}
             currencyLabel="AUD"
             bankOffer="Payment options also available"
-            ctaLabel="Caontact to join Waitlist"
+            ctaLabel="Contact to join Waitlist"
             toolingLine="VS Code · Claude Code · UI Libraries"
           />
         </div>

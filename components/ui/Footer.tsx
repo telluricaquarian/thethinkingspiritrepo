@@ -5,11 +5,11 @@ export function Footer() {
 
   return (
     <footer className="mt-10">
-      <div className="mx-auto w-full max-w-4xl px-6 pb-8">
-        {/* optical alignment with product card */}
-        <div className="flex items-start gap-4 -ml-1">
-          {/* Square mark (consistent size everywhere) */}
-          <div className="relative h-11 w-11 shrink-0">
+      {/* Match card container geometry */}
+      <div className="mx-auto w-full max-w-4xl px-6 pb-10">
+        <div className="flex items-center gap-4">
+          {/* Figma mark size: 34x34 (no rounding) */}
+          <div className="relative h-[34px] w-[34px] shrink-0">
             <Image
               src="/images/ttsfav.png"
               alt="TTS"
@@ -21,10 +21,10 @@ export function Footer() {
 
           {/* Copy */}
           <div className="leading-tight">
-            <p className="text-[12px] italic text-white/90 sm:text-2xl">
+            <p className="text-[12px] italic text-white/90 sm:text-[14px]">
               Building and designing anew.
             </p>
-            <p className="mt-1 text-[10px] font-medium text-green-500 sm:text-lg">
+            <p className="mt-1 text-[10px] font-medium text-green-500 sm:text-[12px]">
               {year}©
             </p>
           </div>

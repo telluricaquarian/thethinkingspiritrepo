@@ -45,11 +45,13 @@ export function UsedByMarquee({
       <div className="relative flex-1 overflow-hidden">
         {/* Track */}
         <div
-          className={clsx(
-            "flex w-max items-center gap-3 will-change-transform used-by-marquee-track",
-            direction === "right" && "used-by-marquee-track--reverse"
-          )}
-          style={{ animationDuration: `${duration}s` }}
+          className="flex w-max items-center gap-3 will-change-transform"
+          style={{
+            animation:
+              direction === "right"
+                ? `used-by-marquee-right ${duration}s linear infinite`
+                : `used-by-marquee-left ${duration}s linear infinite`,
+          }}
         >
           {loopItems.map((item, idx) => (
             <PersonChip key={`${item.handle}-${idx}`} {...item} />
@@ -64,35 +66,27 @@ export function UsedByMarquee({
   );
 }
 
-function PersonChip({
-  name,
-  handle,
-  role,
-  avatarSrc,
-  verified,
-}: UsedByItem) {
+function PersonChip({ name, handle, role, avatarSrc, verified }: UsedByItem) {
   return (
     <div className="flex items-center gap-2 rounded-full bg-black/30 px-3 py-1.5 text-sm ring-1 ring-white/10">
-      {/* Avatar */}
-      <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full ring-1 ring-white/20">
-        <Image
-          src={avatarSrc}
-          alt={name}
-          fill
-          className="object-cover"
-          sizes="32px"
-        />
+      {/* Avatar wrapper (NOT clipped) */}
+      <div className="relative h-8 w-8 shrink-0">
+        {/* Inner circle (clipped) */}
+        <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-white/20">
+          <Image
+            src={avatarSrc}
+            alt={name}
+            fill
+            className="object-cover"
+            sizes="32px"
+          />
+        </div>
 
+        {/* Verified badge (outside the clipped circle) */}
         {verified && (
-          <div className="absolute -top-1 -right-1 h-4 w-4 overflow-hidden rounded-full bg-black ring-1 ring-white/20">
-            <Image
-              src="/images/verified.png"
-              alt="Verified"
-              fill
-              className="object-contain"
-              sizes="16px"
-              priority={false}
-            />
+          <div className="absolute -top-1 -right-1 z-10 flex h-4 w-4 items-center justify-center rounded-full bg-black ring-1 ring-green-400/60">
+            {/* swap this to your /images/verified.png if you want */}
+            <span className="text-[10px] leading-none text-green-400">✓</span>
           </div>
         )}
       </div>

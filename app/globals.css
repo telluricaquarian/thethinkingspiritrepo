@@ -35,10 +35,45 @@ body {
   }
 }
 
+/* --- Used-by marquee animation (chips/avatars) --- */
+@keyframes used-by-marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes used-by-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Base animation (left) */
+.used-by-marquee-track {
+  animation: used-by-marquee-left 22s linear infinite;
+}
+
+/* Reverse animation (right) — set the FULL animation so nothing depends on inheritance */
+.used-by-marquee-track--reverse {
+  animation: used-by-marquee-right 22s linear infinite;
+}
+
 /* Respect motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .marquee-motion {
     animation: none !important;
     transform: translateX(0%) !important;
+  }
+
+  .used-by-marquee-track,
+  .used-by-marquee-track--reverse {
+    animation: none !important;
+    transform: translateX(0) !important;
   }
 }

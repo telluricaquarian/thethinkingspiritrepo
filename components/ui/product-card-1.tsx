@@ -6,6 +6,7 @@ import { motion, type Variants } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
@@ -21,6 +22,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   ctaLabel?: string;
   toolingLine?: string;
   accent?: "green" | "orange" | (string & {});
+  usedByItems?: UsedByItem[]; // ✅ NEW
 };
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
@@ -38,6 +40,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       ctaLabel,
       toolingLine,
       accent = "green",
+      usedByItems, // ✅ pull out so it doesn't get forwarded to DOM
       ...props
     },
     ref
@@ -86,12 +89,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
           {/* Image */}
           <div className="flex flex-col items-center gap-4">
-            {/* 
-              FIX:
-              - mobile: use a wider aspect so images aren't cropped
-              - use object-contain so the whole schematic is visible
-              - keep desktop behaving nicely (still constrained, but not forced square)
-            */}
             <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px]">
               <Image
                 src={imageUrl}
@@ -160,6 +157,17 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             )}
           </div>
         </div>
+
+        {/* ✅ Used-by row */}
+        {usedByItems?.length ? (
+          <div className="mt-4">
+            <UsedByMarquee
+              items={usedByItems}
+              duration={22}
+              direction="left"
+            />
+          </div>
+        ) : null}
       </motion.div>
     );
   }

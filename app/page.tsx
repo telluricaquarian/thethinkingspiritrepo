@@ -108,7 +108,12 @@ export default function Page() {
           {/* ORANGE: Areculateir service delivery */}
           <ProductCard
             accent="orange"
+            // Fallback (used if mobile/desktop not provided)
             imageUrl="/images/onitos.png"
+            // Mobile-specific (16:10) image
+            imageUrlMobile="/images/orangeservice.png"
+            // Desktop-specific (square-safe) image
+            imageUrlDesktop="/images/onitos.png"
             title="Full-Stack Build"
             specifications={[
               "High-end UI build with conversion-first layout + polish",

@@ -11,7 +11,15 @@ import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee"
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
 type ProductCardProps = Omit<MotionDivProps, "children"> & {
+  /** Backwards-compatible single image (used as fallback for both mobile + desktop) */
   imageUrl: string;
+
+  /** Optional: mobile-specific image (16:10) */
+  imageUrlMobile?: string;
+
+  /** Optional: desktop-specific image (square-safe) */
+  imageUrlDesktop?: string;
+
   title: string;
   specifications: string[];
   price?: number;
@@ -30,6 +38,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     {
       className,
       imageUrl,
+      imageUrlMobile,
+      imageUrlDesktop,
       title,
       specifications,
       price,
@@ -74,6 +84,10 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       priceLabel ??
       (typeof price === "number" ? `$${formatNumber(price)}` : "");
 
+    // Fallbacks so you don't have to update all call-sites immediately
+    const mobileSrc = imageUrlMobile ?? imageUrl;
+    const desktopSrc = imageUrlDesktop ?? imageUrl;
+
     return (
       <motion.div
         ref={ref}
@@ -90,12 +104,23 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Image */}
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px]">
+              {/* Mobile image — 16:10 */}
               <Image
-                src={imageUrl}
+                src={mobileSrc}
                 alt={title}
                 fill
                 sizes="(max-width: 768px) 100vw, 200px"
-                className="object-contain"
+                className="object-cover block md:hidden"
+                priority
+              />
+
+              {/* Desktop image — square-safe */}
+              <Image
+                src={desktopSrc}
+                alt={title}
+                fill
+                sizes="(max-width: 768px) 100vw, 200px"
+                className="object-cover hidden md:block"
                 priority
               />
             </div>
@@ -161,11 +186,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {/* ✅ Used-by row */}
         {usedByItems?.length ? (
           <div className="mt-4">
-            <UsedByMarquee
-              items={usedByItems}
-              duration={22}
-              direction="left"
-            />
+            <UsedByMarquee items={usedByItems} duration={22} direction="left" />
           </div>
         ) : null}
       </motion.div>

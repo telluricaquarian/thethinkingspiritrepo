@@ -8,15 +8,14 @@ function ProfilePill() {
     <div className="w-full max-w-4xl mx-auto mb-8">
       <div className="relative overflow-hidden rounded-[22px] border border-white/20 bg-gradient-to-r from-white/10 via-white/5 to-white/0 px-6 py-5">
         {/* Ghost marquee background */}
-       <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.12] blur-[0.5px]">
-  <Marquee
-    text="Building and designing anew."
-    duration={18}
-    repeat={14}
-    className="w-full"
-  />
-</div>
-
+        <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.12] blur-[0.5px]">
+          <Marquee
+            text="Building and designing anew."
+            duration={18}
+            repeat={14}
+            className="w-full"
+          />
+        </div>
 
         {/* subtle green edge accent */}
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[6px] bg-green-500/70" />
@@ -74,6 +73,36 @@ export default function Page() {
             isAssured={true}
             bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
             ctaLabel="Contact for Procurement"
+            usedByItems={[
+              {
+                name: "Bryson DeChambeau",
+                handle: "@brysondechambeau",
+                role: "Professional Golfer",
+                avatarSrc: "/images/bryson.jpeg",
+                verified: true,
+              },
+              {
+                name: "Wardell Stephen Curry II",
+                handle: "@stephencurry30",
+                role: "Olympic Gold Medalist",
+                avatarSrc: "/images/stephencurry.jpeg",
+                verified: true,
+              },
+              {
+                name: "Jhene Aiko Efuru Chilombo",
+                handle: "@jheneaiko",
+                role: "Musician",
+                avatarSrc: "/images/jheneaiko.jpg",
+                verified: true,
+              },
+              {
+                name: "Diplo",
+                handle: "@diplo",
+                role: "DJ / Producer",
+                avatarSrc: "/images/diplo.jpeg",
+                verified: true,
+              },
+            ]}
           />
 
           {/* ORANGE: Areculateir service delivery */}

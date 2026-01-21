@@ -170,9 +170,14 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             )}
 
             {isAssured && (
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                ISO 9001 · ISO 13485 · ISO 14001
-              </p>
+              <>
+                <p className="text-xs text-white/40 tracking-wide">
+                  Certified Manufacturing Standards
+                </p>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                  ISO 9001 · ISO 13485 · ISO 14001
+                </p>
+              </>
             )}
 
             {bankOffer && (

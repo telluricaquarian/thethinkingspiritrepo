@@ -94,6 +94,26 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const mobileSrc = imageUrlMobile ?? imageUrl;
     const desktopSrc = imageUrlDesktop ?? imageUrl;
 
+    // ✅ Patent links (green product card trust element)
+    const enagicPatents = [
+      {
+        id: "JP2005152847A",
+        href: "https://patents.google.com/patent/JP2005152847A/en?oq=JP2005152847A",
+      },
+      {
+        id: "JP2005144418A",
+        href: "https://patents.google.com/patent/JP2005144418A/en?oq=JP2005144418A",
+      },
+      {
+        id: "JP2005074388A",
+        href: "https://patents.google.com/patent/JP2005074388A/en?oq=JP2005074388A",
+      },
+      {
+        id: "JP2006087987A",
+        href: "https://patents.google.com/patent/JP2006087987A/en?oq=JP2006087987A",
+      },
+    ];
+
     return (
       <motion.div
         ref={ref}
@@ -190,8 +210,21 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                     <p className="text-xs text-white/40 tracking-wide mt-2">
                       Protected by multiple Enagic patents
                     </p>
+
                     <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                      JP2005152847A
+                      {enagicPatents.map((p, i) => (
+                        <React.Fragment key={p.id}>
+                          <a
+                            href={p.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-white/70 underline decoration-white/15 underline-offset-4 hover:decoration-white/40 transition-colors"
+                          >
+                            {p.id}
+                          </a>
+                          {i < enagicPatents.length - 1 ? " · " : null}
+                        </React.Fragment>
+                      ))}
                     </p>
                   </>
                 ) : null}

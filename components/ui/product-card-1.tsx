@@ -32,7 +32,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[];
 
-  /** Secondary CTA (used for orange "Join" AND green "Inquire") */
+  /** Secondary CTA (orange: Join, green: Inquire) */
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
 };
@@ -54,7 +54,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       ctaLabel,
       toolingLine,
       accent = "green",
-      usedByItems, // pulled out so it doesn't get forwarded to DOM
+      usedByItems,
       secondaryCtaLabel,
       onSecondaryCtaClick,
       ...props
@@ -118,6 +118,18 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const iso13485CertHref =
       "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
 
+    // Should we render the bottom CTA?
+    const showSecondaryCta = accent === "orange" || accent === "green";
+
+    // Styling for the bottom CTA (orange vs green)
+    const secondaryCtaClassName =
+      accent === "orange"
+        ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
+        : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
+
+    const secondaryCtaText =
+      secondaryCtaLabel ?? (accent === "orange" ? "Join" : "Inquire");
+
     return (
       <motion.div
         ref={ref}
@@ -130,6 +142,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
+        {/* Top content grid */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start md:items-stretch">
           {/* Image */}
           <div className="flex flex-col items-center gap-4">
@@ -251,32 +264,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 {bankOffer}
               </p>
             )}
-
-            {/* Responsive position:
-                - Mobile: bottom-left
-                - Desktop: bottom-right
-            */}
-            {accent === "orange" ? (
-              <div className="mt-auto flex justify-start md:justify-end pt-4">
-                <button
-                  type="button"
-                  onClick={onSecondaryCtaClick}
-                  className="rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
-                >
-                  {secondaryCtaLabel ?? "Join"}
-                </button>
-              </div>
-            ) : accent === "green" ? (
-              <div className="mt-auto flex justify-start md:justify-end pt-4">
-                <button
-                  type="button"
-                  onClick={onSecondaryCtaClick}
-                  className="rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60"
-                >
-                  {secondaryCtaLabel ?? "Inquire"}
-                </button>
-              </div>
-            ) : null}
           </div>
         </div>
 
@@ -284,6 +271,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {usedByItems?.length ? (
           <div className="mt-4">
             <UsedByMarquee items={usedByItems} duration={22} direction="left" />
+          </div>
+        ) : null}
+
+        {/* ✅ Bottom CTA row (ALWAYS below marquee) */}
+        {showSecondaryCta ? (
+          <div className="mt-4 flex justify-start md:justify-end">
+            <button
+              type="button"
+              onClick={onSecondaryCtaClick}
+              className={secondaryCtaClassName}
+            >
+              {secondaryCtaText}
+            </button>
           </div>
         ) : null}
       </motion.div>

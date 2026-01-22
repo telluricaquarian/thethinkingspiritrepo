@@ -6,6 +6,7 @@ import { ProductCard } from "../components/ui/product-card-1";
 import { Footer } from "../components/ui/Footer";
 import { Marquee } from "../components/ui/marquee";
 import WaitlistModal from "../components/ui/waitlist-modal";
+import EoiModal from "../components/ui/eoi-modal"; // ✅ NEW
 
 function ProfilePill() {
   return (
@@ -55,6 +56,7 @@ function ProfilePill() {
 
 export default function Page() {
   const [waitlistOpen, setWaitlistOpen] = React.useState(false);
+  const [eoiOpen, setEoiOpen] = React.useState(false); // ✅ NEW
 
   return (
     <>
@@ -110,6 +112,9 @@ export default function Page() {
                   verified: true,
                 },
               ]}
+              // ✅ NEW: Green “Inquire” stroke button opens EOI modal
+              secondaryCtaLabel="Inquire"
+              onSecondaryCtaClick={() => setEoiOpen(true)}
             />
 
             {/* ORANGE: Areculateir service delivery */}
@@ -144,10 +149,10 @@ export default function Page() {
       </main>
 
       {/* Waitlist Modal (UI only for now) */}
-      <WaitlistModal
-        open={waitlistOpen}
-        onOpenChange={(open) => setWaitlistOpen(open)}
-      />
+      <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
+
+      {/* ✅ EOI Modal (UI only for now) */}
+      <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </>
   );
 }

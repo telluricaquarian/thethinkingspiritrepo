@@ -5,7 +5,8 @@ import Image from "next/image";
 import { ProductCard } from "../components/ui/product-card-1";
 import { Footer } from "../components/ui/Footer";
 import { Marquee } from "../components/ui/marquee";
-import { WaitlistModal } from "../components/ui/waitlist-modal";
+import WaitlistModal from "../components/ui/waitlist-modal";
+
 
 function ProfilePill() {
   return (

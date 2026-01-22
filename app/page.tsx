@@ -7,7 +7,6 @@ import { Footer } from "../components/ui/Footer";
 import { Marquee } from "../components/ui/marquee";
 import WaitlistModal from "../components/ui/waitlist-modal";
 
-
 function ProfilePill() {
   return (
     <div className="w-full max-w-4xl mx-auto mb-8">
@@ -147,11 +146,7 @@ export default function Page() {
       {/* Waitlist Modal (UI only for now) */}
       <WaitlistModal
         open={waitlistOpen}
-        onClose={() => setWaitlistOpen(false)}
-        onSubmit={async ({ name, email }) => {
-          // UI-only for now. Next step: POST to your ACLR77 webhook.
-          console.log("waitlist submit:", { name, email });
-        }}
+        onOpenChange={(open) => setWaitlistOpen(open)}
       />
     </>
   );

@@ -66,7 +66,7 @@ export default function Page() {
             {/* K8 card */}
             <ProductCard
               accent="green"
-              imageUrl="/images/schematic.png"
+              imageUrl="/images/schematictypebeat.png"
               title="Leveluk K8 Water Ionizer"
               specifications={[
                 "8 platinum-coated titanium plates for high ORP stability",

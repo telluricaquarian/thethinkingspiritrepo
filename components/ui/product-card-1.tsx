@@ -30,9 +30,9 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   ctaLabel?: string;
   toolingLine?: string;
   accent?: "green" | "orange" | (string & {});
-  usedByItems?: UsedByItem[]; // ✅ NEW
+  usedByItems?: UsedByItem[];
 
-  /** ✅ NEW: secondary CTA (used for the orange service card "Join" button) */
+  /** secondary CTA (used for the orange service card "Join" button) */
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
 };
@@ -54,7 +54,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       ctaLabel,
       toolingLine,
       accent = "green",
-      usedByItems, // ✅ pull out so it doesn't get forwarded to DOM
+      usedByItems, // pulled out so it doesn't get forwarded to DOM
       secondaryCtaLabel,
       onSecondaryCtaClick,
       ...props
@@ -94,7 +94,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const mobileSrc = imageUrlMobile ?? imageUrl;
     const desktopSrc = imageUrlDesktop ?? imageUrl;
 
-    // ✅ Patent links (green product card trust element)
+    // Patent links (green product card trust element)
     const enagicPatents = [
       {
         id: "JP2005152847A",
@@ -113,6 +113,10 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         href: "https://patents.google.com/patent/JP2006087987A/en?oq=JP2006087987A",
       },
     ];
+
+    // ✅ ISO 13485 certificate PDF (open in new tab)
+    const iso13485CertHref =
+      "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
 
     return (
       <motion.div
@@ -200,11 +204,22 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 <p className="text-xs text-white/40 tracking-wide">
                   Certified Manufacturing Standards
                 </p>
+
+                {/* ✅ ISO 13485 now opens the provided PDF in a new tab */}
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  ISO 9001 · ISO 13485 · ISO 14001
+                  ISO 9001 ·{" "}
+                  <a
+                    href={iso13485CertHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-white/15 underline-offset-4 hover:text-white/70 hover:decoration-white/40 transition-colors"
+                  >
+                    ISO 13485
+                  </a>{" "}
+                  · ISO 14001
                 </p>
 
-                {/* ✅ NEW: Patent/IP trust line (green card only) */}
+                {/* Patent/IP trust line (green card only) */}
                 {accent === "green" ? (
                   <>
                     <p className="text-xs text-white/40 tracking-wide mt-2">
@@ -237,7 +252,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            {/* ✅ Stroke-only "Join" button (orange card only) */}
+            {/* Stroke-only "Join" button (orange card only) */}
             {accent === "orange" ? (
               <div className="mt-auto flex justify-end pt-4">
                 <button
@@ -252,7 +267,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
         </div>
 
-        {/* ✅ Used-by row */}
+        {/* Used-by row */}
         {usedByItems?.length ? (
           <div className="mt-4">
             <UsedByMarquee items={usedByItems} duration={22} direction="left" />

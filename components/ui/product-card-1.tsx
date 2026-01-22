@@ -183,6 +183,18 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
                   ISO 9001 · ISO 13485 · ISO 14001
                 </p>
+
+                {/* ✅ NEW: Patent/IP trust line (green card only) */}
+                {accent === "green" ? (
+                  <>
+                    <p className="text-xs text-white/40 tracking-wide mt-2">
+                      Protected by multiple Enagic patents
+                    </p>
+                    <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                      JP2005152847A
+                    </p>
+                  </>
+                ) : null}
               </>
             )}
 
@@ -192,7 +204,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            {/* ✅ NEW: Stroke-only "Join" button (orange card only) */}
+            {/* ✅ Stroke-only "Join" button (orange card only) */}
             {accent === "orange" ? (
               <div className="mt-auto flex justify-end pt-4">
                 <button

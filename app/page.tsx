@@ -1,7 +1,11 @@
+"use client";
+
+import * as React from "react";
 import Image from "next/image";
 import { ProductCard } from "../components/ui/product-card-1";
 import { Footer } from "../components/ui/Footer";
 import { Marquee } from "../components/ui/marquee";
+import { WaitlistModal } from "../components/ui/waitlist-modal";
 
 function ProfilePill() {
   return (
@@ -50,88 +54,104 @@ function ProfilePill() {
 }
 
 export default function Page() {
+  const [waitlistOpen, setWaitlistOpen] = React.useState(false);
+
   return (
-    <main className="min-h-screen bg-black text-white flex items-start justify-center p-6">
-      <div className="w-full">
-        <ProfilePill />
+    <>
+      <main className="min-h-screen bg-black text-white flex items-start justify-center p-6">
+        <div className="w-full">
+          <ProfilePill />
 
-        <div className="w-full max-w-4xl mx-auto space-y-6">
-          {/* K8 card */}
-          <ProductCard
-            accent="green"
-            imageUrl="/images/schematic.png"
-            title="Leveluk K8 Water Ionizer"
-            specifications={[
-              "8 platinum-coated titanium plates for high ORP stability",
-              "Electrolyzed, hydrogen-rich water (et al. 2025)",
-              "Supports cellular hydration & metabolic efficiency",
-              "Reduced deuterium concentration vs. standard water",
-              "Designed for long-term daily use & durability",
-            ]}
-            price={6787}
-            currencyLabel="AUD"
-            isAssured={true}
-            bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-            ctaLabel="Contact for Procurement"
-            usedByItems={[
-              {
-                name: "Bryson DeChambeau",
-                handle: "@brysondechambeau",
-                role: "Professional Golfer",
-                avatarSrc: "/images/bryson.jpeg",
-                verified: true,
-              },
-              {
-                name: "Wardell Stephen Curry II",
-                handle: "@stephencurry30",
-                role: "Olympic Gold Medalist",
-                avatarSrc: "/images/stephencurry.jpeg",
-                verified: true,
-              },
-              {
-                name: "Jhene Aiko Efuru Chilombo",
-                handle: "@jheneaiko",
-                role: "Musician",
-                avatarSrc: "/images/jheneaiko.jpg",
-                verified: true,
-              },
-              {
-                name: "Diplo",
-                handle: "@diplo",
-                role: "DJ / Producer",
-                avatarSrc: "/images/diplo.jpeg",
-                verified: true,
-              },
-            ]}
-          />
+          <div className="w-full max-w-4xl mx-auto space-y-6">
+            {/* K8 card */}
+            <ProductCard
+              accent="green"
+              imageUrl="/images/schematic.png"
+              title="Leveluk K8 Water Ionizer"
+              specifications={[
+                "8 platinum-coated titanium plates for high ORP stability",
+                "Electrolyzed, hydrogen-rich water (et al. 2025)",
+                "Supports cellular hydration & metabolic efficiency",
+                "Reduced deuterium concentration vs. standard water",
+                "Designed for long-term daily use & durability",
+              ]}
+              price={6787}
+              currencyLabel="AUD"
+              isAssured={true}
+              bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
+              ctaLabel="Contact for Procurement"
+              usedByItems={[
+                {
+                  name: "Bryson DeChambeau",
+                  handle: "@brysondechambeau",
+                  role: "Professional Golfer",
+                  avatarSrc: "/images/bryson.jpeg",
+                  verified: true,
+                },
+                {
+                  name: "Wardell Stephen Curry II",
+                  handle: "@stephencurry30",
+                  role: "Olympic Gold Medalist",
+                  avatarSrc: "/images/stephencurry.jpeg",
+                  verified: true,
+                },
+                {
+                  name: "Jhene Aiko Efuru Chilombo",
+                  handle: "@jheneaiko",
+                  role: "Musician",
+                  avatarSrc: "/images/jheneaiko.jpg",
+                  verified: true,
+                },
+                {
+                  name: "Diplo",
+                  handle: "@diplo",
+                  role: "DJ / Producer",
+                  avatarSrc: "/images/diplo.jpeg",
+                  verified: true,
+                },
+              ]}
+            />
 
-          {/* ORANGE: Areculateir service delivery */}
-          <ProductCard
-            accent="orange"
-            // Fallback (used if mobile/desktop not provided)
-            imageUrl="/images/onitos.png"
-            // Mobile-specific (16:10) image
-            imageUrlMobile="/images/orangeservice.png"
-            // Desktop-specific (square-safe) image
-            imageUrlDesktop="/images/onitos.png"
-            title="Full-Stack Build"
-            specifications={[
-              "High-end UI build with conversion-first layout + polish",
-              "Automation & integrations (forms, email, CRM, Sheets, etc.)",
-              "Fast iteration: ship in stages (prototype → MVP → scale)",
-              "Optional AI/agentic workflows where it actually helps",
-            ]}
-            price={2800}
-            currencyLabel="AUD"
-            bankOffer="Payment options also available"
-            ctaLabel="Contact to join Waitlist"
-            toolingLine="VS Code · Claude Code · UI Libraries"
-          />
+            {/* ORANGE: Areculateir service delivery */}
+            <ProductCard
+              accent="orange"
+              // Fallback (used if mobile/desktop not provided)
+              imageUrl="/images/onitos.png"
+              // Mobile-specific (16:10) image
+              imageUrlMobile="/images/orangeservice.png"
+              // Desktop-specific (square-safe) image
+              imageUrlDesktop="/images/onitos.png"
+              title="Full-Stack Build"
+              specifications={[
+                "High-end UI build with conversion-first layout + polish",
+                "Automation & integrations (forms, email, CRM, Sheets, etc.)",
+                "Fast iteration: ship in stages (prototype → MVP → scale)",
+                "Optional AI/agentic workflows where it actually helps",
+              ]}
+              price={2800}
+              currencyLabel="AUD"
+              bankOffer="Payment options also available"
+              ctaLabel="Contact to join Waitlist"
+              toolingLine="VS Code · Claude Code · UI Libraries"
+              secondaryCtaLabel="Join"
+              onSecondaryCtaClick={() => setWaitlistOpen(true)}
+            />
+          </div>
+
+          {/* Footer */}
+          <Footer />
         </div>
+      </main>
 
-        {/* Footer */}
-        <Footer />
-      </div>
-    </main>
+      {/* Waitlist Modal (UI only for now) */}
+      <WaitlistModal
+        open={waitlistOpen}
+        onClose={() => setWaitlistOpen(false)}
+        onSubmit={async ({ name, email }) => {
+          // UI-only for now. Next step: POST to your ACLR77 webhook.
+          console.log("waitlist submit:", { name, email });
+        }}
+      />
+    </>
   );
 }

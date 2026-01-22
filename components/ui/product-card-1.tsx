@@ -32,7 +32,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[];
 
-  /** secondary CTA (used for the orange service card "Join" button) */
+  /** Secondary CTA (used for orange "Join" AND green "Inquire") */
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
 };
@@ -114,7 +114,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       },
     ];
 
-    // ✅ ISO 13485 certificate PDF (open in new tab)
+    // ISO 13485 certificate PDF (open in new tab)
     const iso13485CertHref =
       "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
 
@@ -205,7 +205,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   Certified Manufacturing Standards
                 </p>
 
-                {/* ✅ ISO 13485 now opens the provided PDF in a new tab */}
+                {/* ISO 13485 opens PDF in new tab */}
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
                   ISO 9001 ·{" "}
                   <a
@@ -252,15 +252,28 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               </p>
             )}
 
-            {/* Stroke-only "Join" button (orange card only) */}
+            {/* Responsive position:
+                - Mobile: bottom-left
+                - Desktop: bottom-right
+            */}
             {accent === "orange" ? (
-              <div className="mt-auto flex justify-end pt-4">
+              <div className="mt-auto flex justify-start md:justify-end pt-4">
                 <button
                   type="button"
                   onClick={onSecondaryCtaClick}
                   className="rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
                 >
                   {secondaryCtaLabel ?? "Join"}
+                </button>
+              </div>
+            ) : accent === "green" ? (
+              <div className="mt-auto flex justify-start md:justify-end pt-4">
+                <button
+                  type="button"
+                  onClick={onSecondaryCtaClick}
+                  className="rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60"
+                >
+                  {secondaryCtaLabel ?? "Inquire"}
                 </button>
               </div>
             ) : null}

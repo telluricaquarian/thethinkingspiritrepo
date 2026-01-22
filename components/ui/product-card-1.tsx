@@ -31,6 +31,10 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   toolingLine?: string;
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[]; // ✅ NEW
+
+  /** ✅ NEW: secondary CTA (used for the orange service card "Join" button) */
+  secondaryCtaLabel?: string;
+  onSecondaryCtaClick?: () => void;
 };
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
@@ -51,6 +55,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       toolingLine,
       accent = "green",
       usedByItems, // ✅ pull out so it doesn't get forwarded to DOM
+      secondaryCtaLabel,
+      onSecondaryCtaClick,
       ...props
     },
     ref
@@ -185,6 +191,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 {bankOffer}
               </p>
             )}
+
+            {/* ✅ NEW: Stroke-only "Join" button (orange card only) */}
+            {accent === "orange" ? (
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="button"
+                  onClick={onSecondaryCtaClick}
+                  className="rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
+                >
+                  {secondaryCtaLabel ?? "Join"}
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
 

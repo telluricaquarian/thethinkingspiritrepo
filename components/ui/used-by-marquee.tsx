@@ -72,13 +72,17 @@ function PersonChip({ name, handle, role, avatarSrc, verified }: UsedByItem) {
       {/* Avatar wrapper (NOT clipped) */}
       <div className="relative h-8 w-8 shrink-0">
         {/* Inner circle (clipped) */}
-        <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-white/20">
+        <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-white/20 bg-white/10">
           <Image
             src={avatarSrc}
             alt={name}
             fill
             className="object-cover"
-            sizes="32px"
+            // Reduce pop-in on mobile:
+            loading="eager"
+            fetchPriority="high"
+            // Better candidate selection on mobile DPR:
+            sizes="(max-width: 640px) 40px, 32px"
           />
         </div>
 

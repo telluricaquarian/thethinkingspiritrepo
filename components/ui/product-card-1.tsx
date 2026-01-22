@@ -106,7 +106,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start md:items-stretch">
           {/* Image */}
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px]">
@@ -158,7 +158,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
 
           {/* Pricing */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 h-full">
             {formattedPrice && (
               <div className="flex items-center gap-2">
                 <h3 className="text-3xl font-bold">{formattedPrice}</h3>
@@ -194,7 +194,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
             {/* ✅ NEW: Stroke-only "Join" button (orange card only) */}
             {accent === "orange" ? (
-              <div className="mt-4 flex justify-end">
+              <div className="mt-auto flex justify-end pt-4">
                 <button
                   type="button"
                   onClick={onSecondaryCtaClick}

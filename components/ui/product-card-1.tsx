@@ -126,7 +126,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "bg-background text-foreground border rounded-lg overflow-hidden w-full p-4 md:p-6",
+          // Key change: remove overflow-hidden from the outer card
+          "bg-background text-foreground border rounded-lg overflow-visible w-full p-4 md:p-6",
           className
         )}
         variants={cardVariants}
@@ -134,140 +135,161 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6">
-          {/* Image */}
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
-              <Image src={mobileSrc} alt={title} fill className="object-cover block md:hidden" priority />
-              <Image src={desktopSrc} alt={title} fill className="object-cover hidden md:block" priority />
-            </div>
-          </div>
-
-          {/* Details */}
-          <div className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold">{title}</h2>
-
-            <div
-              className={cn(
-                "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium text-white w-fit",
-                accentClasses.bg
-              )}
-            >
-              <ShieldCheck className="h-4 w-4" />
-              {ctaLabel ?? "Contact for Procurement"}
-            </div>
-
-            {toolingLine && (
-              <p className="text-sm text-muted-foreground">{toolingLine}</p>
-            )}
-
-            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
-              {specifications.map((spec, i) => (
-                <li key={i}>{spec}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Pricing */}
-          <div className="flex flex-col gap-2">
-            {formattedPrice && (
-              <div className="flex items-center gap-2">
-                <h3 className="text-3xl font-bold">{formattedPrice}</h3>
-                {currencyLabel && (
-                  <span className={cn("text-xs px-2 py-0.5 rounded-full", accentClasses.pill)}>
-                    {currencyLabel}
-                  </span>
-                )}
+        {/* Key change: make sections flow in a predictable vertical stack */}
+        <div className="flex flex-col gap-4 md:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6">
+            {/* Image */}
+            <div className="flex justify-center">
+              <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
+                <Image
+                  src={mobileSrc}
+                  alt={title}
+                  fill
+                  className="object-cover block md:hidden"
+                  priority
+                />
+                <Image
+                  src={desktopSrc}
+                  alt={title}
+                  fill
+                  className="object-cover hidden md:block"
+                  priority
+                />
               </div>
-            )}
+            </div>
 
-            {isAssured && (
-              <>
-                <p className="text-xs text-white/40 tracking-wide">
-                  Certified Manufacturing Standards
-                </p>
+            {/* Details */}
+            <div className="flex flex-col gap-3">
+              <h2 className="text-lg font-semibold">{title}</h2>
 
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  ISO 9001 ·{" "}
-                  <a
-                    href={iso13485Href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
-                  >
-                    ISO 13485
-                  </a>{" "}
-                  · ISO 14001
-                </p>
-
-                {accent === "green" && (
-                  <>
-                    <p className="text-xs text-white/40 tracking-wide mt-2">
-                      Protected by multiple Enagic patents
-                    </p>
-
-                    <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                      {enagicPatents.map((p, i) => (
-                        <React.Fragment key={p.id}>
-                          <a
-                            href={p.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
-                          >
-                            {p.id}
-                          </a>
-                          {i < enagicPatents.length - 1 && " · "}
-                        </React.Fragment>
-                      ))}
-                    </p>
-
-                    {/* Mobile-only academic reference */}
-                    <div className="mt-3 md:hidden">
-                      <p className="text-xs text-white/40 tracking-wide">
-                        Medical biophysics & mathematical modelling
-                      </p>
-                      <a
-                        href={researchGateHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-xs text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
-                      >
-                        Medical Biophysics · Mathematical Model of Kangen Water®
-                        <br />
-                        ISSN 2225-0638 · Vol. 51 (2016)
-                      </a>
-                    </div>
-                  </>
+              <div
+                className={cn(
+                  "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium text-white w-fit",
+                  accentClasses.bg
                 )}
-              </>
-            )}
+              >
+                <ShieldCheck className="h-4 w-4" />
+                {ctaLabel ?? "Contact for Procurement"}
+              </div>
 
-            {bankOffer && (
-              <p className={cn("text-sm font-medium mt-2", accentClasses.text)}>
-                {bankOffer}
-              </p>
-            )}
+              {toolingLine && (
+                <p className="text-sm text-muted-foreground">{toolingLine}</p>
+              )}
+
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+                {specifications.map((spec, i) => (
+                  <li key={i}>{spec}</li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Pricing */}
+            <div className="flex flex-col gap-2">
+              {formattedPrice && (
+                <div className="flex items-center gap-2">
+                  <h3 className="text-3xl font-bold">{formattedPrice}</h3>
+                  {currencyLabel && (
+                    <span
+                      className={cn(
+                        "text-xs px-2 py-0.5 rounded-full",
+                        accentClasses.pill
+                      )}
+                    >
+                      {currencyLabel}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {isAssured && (
+                <>
+                  <p className="text-xs text-white/40 tracking-wide">
+                    Certified Manufacturing Standards
+                  </p>
+
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                    ISO 9001 ·{" "}
+                    <a
+                      href={iso13485Href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                    >
+                      ISO 13485
+                    </a>{" "}
+                    · ISO 14001
+                  </p>
+
+                  {accent === "green" && (
+                    <>
+                      <p className="text-xs text-white/40 tracking-wide mt-2">
+                        Protected by multiple Enagic patents
+                      </p>
+
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                        {enagicPatents.map((p, i) => (
+                          <React.Fragment key={p.id}>
+                            <a
+                              href={p.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                            >
+                              {p.id}
+                            </a>
+                            {i < enagicPatents.length - 1 && " · "}
+                          </React.Fragment>
+                        ))}
+                      </p>
+
+                      {/* Mobile-only academic reference */}
+                      <div className="mt-3 md:hidden">
+                        <p className="text-xs text-white/40 tracking-wide">
+                          Medical biophysics & mathematical modelling
+                        </p>
+                        <a
+                          href={researchGateHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block text-xs text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                        >
+                          Medical Biophysics · Mathematical Model of Kangen Water®
+                          <br />
+                          ISSN 2225-0638 · Vol. 51 (2016)
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+
+              {bankOffer && (
+                <p className={cn("text-sm font-medium mt-2", accentClasses.text)}>
+                  {bankOffer}
+                </p>
+              )}
+            </div>
           </div>
+
+          {usedByItems?.length ? (
+            // Key change: stable wrapper so the marquee never “glues” to the content above in Chrome
+            <div className="relative overflow-visible mt-2 pt-4">
+              <UsedByMarquee items={usedByItems} duration={22} direction="left" />
+            </div>
+          ) : null}
+
+          {showSecondaryCta && (
+            <div className="flex justify-start md:justify-end">
+              <button
+                type="button"
+                onClick={onSecondaryCtaClick}
+                className={secondaryCtaClassName}
+              >
+                {secondaryCtaText}
+              </button>
+            </div>
+          )}
         </div>
-
-        {usedByItems?.length && (
-          <div className="mt-4">
-            <UsedByMarquee items={usedByItems} duration={22} direction="left" />
-          </div>
-        )}
-
-        {showSecondaryCta && (
-          <div className="mt-4 flex justify-start md:justify-end">
-            <button
-              type="button"
-              onClick={onSecondaryCtaClick}
-              className={secondaryCtaClassName}
-            >
-              {secondaryCtaText}
-            </button>
-          </div>
-        )}
       </motion.div>
     );
   }

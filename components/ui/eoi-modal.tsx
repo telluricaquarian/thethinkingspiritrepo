@@ -3,6 +3,7 @@
 import * as React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 type EoiModalProps = {
   open: boolean;
@@ -33,6 +34,24 @@ export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" />
 
         <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-black/90 p-6 text-white shadow-2xl">
+          {/* Brand strip (top-left), matching the services/orange card pattern */}
+          <div className="mb-4 flex items-center gap-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-md ring-1 ring-white/10 bg-white/5">
+              <Image
+                src="/images/ttsbw.png"
+                alt="TTS"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            <div className="min-w-0">
+              <p className="text-sm text-white/60">Building and designing anew.</p>
+              <p className="text-sm text-white">2026©</p>
+            </div>
+          </div>
+
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <Dialog.Title className="text-lg font-semibold">

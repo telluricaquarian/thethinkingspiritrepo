@@ -51,10 +51,10 @@ export default function WaitlistModal({
 
           {/* Header */}
           <div className="flex items-start gap-3">
-            {/* Logo (not rounded) */}
-            <div className="relative h-9 w-9 overflow-hidden">
+            {/* Logo (slightly rounded, matching TTSBW treatment) */}
+            <div className="relative h-9 w-9 overflow-hidden rounded-md ring-1 ring-white/10 bg-white/5">
               <Image
-                src="/images/ttsfav.png"
+                src="/images/ttsorange.png"
                 alt="TTS"
                 fill
                 className="object-contain"

@@ -106,6 +106,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       },
     ];
 
+    const iso13485Href =
+      "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
+
     const researchGateHref =
       "https://www.researchgate.net/publication/307111070_Mathematical_Model_of_Kangen_WaterR_Biophysical_and_Biochemical_Effects_of_Catholyte";
 
@@ -135,20 +138,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           {/* Image */}
           <div className="flex justify-center">
             <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
-              <Image
-                src={mobileSrc}
-                alt={title}
-                fill
-                className="object-cover block md:hidden"
-                priority
-              />
-              <Image
-                src={desktopSrc}
-                alt={title}
-                fill
-                className="object-cover hidden md:block"
-                priority
-              />
+              <Image src={mobileSrc} alt={title} fill className="object-cover block md:hidden" priority />
+              <Image src={desktopSrc} alt={title} fill className="object-cover hidden md:block" priority />
             </div>
           </div>
 
@@ -197,7 +188,16 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 </p>
 
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  ISO 9001 · ISO 13485 · ISO 14001
+                  ISO 9001 ·{" "}
+                  <a
+                    href={iso13485Href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                  >
+                    ISO 13485
+                  </a>{" "}
+                  · ISO 14001
                 </p>
 
                 {accent === "green" && (
@@ -222,21 +222,21 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                       ))}
                     </p>
 
-                    {/* ✅ MOBILE-ONLY ACADEMIC REFERENCE */}
+                    {/* Mobile-only academic reference */}
                     <div className="mt-3 md:hidden">
                       <p className="text-xs text-white/40 tracking-wide">
                         Medical biophysics & mathematical modelling
                       </p>
                       <a
-  href={researchGateHref}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="block text-xs text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
->
-  Medical Biophysics · Mathematical Model of Kangen Water®
-  <br />
-  ISSN 2225-0638 · Vol. 51 (2016)
-</a>
+                        href={researchGateHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-xs text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                      >
+                        Medical Biophysics · Mathematical Model of Kangen Water®
+                        <br />
+                        ISSN 2225-0638 · Vol. 51 (2016)
+                      </a>
                     </div>
                   </>
                 )}

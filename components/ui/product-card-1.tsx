@@ -228,15 +228,15 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                         Medical biophysics & mathematical modelling
                       </p>
                       <a
-                        href={researchGateHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block text-xs uppercase tracking-wide text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
-                      >
-                        Medical Biophysics · Mathematical Model of Kangen Water®
-                        <br />
-                        ISSN 2225-0638 · Vol. 51 (2016)
-                      </a>
+  href={researchGateHref}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block text-xs text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+>
+  Medical Biophysics · Mathematical Model of Kangen Water®
+  <br />
+  ISSN 2225-0638 · Vol. 51 (2016)
+</a>
                     </div>
                   </>
                 )}

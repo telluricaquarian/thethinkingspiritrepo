@@ -58,7 +58,8 @@ export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
                 Expression of Interest
               </Dialog.Title>
               <Dialog.Description className="mt-1 text-sm text-white/60">
-                Drop your details and I’ll reach out with procurement + next steps.
+                Submit your details to receive a short email sequence with water
+                insights, product information, and complimentary resources.
               </Dialog.Description>
             </div>
 
@@ -98,9 +99,7 @@ export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs text-white/60">
-                Social (optional)
-              </label>
+              <label className="text-xs text-white/60">Social (optional)</label>
               <input
                 value={social}
                 onChange={(e) => setSocial(e.target.value)}
@@ -109,7 +108,8 @@ export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
               />
             </div>
 
-            <div className="pt-2 flex items-center justify-end gap-3">
+            {/* Buttons: Cancel left, Submit right */}
+            <div className="pt-2 flex items-center justify-between gap-3">
               <Dialog.Close asChild>
                 <button
                   type="button"

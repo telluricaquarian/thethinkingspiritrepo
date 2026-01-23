@@ -1,139 +1,120 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 
-type WaitlistModalProps = {
+type EoiModalProps = {
   open: boolean;
-
-  /** Preferred (controlled modal style) */
-  onOpenChange?: (open: boolean) => void;
-
-  /** Back-compat with earlier page.tsx implementations */
-  onClose?: () => void;
-  onSubmit?: (payload: { name: string; email: string }) => void | Promise<void>;
+  onOpenChange: (open: boolean) => void;
 };
 
-export default function WaitlistModal({
-  open,
-  onOpenChange,
-  onClose,
-  onSubmit,
-}: WaitlistModalProps) {
-  if (!open) return null;
+export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [social, setSocial] = React.useState("");
 
-  const close = () => {
-    onOpenChange?.(false);
-    onClose?.();
-  };
+  function reset() {
+    setName("");
+    setEmail("");
+    setSocial("");
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    // UI-only for now (hook into webhook later)
+    // eslint-disable-next-line no-alert
+    alert("EOI submitted — thank you.");
+    onOpenChange(false);
+    reset();
+  }
 
   return (
-    <div className="fixed inset-0 z-50">
-      {/* Backdrop */}
-      <button
-        type="button"
-        aria-label="Close waitlist modal"
-        className="absolute inset-0 bg-black/70"
-        onClick={close}
-      />
+    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[2px]" />
 
-      {/* Modal */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        className="relative mx-auto mt-14 w-[92%] max-w-[760px] rounded-[22px] border border-white/10 bg-[#0b0b0c]/95 p-6 shadow-2xl backdrop-blur-xl md:mt-20 md:p-7"
-      >
-        {/* Close */}
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={close}
-          className="absolute right-5 top-5 text-white/60 transition-colors hover:text-white md:right-6 md:top-6"
-        >
-          ✕
-        </button>
-
-        {/* Header row */}
-        <div className="flex items-start gap-4">
-          {/* Logo (no white stroke/ring) */}
-          <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-transparent">
-            <Image
-              src="/images/ttsfav.png"
-              alt="TTS"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-
-          <div className="min-w-0">
-            <div className="text-sm font-medium text-white/70">
-              Building and designing anew.
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 shadow-2xl outline-none">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <Dialog.Title className="text-lg font-semibold text-white">
+                Expression of Interest
+              </Dialog.Title>
+              <Dialog.Description className="mt-1 text-sm text-white/55">
+                Leave your details and we’ll reach out with next steps.
+              </Dialog.Description>
             </div>
-            <div className="text-sm text-white/40">2026©</div>
+
+            <Dialog.Close asChild>
+              <button
+                type="button"
+                aria-label="Close"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/10 hover:text-white"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </Dialog.Close>
           </div>
-        </div>
 
-        {/* Title + subtitle (smaller, especially on mobile) */}
-        <h2 className="mt-7 text-[34px] font-semibold leading-[1.05] text-white md:mt-8 md:text-[40px]">
-          Join Waitlist
-        </h2>
-        <p className="mt-2 text-sm text-white/55 md:text-base">
-          Get a free prototype / MVP built by Llewellyn.
-        </p>
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-white/60">Name</label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                placeholder="Your name"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
+              />
+            </div>
 
-        {/* Form */}
-        <form
-          className="mt-7 space-y-5 md:mt-8"
-          onSubmit={async (e) => {
-            e.preventDefault();
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-white/60">Email</label>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                type="email"
+                placeholder="you@domain.com"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
+              />
+            </div>
 
-            const form = e.currentTarget;
-            const fd = new FormData(form);
-            const name = String(fd.get("name") ?? "").trim();
-            const email = String(fd.get("email") ?? "").trim();
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-white/60">
+                Social (optional)
+              </label>
+              <input
+                value={social}
+                onChange={(e) => setSocial(e.target.value)}
+                placeholder="@handle or link"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
+              />
+            </div>
 
-            if (onSubmit) {
-              await onSubmit({ name, email });
-            }
+            <div className="flex items-center justify-between pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  onOpenChange(false);
+                  reset();
+                }}
+                className="rounded-xl border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
+              >
+                Cancel
+              </button>
 
-            // UI-first behavior: close after submit
-            close();
-          }}
-        >
-          <input
-            required
-            name="name"
-            placeholder="Name *"
-            className="h-14 w-full rounded-2xl bg-white/10 px-6 text-base text-white placeholder:text-white/35 ring-1 ring-white/10 outline-none focus:ring-2 focus:ring-white/25 md:text-lg"
-          />
-
-          <input
-            required
-            type="email"
-            name="email"
-            placeholder="Email *"
-            className="h-14 w-full rounded-2xl bg-white/10 px-6 text-base text-white placeholder:text-white/35 ring-1 ring-white/10 outline-none focus:ring-2 focus:ring-white/25 md:text-lg"
-          />
-
-          {/* Stroke-only button (white stroke), subtle hover gradient + mobile tap pulse */}
-          <button
-            type="submit"
-            className="
-              mt-1 h-14 w-full rounded-2xl
-              border border-white/55 bg-transparent
-              text-base font-medium text-[#FF751F]
-              transition-all
-              hover:border-white/80 hover:bg-gradient-to-r hover:from-white/0 hover:via-white/10 hover:to-white/0
-              active:bg-white/10 active:scale-[0.99]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30
-              md:text-lg
-            "
-          >
-            Join Waitlist
-          </button>
-        </form>
-      </div>
-    </div>
+              <button
+                type="submit"
+                className="rounded-xl border border-green-600 bg-transparent px-5 py-2 text-sm font-medium text-green-400 transition hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60"
+              >
+                Submit EOI
+              </button>
+            </div>
+          </form>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }

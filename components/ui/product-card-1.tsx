@@ -11,13 +11,8 @@ import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee"
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
 type ProductCardProps = Omit<MotionDivProps, "children"> & {
-  /** Backwards-compatible single image (used as fallback for both mobile + desktop) */
   imageUrl: string;
-
-  /** Optional: mobile-specific image (16:10) */
   imageUrlMobile?: string;
-
-  /** Optional: desktop-specific image (square-safe) */
   imageUrlDesktop?: string;
 
   title: string;
@@ -32,7 +27,6 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[];
 
-  /** Secondary CTA (orange: Join, green: Inquire) */
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
 };
@@ -90,11 +84,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       priceLabel ??
       (typeof price === "number" ? `$${formatNumber(price)}` : "");
 
-    // Fallbacks so you don't have to update all call-sites immediately
     const mobileSrc = imageUrlMobile ?? imageUrl;
     const desktopSrc = imageUrlDesktop ?? imageUrl;
 
-    // Patent links (green product card trust element)
     const enagicPatents = [
       {
         id: "JP2005152847A",
@@ -114,21 +106,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       },
     ];
 
-    // ISO 13485 certificate PDF (open in new tab)
-    const iso13485CertHref =
-      "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
+    const researchGateHref =
+      "https://www.researchgate.net/publication/307111070_Mathematical_Model_of_Kangen_WaterR_Biophysical_and_Biochemical_Effects_of_Catholyte";
 
-    // ✅ Mobile-only literature reference (below patents)
-    const literatureRef = {
-      heading: "Referenced in peer-reviewed literature",
-      line: "Advances in Physics: Theories and Applications",
-      meta: "ISSN 2225-0638 · Vol. 51 (2016)",
-    };
-
-    // Should we render the bottom CTA?
     const showSecondaryCta = accent === "orange" || accent === "green";
 
-    // Styling for the bottom CTA (orange vs green)
     const secondaryCtaClassName =
       accent === "orange"
         ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
@@ -149,27 +131,21 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
-        {/* Top content grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6 items-start md:items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6">
           {/* Image */}
-          <div className="flex flex-col items-center gap-4">
-            <div className="relative w-full max-w-[520px] mx-auto overflow-hidden rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px]">
-              {/* Mobile image — 16:10 */}
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
               <Image
                 src={mobileSrc}
                 alt={title}
                 fill
-                sizes="(max-width: 768px) 100vw, 200px"
                 className="object-cover block md:hidden"
                 priority
               />
-
-              {/* Desktop image — square-safe */}
               <Image
                 src={desktopSrc}
                 alt={title}
                 fill
-                sizes="(max-width: 768px) 100vw, 200px"
                 className="object-cover hidden md:block"
                 priority
               />
@@ -182,11 +158,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
             <div
               className={cn(
-                "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium w-fit text-white",
+                "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium text-white w-fit",
                 accentClasses.bg
               )}
             >
-              <ShieldCheck className="h-4 w-4" strokeWidth={2} />
+              <ShieldCheck className="h-4 w-4" />
               {ctaLabel ?? "Contact for Procurement"}
             </div>
 
@@ -194,25 +170,20 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               <p className="text-sm text-muted-foreground">{toolingLine}</p>
             )}
 
-            <ul className="space-y-2 text-sm list-disc list-inside text-muted-foreground pt-2">
-              {specifications.map((spec, index) => (
-                <li key={`${spec}-${index}`}>{spec}</li>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+              {specifications.map((spec, i) => (
+                <li key={i}>{spec}</li>
               ))}
             </ul>
           </div>
 
           {/* Pricing */}
-          <div className="flex flex-col gap-2 h-full">
+          <div className="flex flex-col gap-2">
             {formattedPrice && (
               <div className="flex items-center gap-2">
                 <h3 className="text-3xl font-bold">{formattedPrice}</h3>
                 {currencyLabel && (
-                  <span
-                    className={cn(
-                      "text-xs font-semibold px-2 py-0.5 rounded-full",
-                      accentClasses.pill
-                    )}
-                  >
+                  <span className={cn("text-xs px-2 py-0.5 rounded-full", accentClasses.pill)}>
                     {currencyLabel}
                   </span>
                 )}
@@ -225,22 +196,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   Certified Manufacturing Standards
                 </p>
 
-                {/* ISO 13485 opens PDF in new tab */}
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                  ISO 9001 ·{" "}
-                  <a
-                    href={iso13485CertHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-white/15 underline-offset-4 hover:text-white/70 hover:decoration-white/40 transition-colors"
-                  >
-                    ISO 13485
-                  </a>{" "}
-                  · ISO 14001
+                  ISO 9001 · ISO 13485 · ISO 14001
                 </p>
 
-                {/* Patent/IP trust line + mobile-only literature reference (green card only) */}
-                {accent === "green" ? (
+                {accent === "green" && (
                   <>
                     <p className="text-xs text-white/40 tracking-wide mt-2">
                       Protected by multiple Enagic patents
@@ -253,29 +213,33 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                             href={p.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hover:text-white/70 underline decoration-white/15 underline-offset-4 hover:decoration-white/40 transition-colors"
+                            className="underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
                           >
                             {p.id}
                           </a>
-                          {i < enagicPatents.length - 1 ? " · " : null}
+                          {i < enagicPatents.length - 1 && " · "}
                         </React.Fragment>
                       ))}
                     </p>
 
-                    {/* ✅ Mobile-only: literature proof line (same style language) */}
-                    <div className="md:hidden mt-2">
+                    {/* ✅ MOBILE-ONLY ACADEMIC REFERENCE */}
+                    <div className="mt-3 md:hidden">
                       <p className="text-xs text-white/40 tracking-wide">
-                        {literatureRef.heading}
+                        Medical biophysics & mathematical modelling
                       </p>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                        {literatureRef.line}
-                      </p>
-                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                        {literatureRef.meta}
-                      </p>
+                      <a
+                        href={researchGateHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-xs uppercase tracking-wide text-muted-foreground underline underline-offset-4 decoration-white/15 hover:decoration-white/40"
+                      >
+                        Medical Biophysics · Mathematical Model of Kangen Water®
+                        <br />
+                        ISSN 2225-0638 · Vol. 51 (2016)
+                      </a>
                     </div>
                   </>
-                ) : null}
+                )}
               </>
             )}
 
@@ -287,16 +251,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
         </div>
 
-        {/* Used-by row */}
-        {usedByItems?.length ? (
+        {usedByItems?.length && (
           <div className="mt-4">
             <UsedByMarquee items={usedByItems} duration={22} direction="left" />
           </div>
-        ) : null}
+        )}
 
-        {/* ✅ Bottom CTA row (ALWAYS below marquee)
-            Desktop: bottom-right. Mobile: bottom-left. */}
-        {showSecondaryCta ? (
+        {showSecondaryCta && (
           <div className="mt-4 flex justify-start md:justify-end">
             <button
               type="button"
@@ -306,12 +267,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               {secondaryCtaText}
             </button>
           </div>
-        ) : null}
+        )}
       </motion.div>
     );
   }
 );
 
 ProductCard.displayName = "ProductCard";
-
 export { ProductCard };

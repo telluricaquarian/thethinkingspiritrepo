@@ -118,6 +118,13 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const iso13485CertHref =
       "https://enagic-australia.com/wp-content/uploads/enagic-international-iso-13485-2016-certification.pdf";
 
+    // ✅ Mobile-only literature reference (below patents)
+    const literatureRef = {
+      heading: "Referenced in peer-reviewed literature",
+      line: "Advances in Physics: Theories and Applications",
+      meta: "ISSN 2225-0638 · Vol. 51 (2016)",
+    };
+
     // Should we render the bottom CTA?
     const showSecondaryCta = accent === "orange" || accent === "green";
 
@@ -232,7 +239,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   · ISO 14001
                 </p>
 
-                {/* Patent/IP trust line (green card only) */}
+                {/* Patent/IP trust line + mobile-only literature reference (green card only) */}
                 {accent === "green" ? (
                   <>
                     <p className="text-xs text-white/40 tracking-wide mt-2">
@@ -254,6 +261,19 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                         </React.Fragment>
                       ))}
                     </p>
+
+                    {/* ✅ Mobile-only: literature proof line (same style language) */}
+                    <div className="md:hidden mt-2">
+                      <p className="text-xs text-white/40 tracking-wide">
+                        {literatureRef.heading}
+                      </p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                        {literatureRef.line}
+                      </p>
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                        {literatureRef.meta}
+                      </p>
+                    </div>
                   </>
                 ) : null}
               </>
@@ -274,7 +294,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
         ) : null}
 
-        {/* ✅ Bottom CTA row (ALWAYS below marquee) */}
+        {/* ✅ Bottom CTA row (ALWAYS below marquee)
+            Desktop: bottom-right. Mobile: bottom-left. */}
         {showSecondaryCta ? (
           <div className="mt-4 flex justify-start md:justify-end">
             <button

@@ -60,7 +60,20 @@ export default function Page() {
 
   return (
     <>
-      <main className="min-h-screen bg-black text-white flex items-start justify-center p-6">
+      <main className="relative min-h-screen bg-black text-white flex items-start justify-center p-6">
+        {/* Desktop-only handwritten note (top-right) */}
+        <div className="pointer-events-none absolute right-10 top-10 hidden lg:block z-20">
+          <div className="relative h-[340px] w-[520px]">
+            <Image
+              src="/images/welcome-note.png"
+              alt="Handwritten note"
+              fill
+              className="object-contain opacity-95"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="w-full">
           <ProfilePill />
 

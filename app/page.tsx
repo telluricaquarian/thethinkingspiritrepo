@@ -61,37 +61,8 @@ export default function Page() {
   return (
     <>
       <main className="relative min-h-screen bg-black text-white flex items-start justify-center p-6">
-        {/* Desktop-only handwritten note (top-right)
-            - Hidden until xl (prevents tablet/small desktop overlap)
-            - Smaller at xl, full size at 2xl
-        */}
-        <div className="pointer-events-none absolute right-10 top-10 z-20 hidden xl:block">
-          <div className="relative h-[240px] w-[420px] 2xl:h-[340px] 2xl:w-[520px]">
-            <Image
-              src="/images/welcome-note.png"
-              alt="Handwritten note"
-              fill
-              className="object-contain opacity-95"
-              priority
-            />
-          </div>
-        </div>
-
         <div className="w-full">
           <ProfilePill />
-
-          {/* Mobile-only welcome note (between profile pill and green product card) */}
-          <div className="mx-auto -mt-3 mb-4 w-full max-w-4xl md:hidden">
-            <div className="relative ml-auto h-[130px] w-[320px]">
-              <Image
-                src="/images/welcome-note2.png"
-                alt="Welcome note"
-                fill
-                className="object-contain opacity-95"
-                priority
-              />
-            </div>
-          </div>
 
           <div className="w-full max-w-4xl mx-auto space-y-6">
             {/* K8 card */}

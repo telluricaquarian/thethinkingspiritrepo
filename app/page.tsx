@@ -80,12 +80,12 @@ export default function Page() {
         <div className="w-full">
           <ProfilePill />
 
-          {/* Mobile-only “keep going” note (between profile pill and green product card) */}
+          {/* Mobile-only welcome note (between profile pill and green product card) */}
           <div className="mx-auto -mt-3 mb-4 w-full max-w-4xl md:hidden">
-            <div className="relative ml-auto h-[110px] w-[260px]">
+            <div className="relative ml-auto h-[130px] w-[320px]">
               <Image
-                src="/images/keepgoing.png"
-                alt="Keep going note"
+                src="/images/welcomenote.png"
+                alt="Welcome note"
                 fill
                 className="object-contain opacity-95"
                 priority

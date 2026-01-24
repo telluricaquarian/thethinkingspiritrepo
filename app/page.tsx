@@ -61,9 +61,12 @@ export default function Page() {
   return (
     <>
       <main className="relative min-h-screen bg-black text-white flex items-start justify-center p-6">
-        {/* Desktop-only handwritten note (top-right) */}
-        <div className="pointer-events-none absolute right-10 top-10 hidden lg:block z-20">
-          <div className="relative h-[340px] w-[520px]">
+        {/* Desktop-only handwritten note (top-right)
+            - Hidden until xl (prevents tablet/small desktop overlap)
+            - Smaller at xl, full size at 2xl
+        */}
+        <div className="pointer-events-none absolute right-10 top-10 z-20 hidden xl:block">
+          <div className="relative h-[240px] w-[420px] 2xl:h-[340px] 2xl:w-[520px]">
             <Image
               src="/images/welcome-note.png"
               alt="Handwritten note"

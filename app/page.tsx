@@ -84,7 +84,7 @@ export default function Page() {
           <div className="mx-auto -mt-3 mb-4 w-full max-w-4xl md:hidden">
             <div className="relative ml-auto h-[130px] w-[320px]">
               <Image
-                src="/images/welcome-note.png"
+                src="/images/welcome-note2.png"
                 alt="Welcome note"
                 fill
                 className="object-contain opacity-95"

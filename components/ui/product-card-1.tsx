@@ -7,7 +7,6 @@ import { ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee";
-import MicroLogoMarquee from "@/components/ui/micro-logo-marquee";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 
@@ -34,7 +33,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[];
 
-  // NEW: optional tiny logo marquee for the orange card
+  // optional static micro logos for the orange card
   microLogoItems?: MicroLogoItem[];
 
   secondaryCtaLabel?: string;
@@ -133,8 +132,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const secondaryCtaText =
       secondaryCtaLabel ?? (accent === "orange" ? "Join" : "Inquire");
 
-    // Default micro logos (matches your current public/images assets)
-    // NOTE: filenames are case-sensitive on Vercel/Linux.
+    // Default static micro logos (filenames are case-sensitive on Vercel/Linux)
     const defaultOrangeMicroLogos: MicroLogoItem[] = [
       { src: "/images/Claude.png", alt: "Claude" },
       { src: "/images/cursor.png", alt: "Cursor" },
@@ -142,7 +140,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       { src: "/images/vscode.png", alt: "VS Code" },
     ];
 
-    const showMicroLogoMarquee = accent === "orange";
+    const showStaticMicroLogos = accent === "orange";
     const microLogosToUse =
       microLogoItems && microLogoItems.length
         ? microLogoItems
@@ -206,12 +204,43 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 ))}
               </ul>
 
-              {/* NEW: tiny micro marquee for the orange services card */}
-              {showMicroLogoMarquee && microLogosToUse.length ? (
-                <MicroLogoMarquee
-                  items={microLogosToUse}
-                  className="mt-2 h-9 border-white/10 bg-white/[0.04]"
-                />
+              {/* Static tooling logos (orange card), matching Figma intent (no motion) */}
+              {showStaticMicroLogos && microLogosToUse.length ? (
+                <div className="mt-2 flex items-center gap-3">
+                  {microLogosToUse.map((logo) => {
+                    const img = (
+                      <Image
+                        src={logo.src}
+                        alt={logo.alt}
+                        width={18}
+                        height={18}
+                        draggable={false}
+                        className="opacity-90"
+                      />
+                    );
+
+                    return logo.href ? (
+                      <a
+                        key={`${logo.src}-${logo.alt}`}
+                        href={logo.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center"
+                        aria-label={logo.alt}
+                      >
+                        {img}
+                      </a>
+                    ) : (
+                      <span
+                        key={`${logo.src}-${logo.alt}`}
+                        className="inline-flex items-center"
+                        aria-label={logo.alt}
+                      >
+                        {img}
+                      </span>
+                    );
+                  })}
+                </div>
               ) : null}
             </div>
 

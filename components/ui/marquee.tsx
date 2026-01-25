@@ -35,58 +35,63 @@ export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
       fontSize = "lg",
       strokeWidth = "1px",
       fadeEdges = true,
-      strokeColor = "rgb(80 80 80 / 1)", // subtle gray outline for dark UI
+      strokeColor = "rgb(80 80 80 / 1)",
+      style,
       ...props
     },
     ref
   ) => {
     const reduceMotion = useReducedMotion();
 
+    const maskStyles: React.CSSProperties = fadeEdges
+      ? {
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+        }
+      : {};
+
+    const Track = ({ ariaHidden = false }: { ariaHidden?: boolean }) => (
+      <div className="flex whitespace-nowrap">
+        {Array.from({ length: repeat }).map((_, index) => (
+          <div key={index} className="flex items-center">
+            <span
+              aria-hidden={ariaHidden}
+              className={cn(
+                fontSizeClasses[fontSize],
+                "font-semibold text-transparent px-6"
+              )}
+              style={{
+                WebkitTextStroke: `${strokeWidth} ${strokeColor}`,
+              }}
+            >
+              {text}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+
     return (
       <div
         ref={ref}
         className={cn("relative w-full overflow-hidden", className)}
         {...props}
-        style={{
-          ...(fadeEdges
-            ? {
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
-                maskImage:
-                  "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
-              }
-            : {}),
-          ...props.style,
-        }}
+        style={{ ...maskStyles, ...style }}
       >
         <motion.div
-          className="flex whitespace-nowrap marquee-motion"
+          className="flex"
           animate={reduceMotion ? { x: 0 } : { x: ["0%", "-50%"] }}
           transition={
             reduceMotion
               ? undefined
-              : {
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                  duration,
-                }
+              : { repeat: Number.POSITIVE_INFINITY, ease: "linear", duration }
           }
         >
-          {Array.from({ length: repeat }).map((_, index) => (
-            <div key={index} className="flex items-center">
-              <span
-                className={cn(
-                  fontSizeClasses[fontSize],
-                  "font-semibold text-transparent px-6"
-                )}
-                style={{
-                  WebkitTextStroke: `${strokeWidth} ${strokeColor}`,
-                }}
-              >
-                {text}
-              </span>
-            </div>
-          ))}
+          {/* Two tracks for seamless looping */}
+          <Track />
+          <Track ariaHidden />
         </motion.div>
       </div>
     );

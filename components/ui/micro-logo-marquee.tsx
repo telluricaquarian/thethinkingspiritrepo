@@ -1,56 +1,42 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { UsedByMarquee } from "@/components/ui/used-by-marquee";
+import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee";
 
-export type LogoItem = {
+type LogoItem = {
   src: string;
   alt: string;
-  href?: string;
 };
+
+function toHandle(alt: string) {
+  // "@openai" style handle from "OpenAI"
+  const slug = alt
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "");
+  return `@${slug || "partner"}`;
+}
 
 export function MicroLogoMarquee({
   items,
-  className,
+  duration = 26,
+  direction = "left",
 }: {
   items: LogoItem[];
-  className?: string;
+  duration?: number;
+  direction?: "left" | "right";
 }) {
-  if (!items || items.length === 0) return null;
-
-  // Adapt LogoItem → UsedByMarquee format
-  const marqueeItems = items.map((item) => ({
-    name: item.alt,
-    logo: (
-      <Image
-        src={item.src}
-        alt={item.alt}
-        width={18}
-        height={18}
-        draggable={false}
-        className="opacity-70"
-      />
-    ),
-    href: item.href,
-  }));
+  const marqueeItems: UsedByItem[] = React.useMemo(() => {
+    return items.map((item) => ({
+      name: item.alt,
+      handle: toHandle(item.alt),
+      role: "Tool",
+      avatarSrc: item.src,
+    }));
+  }, [items]);
 
   return (
-    <div
-      className={cn(
-        "relative mt-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 h-10",
-        className
-      )}
-    >
-      {/* Edge fade */}
-      <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
-
-      <UsedByMarquee
-        items={marqueeItems}
-        duration={26}
-        direction="left"
-      />
-    </div>
+    <UsedByMarquee items={marqueeItems} duration={duration} direction={direction} />
   );
 }

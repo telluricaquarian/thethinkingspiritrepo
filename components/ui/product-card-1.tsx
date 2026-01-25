@@ -7,7 +7,7 @@ import { ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee";
-import { MicroLogoMarquee } from "@/components/ui/micro-logo-marquee";
+import MicroLogoMarquee from "@/components/ui/micro-logo-marquee";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
 

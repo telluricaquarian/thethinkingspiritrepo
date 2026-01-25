@@ -31,7 +31,8 @@ export function MicroLogoMarquee({
       {/* Edge fade so it feels tiny + premium */}
       <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
 
-      <Marquee pauseOnHover className="h-full [--duration:26s]">
+      {/* REMOVED: pauseOnHover (not supported by this Marquee implementation) */}
+      <Marquee className="h-full [--duration:26s]">
         <div className="flex items-center gap-4 px-3">
           {items.map((item, idx) => {
             const content = (

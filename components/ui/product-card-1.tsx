@@ -7,8 +7,15 @@ import { ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { UsedByMarquee, type UsedByItem } from "@/components/ui/used-by-marquee";
+import { MicroLogoMarquee } from "@/components/ui/micro-logo-marquee";
 
 type MotionDivProps = React.ComponentPropsWithoutRef<typeof motion.div>;
+
+type MicroLogoItem = {
+  src: string;
+  alt: string;
+  href?: string;
+};
 
 type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrl: string;
@@ -26,6 +33,9 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   toolingLine?: string;
   accent?: "green" | "orange" | (string & {});
   usedByItems?: UsedByItem[];
+
+  // NEW: optional tiny logo marquee for the orange card
+  microLogoItems?: MicroLogoItem[];
 
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
@@ -49,6 +59,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       toolingLine,
       accent = "green",
       usedByItems,
+      microLogoItems,
       secondaryCtaLabel,
       onSecondaryCtaClick,
       ...props
@@ -122,11 +133,25 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const secondaryCtaText =
       secondaryCtaLabel ?? (accent === "orange" ? "Join" : "Inquire");
 
+    // Default micro logos (matches your current public/images assets)
+    // NOTE: filenames are case-sensitive on Vercel/Linux.
+    const defaultOrangeMicroLogos: MicroLogoItem[] = [
+      { src: "/images/Claude.png", alt: "Claude" },
+      { src: "/images/cursor.png", alt: "Cursor" },
+      { src: "/images/coolify.png", alt: "Coolify" },
+      { src: "/images/vscode.png", alt: "VS Code" },
+    ];
+
+    const showMicroLogoMarquee = accent === "orange";
+    const microLogosToUse =
+      microLogoItems && microLogoItems.length
+        ? microLogoItems
+        : defaultOrangeMicroLogos;
+
     return (
       <motion.div
         ref={ref}
         className={cn(
-          // Key change: remove overflow-hidden from the outer card
           "bg-background text-foreground border rounded-lg overflow-visible w-full p-4 md:p-6",
           className
         )}
@@ -135,7 +160,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
-        {/* Key change: make sections flow in a predictable vertical stack */}
         <div className="flex flex-col gap-4 md:gap-5">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6">
             {/* Image */}
@@ -181,6 +205,14 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   <li key={i}>{spec}</li>
                 ))}
               </ul>
+
+              {/* NEW: tiny micro marquee for the orange services card */}
+              {showMicroLogoMarquee && microLogosToUse.length ? (
+                <MicroLogoMarquee
+                  items={microLogosToUse}
+                  className="mt-2 h-9 border-white/10 bg-white/[0.04]"
+                />
+              ) : null}
             </div>
 
             {/* Pricing */}
@@ -272,7 +304,6 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
 
           {usedByItems?.length ? (
-            // Key change: stable wrapper so the marquee never “glues” to the content above in Chrome
             <div className="relative overflow-visible mt-2 pt-4">
               <UsedByMarquee items={usedByItems} duration={22} direction="left" />
             </div>

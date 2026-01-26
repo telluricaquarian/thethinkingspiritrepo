@@ -64,6 +64,33 @@ body {
   animation: used-by-marquee-right 22s linear infinite;
 }
 
+/* --- Typing dots animation (hero "..." indicator) --- */
+.typing-dot {
+  display: inline-block;
+  opacity: 0.25;
+  animation: dotPulse 1.2s infinite ease-in-out;
+}
+
+.typing-dot.delay-1 {
+  animation-delay: 0.15s;
+}
+
+.typing-dot.delay-2 {
+  animation-delay: 0.3s;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}
+
 /* Respect motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .marquee-motion {
@@ -75,5 +102,11 @@ body {
   .used-by-marquee-track--reverse {
     animation: none !important;
     transform: translateX(0) !important;
+  }
+
+  .typing-dot {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

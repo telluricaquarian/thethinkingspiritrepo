@@ -10,7 +10,7 @@ import EoiModal from "../components/ui/eoi-modal";
 
 function ProfilePill() {
   return (
-    <div className="w-full max-w-4xl mx-auto mb-8">
+    <div className="w-full max-w-4xl mx-auto mb-6">
       <div className="relative overflow-hidden rounded-[22px] border border-white/20 bg-gradient-to-r from-white/10 via-white/5 to-white/0 px-6 py-5">
         {/* Ghost marquee background */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.12] blur-[0.5px]">
@@ -98,6 +98,23 @@ export default function Page() {
         <div className="w-full">
           <ProfilePill />
 
+          {/* HERO INTRO COPY (RESTORED) */}
+          <div className="w-full max-w-4xl mx-auto mb-10 px-1">
+            <p className="text-lg text-white mb-2">
+              Welcome to my custom modular / bento links repo.
+            </p>
+
+            <p className="text-lg font-medium text-green-400">
+              Currently building &amp; designing
+              <span className="inline-flex ml-1">
+                <span className="typing-dot">.</span>
+                <span className="typing-dot delay-1">.</span>
+                <span className="typing-dot delay-2">.</span>
+              </span>
+            </p>
+          </div>
+
+          {/* PRODUCT CARDS */}
           <div className="w-full max-w-4xl mx-auto space-y-6">
             {/* K8 card */}
             <ProductCard
@@ -173,15 +190,11 @@ export default function Page() {
             />
           </div>
 
-          {/* Footer */}
           <Footer />
         </div>
       </main>
 
-      {/* Waitlist Modal */}
       <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
-
-      {/* EOI Modal */}
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </>
   );

@@ -92,6 +92,7 @@ export default function Page() {
             {/* K8 card */}
             <ProductCard
               accent="green"
+              eyebrow="Electrochemical Device engineered by Enagic®"
               imageUrl="/images/schematictypebeat2.png"
               title="Leveluk K8 Water Ionizer"
               specifications={[

@@ -15,11 +15,17 @@ function ProfilePill() {
         {/* Ghost marquee background */}
         <div className="pointer-events-none absolute inset-0 z-0 flex items-center opacity-[0.12] blur-[0.5px]">
           <Marquee
-            text="Building and designing anew."
+            text="Building and designing anew"
             duration={18}
             repeat={14}
             className="w-full"
-          />
+          >
+            <span className="inline-flex ml-1">
+              <span className="typing-dot">.</span>
+              <span className="typing-dot delay-1">.</span>
+              <span className="typing-dot delay-2">.</span>
+            </span>
+          </Marquee>
         </div>
 
         {/* subtle green edge accent */}
@@ -49,6 +55,34 @@ function ProfilePill() {
             </p>
           </div>
         </div>
+
+        {/* typing dots animation */}
+        <style jsx>{`
+          .typing-dot {
+            opacity: 0.25;
+            animation: dotPulse 1.2s infinite ease-in-out;
+          }
+
+          .typing-dot.delay-1 {
+            animation-delay: 0.15s;
+          }
+
+          .typing-dot.delay-2 {
+            animation-delay: 0.3s;
+          }
+
+          @keyframes dotPulse {
+            0%,
+            100% {
+              opacity: 0.25;
+              transform: translateY(0);
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(-1px);
+            }
+          }
+        `}</style>
       </div>
     </div>
   );
@@ -144,10 +178,10 @@ export default function Page() {
         </div>
       </main>
 
-      {/* Waitlist Modal (UI only for now) */}
+      {/* Waitlist Modal */}
       <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
 
-      {/* EOI Modal (UI only for now) */}
+      {/* EOI Modal */}
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </>
   );

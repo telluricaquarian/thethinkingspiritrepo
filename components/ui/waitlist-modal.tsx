@@ -10,10 +10,7 @@ type WaitlistModalProps = {
   onOpenChange: (open: boolean) => void;
 };
 
-export default function WaitlistModal({
-  open,
-  onOpenChange,
-}: WaitlistModalProps) {
+export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [social, setSocial] = React.useState("");
@@ -47,14 +44,13 @@ export default function WaitlistModal({
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
 
-      if (!res.ok || !data.ok) {
-        setError(data.error || "Something went wrong. Please try again.");
+      if (!res.ok || !data?.ok) {
+        setError(data?.error || "Something went wrong. Please try again.");
         return;
       }
 
-      // Success
       reset();
       onOpenChange(false);
     } catch {
@@ -70,7 +66,7 @@ export default function WaitlistModal({
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[2px]" />
 
         <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 shadow-2xl outline-none">
-          {/* Required for accessibility (fixes Radix error). Visually hidden via Tailwind. */}
+          {/* ✅ Accessibility: DialogContent must include a DialogTitle */}
           <Dialog.Title className="sr-only">Join Waitlist</Dialog.Title>
 
           {/* Close */}
@@ -86,7 +82,6 @@ export default function WaitlistModal({
 
           {/* Header */}
           <div className="flex items-start gap-3">
-            {/* Logo (slightly rounded, matching TTSBW treatment) */}
             <div className="relative h-9 w-9 overflow-hidden rounded-md ring-1 ring-white/10 bg-white/5">
               <Image
                 src="/images/ttsorange.png"
@@ -141,8 +136,7 @@ export default function WaitlistModal({
 
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-white/60">
-                Social / Website{" "}
-                <span className="text-white/30">(optional)</span>
+                Social / Website <span className="text-white/30">(optional)</span>
               </label>
               <input
                 value={social}
@@ -184,7 +178,6 @@ export default function WaitlistModal({
                 Cancel
               </button>
 
-              {/* ORANGE-stroke submit */}
               <button
                 type="submit"
                 disabled={loading}

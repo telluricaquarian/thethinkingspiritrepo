@@ -21,6 +21,9 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrlMobile?: string;
   imageUrlDesktop?: string;
 
+  /** Optional green eyebrow line above the title (e.g. "Electrochemical Device engineered by Enagic®") */
+  eyebrow?: string;
+
   title: string;
   specifications: string[];
   price?: number;
@@ -47,6 +50,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       imageUrl,
       imageUrlMobile,
       imageUrlDesktop,
+      eyebrow,
       title,
       specifications,
       price,
@@ -182,6 +186,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
             {/* Details */}
             <div className="flex flex-col gap-3">
+              {/* Eyebrow line (green), above title */}
+              {eyebrow ? (
+                <p className="text-sm font-medium text-green-400">{eyebrow}</p>
+              ) : null}
+
               <h2 className="text-lg font-semibold">{title}</h2>
 
               <div

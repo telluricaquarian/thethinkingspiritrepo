@@ -50,39 +50,12 @@ function ProfilePill() {
             <p className="truncate text-xl font-semibold text-white">
               Llewellyn Y. Fisher
             </p>
-            <p className="truncate text-base text-white/55">
+            {/* MOBILE FIX HERE */}
+            <p className="truncate text-sm sm:text-base text-white/55">
               Agency Owner &amp; Product Distributor
             </p>
           </div>
         </div>
-
-        {/* typing dots animation */}
-        <style jsx>{`
-          .typing-dot {
-            opacity: 0.25;
-            animation: dotPulse 1.2s infinite ease-in-out;
-          }
-
-          .typing-dot.delay-1 {
-            animation-delay: 0.15s;
-          }
-
-          .typing-dot.delay-2 {
-            animation-delay: 0.3s;
-          }
-
-          @keyframes dotPulse {
-            0%,
-            100% {
-              opacity: 0.25;
-              transform: translateY(0);
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(-1px);
-            }
-          }
-        `}</style>
       </div>
     </div>
   );
@@ -98,7 +71,7 @@ export default function Page() {
         <div className="w-full">
           <ProfilePill />
 
-          {/* HERO INTRO COPY (RESTORED) */}
+          {/* HERO INTRO COPY */}
           <div className="w-full max-w-4xl mx-auto mb-10 px-1">
             <p className="text-lg text-white mb-2">
               Welcome to my custom modular / bento links repo.

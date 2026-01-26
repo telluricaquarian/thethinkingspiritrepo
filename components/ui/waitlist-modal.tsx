@@ -16,20 +16,52 @@ export default function WaitlistModal({
 }: WaitlistModalProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [social, setSocial] = React.useState("");
+  const [honeypot, setHoneypot] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   function reset() {
     setName("");
     setEmail("");
+    setSocial("");
+    setHoneypot("");
+    setError(null);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
 
-    // UI-only for now (hook into webhook later)
-    // eslint-disable-next-line no-alert
-    alert("Joined waitlist — thank you.");
-    onOpenChange(false);
-    reset();
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          social: social.trim() || undefined,
+          source: "orange_service_card",
+          honeypot: honeypot,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        setError(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      // Success
+      reset();
+      onOpenChange(false);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -38,6 +70,9 @@ export default function WaitlistModal({
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[2px]" />
 
         <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 shadow-2xl outline-none">
+          {/* Required for accessibility (fixes Radix error). Visually hidden via Tailwind. */}
+          <Dialog.Title className="sr-only">Join Waitlist</Dialog.Title>
+
           {/* Close */}
           <Dialog.Close asChild>
             <button
@@ -85,6 +120,7 @@ export default function WaitlistModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
+                maxLength={100}
                 placeholder="Your name"
                 className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
               />
@@ -97,10 +133,43 @@ export default function WaitlistModal({
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 type="email"
+                maxLength={254}
                 placeholder="you@domain.com"
                 className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
               />
             </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-white/60">
+                Social / Website{" "}
+                <span className="text-white/30">(optional)</span>
+              </label>
+              <input
+                value={social}
+                onChange={(e) => setSocial(e.target.value)}
+                maxLength={100}
+                placeholder="@handle or URL"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white placeholder:text-white/30 outline-none transition focus:border-white/20 focus:bg-white/7"
+              />
+            </div>
+
+            {/* Honeypot field - hidden from users, visible to bots */}
+            <input
+              type="text"
+              name="website_url"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute left-[-9999px] top-[-9999px] h-0 w-0 opacity-0"
+            />
+
+            {error && (
+              <p className="text-sm text-red-400" role="alert">
+                {error}
+              </p>
+            )}
 
             <div className="flex items-center justify-between pt-2">
               <button
@@ -109,7 +178,8 @@ export default function WaitlistModal({
                   onOpenChange(false);
                   reset();
                 }}
-                className="rounded-xl border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
+                disabled={loading}
+                className="rounded-xl border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -117,9 +187,10 @@ export default function WaitlistModal({
               {/* ORANGE-stroke submit */}
               <button
                 type="submit"
-                className="rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
+                disabled={loading}
+                className="rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Join Waitlist
+                {loading ? "Submitting..." : "Join Waitlist"}
               </button>
             </div>
           </form>

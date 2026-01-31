@@ -40,7 +40,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
           email: email.trim(),
           social: social.trim() || undefined,
           source: "orange_service_card",
-          honeypot: honeypot,
+          honeypot,
         }),
       });
 
@@ -66,7 +66,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-[2px]" />
 
         <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 shadow-2xl outline-none">
-          {/* ✅ Accessibility: DialogContent must include a DialogTitle */}
+          {/* Required for accessibility (can be visually hidden) */}
           <Dialog.Title className="sr-only">Join Waitlist</Dialog.Title>
 
           {/* Close */}
@@ -181,7 +181,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
               <button
                 type="submit"
                 disabled={loading}
-                className="rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {loading ? "Submitting..." : "Join Waitlist"}
               </button>

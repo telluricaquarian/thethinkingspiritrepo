@@ -90,7 +90,7 @@ export default function Page() {
 
           {/* PRODUCT CARDS - Bento layout on desktop */}
           <div className="w-full max-w-4xl xl:max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] xl:items-stretch gap-6">
               {/* Left column: Primary cards */}
               <div className="min-w-0 space-y-6">
                 {/* K8 card */}
@@ -169,14 +169,13 @@ export default function Page() {
               </div>
 
               {/* Right column: Template promo cards (desktop only) */}
-              <div className="hidden xl:flex xl:flex-col xl:gap-6">
+              <div className="hidden xl:grid xl:grid-rows-2 xl:gap-6 xl:h-full">
                 <TemplatePromoCard
                   imageSrc="/images/LHT%20template%20new.png"
                   title="LHT Template"
                   description="Functional workflows, on-site scheduling, estimates & invoicing."
                   ctaLabel="Purchase"
                   href="#"
-                  className="aspect-video"
                 />
                 <TemplatePromoCard
                   imageSrc="/images/TTS%20template.png"
@@ -184,7 +183,6 @@ export default function Page() {
                   description="Want this site as an empty skeletal template?"
                   ctaLabel="Purchase this as a template"
                   href="#"
-                  className="aspect-video"
                 />
               </div>
             </div>

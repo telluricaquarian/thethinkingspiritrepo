@@ -154,7 +154,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "bg-background text-foreground border rounded-lg overflow-visible w-full p-4 md:p-6",
+          "text-foreground border border-white/10 rounded-2xl overflow-visible w-full p-3 md:p-4 bg-black/40 backdrop-blur-md",
           className
         )}
         variants={cardVariants}
@@ -162,8 +162,8 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         animate="visible"
         {...props}
       >
-        <div className="flex flex-col gap-4 md:gap-5">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-6">
+        <div className="flex flex-col gap-3 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-4">
             {/* Image */}
             <div className="flex justify-center">
               <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
@@ -185,7 +185,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
 
             {/* Details */}
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               {/* Eyebrow line (green), above title */}
               {eyebrow ? (
                 <p className="text-sm font-medium text-green-400">{eyebrow}</p>
@@ -207,7 +207,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 <p className="text-sm text-muted-foreground">{toolingLine}</p>
               )}
 
-              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1.5">
                 {specifications.map((spec, i) => (
                   <li key={i}>{spec}</li>
                 ))}
@@ -342,7 +342,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
           </div>
 
           {usedByItems?.length ? (
-            <div className="relative overflow-visible mt-2 pt-4">
+            <div className="relative overflow-visible mt-1 pt-3">
               <UsedByMarquee items={usedByItems} duration={22} direction="left" />
             </div>
           ) : null}

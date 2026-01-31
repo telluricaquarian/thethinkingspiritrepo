@@ -7,6 +7,7 @@ import { Footer } from "../components/ui/Footer";
 import { Marquee } from "../components/ui/marquee";
 import WaitlistModal from "../components/ui/waitlist-modal";
 import EoiModal from "../components/ui/eoi-modal";
+import { TemplatePromoCard } from "../components/ui/template-promo-card";
 
 function ProfilePill() {
   return (
@@ -87,81 +88,106 @@ export default function Page() {
             </p>
           </div>
 
-          {/* PRODUCT CARDS */}
-          <div className="w-full max-w-4xl mx-auto space-y-6">
-            {/* K8 card */}
-            <ProductCard
-              accent="green"
-              eyebrow="Electrochemical Device engineered by Enagic®"
-              imageUrl="/images/schematictypebeat2.png"
-              title="Leveluk K8 Water Ionizer"
-              specifications={[
-                "8 platinum-coated titanium plates for high ORP stability",
-                "Electrolyzed, hydrogen-rich water (et al. 2025)",
-                "Supports cellular hydration & metabolic efficiency",
-                "Reduced deuterium concentration vs. standard water",
-                "Designed for long-term daily use & durability",
-              ]}
-              price={6787}
-              currencyLabel="AUD"
-              isAssured={true}
-              bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-              ctaLabel="Contact for Procurement"
-              usedByItems={[
-                {
-                  name: "Bryson DeChambeau",
-                  handle: "@brysondechambeau",
-                  role: "Professional Golfer",
-                  avatarSrc: "/images/bryson.jpeg",
-                  verified: true,
-                },
-                {
-                  name: "Wardell Stephen Curry II",
-                  handle: "@stephencurry30",
-                  role: "Olympic Gold Medalist",
-                  avatarSrc: "/images/stephencurry.jpeg",
-                  verified: true,
-                },
-                {
-                  name: "Jhene Aiko Efuru Chilombo",
-                  handle: "@jheneaiko",
-                  role: "Musician",
-                  avatarSrc: "/images/jheneaiko.jpg",
-                  verified: true,
-                },
-                {
-                  name: "Diplo",
-                  handle: "@diplo",
-                  role: "DJ / Producer",
-                  avatarSrc: "/images/diplo.jpeg",
-                  verified: true,
-                },
-              ]}
-              secondaryCtaLabel="Inquire"
-              onSecondaryCtaClick={() => setEoiOpen(true)}
-            />
+          {/* PRODUCT CARDS - Bento layout on desktop */}
+          <div className="w-full max-w-4xl xl:max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-6">
+              {/* Left column: Primary cards */}
+              <div className="min-w-0 space-y-6">
+                {/* K8 card */}
+                <ProductCard
+                  accent="green"
+                  eyebrow="Electrochemical Device engineered by Enagic®"
+                  imageUrl="/images/schematictypebeat2.png"
+                  title="Leveluk K8 Water Ionizer"
+                  specifications={[
+                    "8 platinum-coated titanium plates for high ORP stability",
+                    "Electrolyzed, hydrogen-rich water (et al. 2025)",
+                    "Supports cellular hydration & metabolic efficiency",
+                    "Reduced deuterium concentration vs. standard water",
+                    "Designed for long-term daily use & durability",
+                  ]}
+                  price={6787}
+                  currencyLabel="AUD"
+                  isAssured={true}
+                  bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
+                  ctaLabel="Contact for Procurement"
+                  usedByItems={[
+                    {
+                      name: "Bryson DeChambeau",
+                      handle: "@brysondechambeau",
+                      role: "Professional Golfer",
+                      avatarSrc: "/images/bryson.jpeg",
+                      verified: true,
+                    },
+                    {
+                      name: "Wardell Stephen Curry II",
+                      handle: "@stephencurry30",
+                      role: "Olympic Gold Medalist",
+                      avatarSrc: "/images/stephencurry.jpeg",
+                      verified: true,
+                    },
+                    {
+                      name: "Jhene Aiko Efuru Chilombo",
+                      handle: "@jheneaiko",
+                      role: "Musician",
+                      avatarSrc: "/images/jheneaiko.jpg",
+                      verified: true,
+                    },
+                    {
+                      name: "Diplo",
+                      handle: "@diplo",
+                      role: "DJ / Producer",
+                      avatarSrc: "/images/diplo.jpeg",
+                      verified: true,
+                    },
+                  ]}
+                  secondaryCtaLabel="Inquire"
+                  onSecondaryCtaClick={() => setEoiOpen(true)}
+                />
 
-            {/* ORANGE: Areculateir service delivery */}
-            <ProductCard
-              accent="orange"
-              imageUrl="/images/onitos.png"
-              imageUrlMobile="/images/orangeservice2.png"
-              imageUrlDesktop="/images/orangeservice2.png"
-              title="Full-Stack Build"
-              specifications={[
-                "High-end UI build with conversion-first layout + polish",
-                "Automation & integrations (forms, email, CRM, Sheets, etc.)",
-                "Fast iteration: ship in stages (prototype → MVP → scale)",
-                "Optional AI/agentic workflows where it actually helps",
-              ]}
-              price={2800}
-              currencyLabel="AUD"
-              bankOffer="Payment options also available"
-              ctaLabel="Contact to join Waitlist"
-              toolingLine="VS Code · Claude Code · UI Libraries"
-              secondaryCtaLabel="Join"
-              onSecondaryCtaClick={() => setWaitlistOpen(true)}
-            />
+                {/* ORANGE: Areculateir service delivery */}
+                <ProductCard
+                  accent="orange"
+                  imageUrl="/images/onitos.png"
+                  imageUrlMobile="/images/orangeservice2.png"
+                  imageUrlDesktop="/images/orangeservice2.png"
+                  title="Full-Stack Build"
+                  specifications={[
+                    "High-end UI build with conversion-first layout + polish",
+                    "Automation & integrations (forms, email, CRM, Sheets, etc.)",
+                    "Fast iteration: ship in stages (prototype → MVP → scale)",
+                    "Optional AI/agentic workflows where it actually helps",
+                  ]}
+                  price={2800}
+                  currencyLabel="AUD"
+                  bankOffer="Payment options also available"
+                  ctaLabel="Contact to join Waitlist"
+                  toolingLine="VS Code · Claude Code · UI Libraries"
+                  secondaryCtaLabel="Join"
+                  onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                />
+              </div>
+
+              {/* Right column: Template promo cards (desktop only) */}
+              <div className="hidden xl:flex xl:flex-col xl:gap-6">
+                <TemplatePromoCard
+                  imageSrc="/images/LHT%20template%20new.png"
+                  title="LHT Template"
+                  description="Functional workflows, on-site scheduling, estimates & invoicing."
+                  ctaLabel="Purchase"
+                  href="#"
+                  className="aspect-video"
+                />
+                <TemplatePromoCard
+                  imageSrc="/images/TTS%20template.png"
+                  title="TTS Template"
+                  description="Want this site as an empty skeletal template?"
+                  ctaLabel="Purchase this as a template"
+                  href="#"
+                  className="aspect-video"
+                />
+              </div>
+            </div>
           </div>
 
           <Footer />

@@ -34,23 +34,21 @@ export function TemplatePromoCard({
     >
       {isHero ? (
         <>
-          {/* Image - positioned right for hero variant */}
-          <div className="absolute right-[-4%] top-[10%] h-[82%] w-[68%]">
-            <Image
-              src={imageSrc}
-              alt={title}
-              fill
-              className="object-contain object-right"
-              priority
-            />
-          </div>
+          {/* Full-bleed background image */}
+          <Image
+            src={imageSrc}
+            alt={title}
+            fill
+            className="object-cover object-right"
+            priority
+          />
 
           {/* Gradient overlay - left fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
 
           {/* Content overlay */}
-          <div className="relative z-10 flex h-full flex-col justify-center p-6">
-            <div className="max-w-[62%] pr-4">
+          <div className="relative z-10 flex h-full flex-col p-6">
+            <div className="max-w-[60%]">
               <h3 className="text-lg font-semibold text-white">{title}</h3>
               {description && (
                 <p className="mt-2 text-sm text-white/70 leading-relaxed">{description}</p>

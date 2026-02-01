@@ -172,7 +172,6 @@ export default function Page() {
               <div className="hidden xl:grid xl:grid-rows-2 xl:gap-6 xl:h-full">
                 <TemplatePromoCard
                   variant="bentoHero"
-                  watermark="LHT"
                   imageSrc="/images/LHT%20template%20new.png"
                   title="LHT Template"
                   description="Functional workflows, on-site scheduling, estimates & invoicing."
@@ -181,7 +180,6 @@ export default function Page() {
                 />
                 <TemplatePromoCard
                   variant="bentoHero"
-                  watermark="TTS"
                   imageSrc="/images/TTS%20template.png"
                   title="TTS Template"
                   description="Want this site as an empty skeletal template?"

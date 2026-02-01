@@ -11,7 +11,6 @@ type TemplatePromoCardProps = {
   imageSrc: string;
   className?: string;
   variant?: "compact" | "bentoHero";
-  watermark?: string;
 };
 
 export function TemplatePromoCard({
@@ -22,7 +21,6 @@ export function TemplatePromoCard({
   imageSrc,
   className,
   variant = "compact",
-  watermark,
 }: TemplatePromoCardProps) {
   const isHero = variant === "bentoHero";
 
@@ -34,13 +32,6 @@ export function TemplatePromoCard({
         className
       )}
     >
-      {/* Watermark (bentoHero only) */}
-      {isHero && watermark && (
-        <span className="pointer-events-none absolute bottom-2 left-3 text-[100px] font-bold leading-none text-white/[0.06] select-none tracking-tight">
-          {watermark}
-        </span>
-      )}
-
       {isHero ? (
         <>
           {/* Image - positioned right for hero variant */}

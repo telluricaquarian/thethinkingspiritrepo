@@ -35,7 +35,7 @@ export function TemplatePromoCard({
       {isHero ? (
         <>
           {/* Image - positioned right for hero variant */}
-          <div className="absolute right-[-4%] top-[8%] h-[90%] w-[68%]">
+          <div className="absolute right-[-4%] top-[10%] h-[82%] w-[68%]">
             <Image
               src={imageSrc}
               alt={title}
@@ -49,7 +49,7 @@ export function TemplatePromoCard({
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
 
           {/* Content overlay */}
-          <div className="relative z-10 flex h-full flex-col p-6">
+          <div className="relative z-10 flex h-full flex-col justify-center p-6">
             <div className="max-w-[62%] pr-4">
               <h3 className="text-lg font-semibold text-white">{title}</h3>
               {description && (
@@ -60,7 +60,7 @@ export function TemplatePromoCard({
             {/* CTA button - bottom right */}
             <a
               href={href}
-              className="absolute bottom-4 right-4 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+              className="absolute bottom-4 right-4 rounded-xl border border-white/30 bg-white/15 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/25"
             >
               {ctaLabel}
             </a>

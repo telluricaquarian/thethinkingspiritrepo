@@ -176,7 +176,7 @@ export default function Page() {
                   title="LHT Template"
                   description="Functional workflows, on-site scheduling, estimates & invoicing."
                   ctaLabel="Purchase"
-                  href="https://buy.stripe.com/dRm6oJ2Kb3WbeUL7NHfQI01"
+                  href="https://buy.stripe.com/00wbJ35WndwL8wnc3XfQI03"
                 />
                 <TemplatePromoCard
                   variant="bentoHero"

@@ -121,8 +121,7 @@ export default function EoiModal({ open, onOpenChange }: EoiModalProps) {
                 Expression of Interest
               </Dialog.Title>
               <Dialog.Description className="mt-1 text-sm text-white/60">
-                Submit your details to receive a short email sequence with water
-                insights, product information, and complimentary resources.
+                Submit your contact details and i will get in contact with you personally.
               </Dialog.Description>
             </div>
 

@@ -149,7 +149,7 @@ export default function Page() {
                 <ProductCard
                   accent="orange"
                   imageUrl="/images/onitos.png"
-                  imageUrlMobile="/images/orangeservice2.png"
+                  imageUrlMobile="/images/images/Internal%20O.S.png"
                   rightImageUrlDesktop="/images/Internal%20O.S.png"
                   title="Full-Stack Build"
                   specifications={[

@@ -150,7 +150,7 @@ export default function Page() {
                   accent="orange"
                   imageUrl="/images/onitos.png"
                   imageUrlMobile="/images/orangeservice2.png"
-                  imageUrlDesktop="/images/Internal%20O.S.png"
+                  imageUrlDesktop="/images/betterthanyou.png"
                   title="Full-Stack Build"
                   specifications={[
                     "High-end UI build with conversion-first layout + polish",

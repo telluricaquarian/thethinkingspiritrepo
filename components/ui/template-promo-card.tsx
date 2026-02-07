@@ -34,13 +34,13 @@ export function TemplatePromoCard({
     >
       {isHero ? (
         <>
-          {/* Poster stage - vertically centered image area */}
-          <div className="absolute inset-y-4 right-4 left-[42%] flex items-center">
+          {/* Poster stage - full-bleed image area */}
+          <div className="absolute inset-4">
             <Image
               src={imageSrc}
               alt={title}
               fill
-              className="object-contain object-right"
+              className="object-cover object-right"
               priority
             />
           </div>

@@ -156,7 +156,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "text-foreground border border-white/10 rounded-2xl overflow-visible w-full p-3 md:p-4 bg-black/40 backdrop-blur-md",
+          "text-foreground border border-white/10 rounded-2xl overflow-hidden w-full p-3 md:p-4 bg-black/40 backdrop-blur-md",
           className
         )}
         variants={cardVariants}
@@ -165,7 +165,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         <div className="flex flex-col gap-3 md:gap-4">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-4 min-h-0">
             {/* Image */}
             <div className="flex justify-center">
               <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
@@ -189,7 +189,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
 
             {/* Details */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 min-h-0">
               {/* Eyebrow line (green), above title */}
               {eyebrow ? (
                 <p className="text-sm font-medium text-green-400">{eyebrow}</p>
@@ -258,7 +258,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             </div>
 
             {/* Pricing */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 min-h-0">
               {formattedPrice && (
                 <div className="flex items-center gap-2">
                   <h3 className="text-3xl font-bold">{formattedPrice}</h3>

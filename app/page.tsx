@@ -184,7 +184,7 @@ export default function Page() {
                   title="TTS Template"
                   description="Want this site as an empty skeletal template?"
                   ctaLabel="Purchase"
-                  href="#"
+                  href="https://buy.stripe.com/5kQ28t2Kb3Wb8wn8RLfQI02"
                 />
               </div>
             </div>

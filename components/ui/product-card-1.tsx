@@ -171,16 +171,18 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                   src={mobileSrc}
                   alt={title}
                   fill
-                  className="object-cover block md:hidden"
+                  className={cn("object-cover", imageUrlDesktop ? "block" : "block xl:hidden")}
                   priority
                 />
-                <Image
-                  src={desktopSrc}
-                  alt={title}
-                  fill
-                  className="object-cover hidden md:block"
-                  priority
-                />
+                {!imageUrlDesktop && (
+                  <Image
+                    src={desktopSrc}
+                    alt={title}
+                    fill
+                    className="object-cover hidden xl:block"
+                    priority
+                  />
+                )}
               </div>
             </div>
 
@@ -337,6 +339,20 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 <p className={cn("text-sm font-medium mt-2", accentClasses.text)}>
                   {bankOffer}
                 </p>
+              )}
+
+              {imageUrlDesktop && (
+                <div className="hidden xl:block mt-3">
+                  <div className="relative w-full max-w-[180px] aspect-video rounded-lg overflow-hidden ring-1 ring-white/10 ml-auto">
+                    <Image
+                      src={desktopSrc}
+                      alt={title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
               )}
             </div>
           </div>

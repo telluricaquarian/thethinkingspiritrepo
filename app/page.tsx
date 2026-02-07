@@ -172,7 +172,7 @@ export default function Page() {
               <div className="hidden xl:grid xl:grid-rows-2 xl:gap-6 xl:h-full">
                 <TemplatePromoCard
                   variant="bentoHero"
-                  imageSrc="/images/LHT%20template%20new.png"
+                  imageSrc="/images/LHT.png"
                   title="LHT Template"
                   description="Functional workflows, on-site scheduling, estimates & invoicing."
                   ctaLabel="Purchase"

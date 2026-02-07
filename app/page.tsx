@@ -180,7 +180,7 @@ export default function Page() {
                 />
                 <TemplatePromoCard
                   variant="bentoHero"
-                  imageSrc="/images/tts-card.png"
+                  imageSrc="/images/tts-card2.png"
                   title="TTS Template"
                   description="Want this site as an empty skeletal template?"
                   ctaLabel="Purchase"

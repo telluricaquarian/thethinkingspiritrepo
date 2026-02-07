@@ -149,8 +149,8 @@ export default function Page() {
                 <ProductCard
                   accent="orange"
                   imageUrl="/images/onitos.png"
-                  imageUrlMobile="/images/images/Internal O.S.png"
-                  rightImageUrlDesktop="/images/Internal%20O.S.png"
+                  imageUrlMobile="/images/images/Internal-O.S.png"
+                  rightImageUrlDesktop="/images/Internal-O.S.png"
                   title="Full-Stack Build"
                   specifications={[
                     "High-end UI build with conversion-first layout + polish",

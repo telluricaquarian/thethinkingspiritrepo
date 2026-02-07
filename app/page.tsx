@@ -183,7 +183,7 @@ export default function Page() {
                   imageSrc="/images/TTS%20template.png"
                   title="TTS Template"
                   description="Want this site as an empty skeletal template?"
-                  ctaLabel="Purchase this as a template"
+                  ctaLabel="Purchase"
                   href="#"
                 />
               </div>

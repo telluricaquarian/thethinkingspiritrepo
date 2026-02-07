@@ -34,31 +34,33 @@ export function TemplatePromoCard({
     >
       {isHero ? (
         <>
-          {/* Full-bleed background image */}
-          <Image
-            src={imageSrc}
-            alt={title}
-            fill
-            className="object-cover object-right"
-            priority
-          />
+          {/* Poster stage - vertically centered image area */}
+          <div className="absolute inset-y-4 right-4 left-[42%] flex items-center">
+            <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              className="object-contain object-right"
+              priority
+            />
+          </div>
 
           {/* Gradient overlay - left fade */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
 
-          {/* Content overlay */}
-          <div className="relative z-10 flex h-full flex-col p-6">
-            <div className="max-w-[60%]">
+          {/* Text rail */}
+          <div className="relative z-10 flex h-full flex-col justify-between p-6">
+            <div className="max-w-[12rem]">
               <h3 className="text-lg font-semibold text-white">{title}</h3>
               {description && (
                 <p className="mt-2 text-sm text-white/70 leading-relaxed">{description}</p>
               )}
             </div>
 
-            {/* CTA button - bottom right */}
+            {/* CTA aligned with text rail */}
             <a
               href={href}
-              className="absolute bottom-4 right-4 rounded-xl border border-white/30 bg-white/15 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/25"
+              className="w-fit rounded-xl border border-white/30 bg-white/15 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/25"
             >
               {ctaLabel}
             </a>

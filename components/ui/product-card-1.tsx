@@ -20,6 +20,7 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
   imageUrl: string;
   imageUrlMobile?: string;
   imageUrlDesktop?: string;
+  rightImageUrlDesktop?: string;
 
   /** Optional green eyebrow line above the title (e.g. "Electrochemical Device engineered by Enagic®") */
   eyebrow?: string;
@@ -50,6 +51,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       imageUrl,
       imageUrlMobile,
       imageUrlDesktop,
+      rightImageUrlDesktop,
       eyebrow,
       title,
       specifications,
@@ -341,11 +343,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                 </p>
               )}
 
-              {imageUrlDesktop && (
-                <div className="hidden xl:block mt-3">
-                  <div className="relative w-full max-w-[180px] aspect-video rounded-lg overflow-hidden ring-1 ring-white/10 ml-auto">
+              {rightImageUrlDesktop && (
+                <div className="hidden xl:flex xl:flex-col xl:items-end mt-3">
+                  <div className="relative w-[360px] aspect-video rounded-2xl overflow-hidden ring-1 ring-white/10">
                     <Image
-                      src={desktopSrc}
+                      src={rightImageUrlDesktop}
                       alt={title}
                       fill
                       className="object-cover"

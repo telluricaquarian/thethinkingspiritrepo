@@ -166,6 +166,26 @@ export default function Page() {
                   secondaryCtaLabel="Join"
                   onSecondaryCtaClick={() => setWaitlistOpen(true)}
                 />
+
+                {/* BLUE: Client Acquisition — mobile only */}
+                <div className="block md:hidden">
+                  <ProductCard
+                    accent="blue"
+                    imageUrl="/images/clientacquisition.png"
+                    imageUrlMobile="/images/clientacquisition.png"
+                    title="Client Acquisition w/ Llewellyn"
+                    toolingLine="Client Acquisition w/ Llewellyn"
+                    ctaLabel="Contact me to learn more"
+                    specifications={[
+                      "Lead Generation System",
+                      "Enrichment process",
+                      "Lean Nurturing sequence",
+                      "Hasten the process with agentic flows provided by my Negentropic Agentic® Workflows in your I.D.E.",
+                    ]}
+                    secondaryCtaLabel="Enter Queue"
+                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                  />
+                </div>
               </div>
 
               {/* Right column: Template promo cards (desktop only) */}

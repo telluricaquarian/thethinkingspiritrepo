@@ -29,6 +29,9 @@ export const Canvas: React.FC<CanvasProps> = ({
   // Nodes are rendered with transform: scale(zoom * 2), so visual dimensions
   // are nodeW * zoom * 2 wide and nodeH * zoom * 2 tall.
   // Handle dots sit at top-1/2 (vertical center) of the node.
+  // Handle dots are positioned 4px outside the node edge (right-[-4px] / left-[-4px]).
+  const handleOffsetPx = 4;
+  const handleOffset = handleOffsetPx * zoom * 2;
 
   return (
     <div className="w-full h-full relative dot-grid overflow-hidden bg-black/40 border border-[#222222] rounded-lg">
@@ -49,14 +52,14 @@ export const Canvas: React.FC<CanvasProps> = ({
               key={edge.id}
               id={edge.id}
               sourceX={
-                sourceNode.position.x * zoom + offsetX + nodeW * zoom * 2
+                sourceNode.position.x * zoom + offsetX + nodeW * zoom * 2 + handleOffset
               }
               sourceY={
                 sourceNode.position.y * zoom +
                 offsetY +
                 nodeH * zoom
               }
-              targetX={targetNode.position.x * zoom + offsetX}
+              targetX={targetNode.position.x * zoom + offsetX - handleOffset}
               targetY={
                 targetNode.position.y * zoom +
                 offsetY +

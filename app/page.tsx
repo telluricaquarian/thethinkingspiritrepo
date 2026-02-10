@@ -178,10 +178,11 @@ export default function Page() {
                     toolingLine="Client Acquisition w/ Llewellyn"
                     ctaLabel="Contact me to learn more"
                     specifications={[
-                      "Lead Generation System",
-                      "Enrichment process",
-                      "Lean Nurturing sequence",
-                      "Hasten the process with agentic flows provided by my Negentropic Agentic® Workflows in your I.D.E.",
+                      "Traffic systems engineered to attract ready-to-buy demand",
+                      "Structured lead capture & enrichment (no untracked leads)",
+                      "Automated qualification to separate buyers from browsers",
+                      "AI-driven follow-up & appointment booking (24/7, sub-60s response)",
+                      "Accelerated delivery via Negentropic Agentic® Workflows in your I.D.E.",
                     ]}
                     secondaryCtaLabel="Enter Queue"
                     onSecondaryCtaClick={() => setWaitlistOpen(true)}

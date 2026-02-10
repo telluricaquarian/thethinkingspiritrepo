@@ -169,6 +169,50 @@ export default function Page() {
 
                 {/* BLUE: Client Acquisition — mobile only */}
                 <div className="block md:hidden">
+                  {/* Hero image with signal-flow overlay */}
+                  <div className="relative w-full rounded-2xl overflow-hidden mb-4">
+                    <Image
+                      src="/images/withoutlines.png"
+                      alt="Client Acquisition w/ Llewellyn"
+                      width={1920}
+                      height={1080}
+                      className="w-full h-auto"
+                      priority
+                    />
+                    {/* SVG overlay — connector lines + pulse */}
+                    <svg
+                      viewBox="0 0 1000 563"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      preserveAspectRatio="xMidYMid slice"
+                    >
+                      {/* Static connector line */}
+                      <path
+                        d="M 40,260 C 180,250 380,100 640,55"
+                        stroke="white"
+                        strokeWidth="1"
+                        strokeOpacity="0.12"
+                      />
+                      {/* Secondary connector */}
+                      <path
+                        d="M 40,310 C 200,300 420,140 640,55"
+                        stroke="white"
+                        strokeWidth="0.7"
+                        strokeOpacity="0.07"
+                      />
+                      {/* Animated dotted pulse — travels left→right toward top-middle Apollo node */}
+                      <path
+                        d="M 40,260 C 180,250 380,100 640,55"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeOpacity="0.3"
+                        strokeLinecap="round"
+                        className="signal-pulse"
+                      />
+                    </svg>
+                  </div>
+
                   <ProductCard
                     accent="blue"
                     imageUrl="/images/clientacquisition.png"

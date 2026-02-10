@@ -90,6 +90,21 @@ body {
   }
 }
 
+/* --- Signal pulse animation (Client Acquisition hero) --- */
+@keyframes signalPulse {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.signal-pulse {
+  stroke-dasharray: 3 9;
+  animation: signalPulse 2s linear infinite;
+}
+
 /* Respect motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .marquee-motion {
@@ -107,5 +122,9 @@ body {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
+  }
+
+  .signal-pulse {
+    animation: none !important;
   }
 }

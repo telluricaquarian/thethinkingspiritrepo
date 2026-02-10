@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Canvas } from "@/components/ai-elements/canvas";
 import { Edge } from "@/components/ai-elements/edge";
 import {
@@ -60,7 +61,7 @@ const nodes: WorkflowNode[] = [
       label: "Success Path",
     },
     id: nodeIds.output1,
-    position: { x: 1500, y: -200 },
+    position: { x: 1500, y: -120 },
     type: "workflow",
   },
   {
@@ -70,7 +71,7 @@ const nodes: WorkflowNode[] = [
       label: "Error Path",
     },
     id: nodeIds.output2,
-    position: { x: 1500, y: 200 },
+    position: { x: 1500, y: 120 },
     type: "workflow",
   },
   {
@@ -128,15 +129,28 @@ export const NegentropicWorkflowPreview: React.FC<{
 }> = ({ className }) => {
   return (
     <div className={className}>
-      <div className="h-[320px] w-full relative">
+      <div className="h-[240px] w-full relative">
         <Canvas
           edges={edges}
           edgeTypes={edgeTypes}
           fitView
           nodes={nodes}
           nodeTypes={nodeTypes}
+          zoom={0.3}
+          offsetX={20}
+          offsetY={100}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/60 pointer-events-none rounded-lg" />
+        {/* NI logo badge */}
+        <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
+          <Image
+            src="/images/negentropicyellowlogo.png"
+            alt="Negentropic"
+            width={40}
+            height={40}
+            className="rounded-md shadow-sm"
+          />
+        </div>
       </div>
     </div>
   );

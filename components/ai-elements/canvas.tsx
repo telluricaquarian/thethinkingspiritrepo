@@ -9,6 +9,9 @@ interface CanvasProps {
   nodeTypes: Record<string, React.FC<{ data: WorkflowNode["data"] }>>;
   edgeTypes: Record<string, React.FC<{ id: string; sourceX: number; sourceY: number; targetX: number; targetY: number }>>;
   fitView?: boolean;
+  zoom?: number;
+  offsetX?: number;
+  offsetY?: number;
 }
 
 export const Canvas: React.FC<CanvasProps> = ({
@@ -16,6 +19,9 @@ export const Canvas: React.FC<CanvasProps> = ({
   edges,
   nodeTypes,
   edgeTypes,
+  zoom = 0.4,
+  offsetX = 50,
+  offsetY = 250,
 }) => {
   const nodeWidth = 240;
   const nodeHeight = 120;
@@ -33,10 +39,6 @@ export const Canvas: React.FC<CanvasProps> = ({
 
           const EdgeComp = edgeTypes[edge.type];
           if (!EdgeComp) return null;
-
-          const zoom = 0.4;
-          const offsetX = 50;
-          const offsetY = 250;
 
           return (
             <EdgeComp
@@ -69,10 +71,6 @@ export const Canvas: React.FC<CanvasProps> = ({
           {nodes.map((node) => {
             const NodeComp = nodeTypes[node.type];
             if (!NodeComp) return null;
-
-            const zoom = 0.4;
-            const offsetX = 50;
-            const offsetY = 250;
 
             return (
               <div

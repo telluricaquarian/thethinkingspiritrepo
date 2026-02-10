@@ -17,7 +17,7 @@ type MicroLogoItem = {
 };
 
 type ProductCardProps = Omit<MotionDivProps, "children"> & {
-  imageUrl: string;
+  imageUrl?: string;
   imageUrlMobile?: string;
   imageUrlDesktop?: string;
   rightImageUrlDesktop?: string;
@@ -171,27 +171,29 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         <div className="flex flex-col gap-3 md:gap-4">
           {headerContent}
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-4 min-h-0">
-            {/* Image */}
-            <div className="flex justify-center">
-              <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
-                <Image
-                  src={mobileSrc}
-                  alt={title}
-                  fill
-                  className={cn("object-cover", imageUrlDesktop ? "block" : "block xl:hidden")}
-                  priority
-                />
-                {!imageUrlDesktop && (
+            {/* Image (hidden when headerContent replaces it) */}
+            {imageUrl && (
+              <div className="flex justify-center">
+                <div className="relative w-full max-w-[520px] rounded-lg bg-black/30 ring-1 ring-white/10 aspect-[16/10] md:aspect-square md:max-w-[200px] overflow-hidden">
                   <Image
-                    src={desktopSrc}
+                    src={mobileSrc!}
                     alt={title}
                     fill
-                    className="object-cover hidden xl:block"
+                    className={cn("object-cover", imageUrlDesktop ? "block" : "block xl:hidden")}
                     priority
                   />
-                )}
+                  {!imageUrlDesktop && (
+                    <Image
+                      src={desktopSrc!}
+                      alt={title}
+                      fill
+                      className="object-cover hidden xl:block"
+                      priority
+                    />
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Details */}
             <div className="flex flex-col gap-2 min-h-0">

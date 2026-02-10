@@ -194,9 +194,6 @@ export default function Page() {
                 <div className="block md:hidden">
                   <ProductCard
                     accent="orange"
-                    imageUrl="/images/negentropicyellowlogo.png"
-                    imageUrlMobile="/images/negentropicyellowlogo.png"
-                    imageUrlDesktop="/images/negentropicyellowlogo.png"
                     title="Negentropic Agentic Workflows"
                     toolingLine="Claude Code · Cursor · VS Code · Coolify"
                     ctaLabel="View Workflows"

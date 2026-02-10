@@ -193,7 +193,7 @@ export default function Page() {
                 {/* Negentropic Agentic Workflows — mobile only */}
                 <div className="block md:hidden">
                   <ProductCard
-                    accent="orange"
+                    accent="yellow"
                     title="Negentropic Agentic Workflows"
                     toolingLine="Claude Code · Cursor · VS Code · Coolify"
                     ctaLabel="View Workflows"

@@ -8,13 +8,13 @@ interface NodeProps {
 }
 
 export const Node: React.FC<NodeProps> = ({ children, handles }) => (
-  <div className="relative bg-[#111111] border border-[#222222] rounded-md min-w-[240px] shadow-2xl overflow-hidden group hover:border-[#444444] transition-colors">
+  <div className="relative bg-[#111111] border border-[#222222] rounded-md min-w-[200px] shadow-2xl overflow-hidden group hover:border-[#444444] transition-colors">
     {handles.target && (
-      <div className="absolute left-[-5px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#444] border-2 border-[#111] rounded-full z-10" />
+      <div className="absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#444] border border-[#111] rounded-full z-10" />
     )}
     {children}
     {handles.source && (
-      <div className="absolute right-[-5px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-[#444] border-2 border-[#111] rounded-full z-10" />
+      <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-[#444] border border-[#111] rounded-full z-10" />
     )}
   </div>
 );
@@ -22,7 +22,7 @@ export const Node: React.FC<NodeProps> = ({ children, handles }) => (
 export const NodeHeader: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => (
-  <div className="p-3 border-b border-[#222222] bg-[#1a1a1a]/50">
+  <div className="p-2 border-b border-[#222222] bg-[#1a1a1a]/50">
     {children}
   </div>
 );
@@ -42,13 +42,13 @@ export const NodeDescription: React.FC<{ children: React.ReactNode }> = ({
 export const NodeContent: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => (
-  <div className="p-3 space-y-1 text-[11px] text-zinc-400">{children}</div>
+  <div className="p-2 space-y-0.5 text-[10px] text-zinc-400">{children}</div>
 );
 
 export const NodeFooter: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => (
-  <div className="p-2 border-t border-[#222222] bg-[#0d0d0d] flex justify-end">
+  <div className="p-1.5 border-t border-[#222222] bg-[#0d0d0d] flex justify-end">
     {children}
   </div>
 );

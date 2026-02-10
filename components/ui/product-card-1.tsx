@@ -79,17 +79,26 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       new Intl.NumberFormat("en-AU").format(num);
 
     const accentClasses =
-      accent === "orange"
+      accent === "yellow"
         ? {
-            bg: "bg-[#FF751F]",
-            text: "text-[#FF751F]",
-            pill: "bg-[#FF751F]/15 text-[#FF751F]",
+            bg: "bg-[#F4F401]",
+            text: "text-[#F4F401]",
+            pill: "bg-[#F4F401]/15 text-[#F4F401]",
+            badgeText: "text-black",
           }
-        : {
-            bg: "bg-green-600",
-            text: "text-green-600",
-            pill: "bg-green-500/10 text-green-500",
-          };
+        : accent === "orange"
+          ? {
+              bg: "bg-[#FF751F]",
+              text: "text-[#FF751F]",
+              pill: "bg-[#FF751F]/15 text-[#FF751F]",
+              badgeText: "text-white",
+            }
+          : {
+              bg: "bg-green-600",
+              text: "text-green-600",
+              pill: "bg-green-500/10 text-green-500",
+              badgeText: "text-white",
+            };
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -132,15 +141,17 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const researchGateHref =
       "https://www.researchgate.net/publication/307111070_Mathematical_Model_of_Kangen_WaterR_Biophysical_and_Biochemical_Effects_of_Catholyte";
 
-    const showSecondaryCta = accent === "orange" || accent === "green";
+    const showSecondaryCta = accent === "orange" || accent === "green" || accent === "yellow";
 
     const secondaryCtaClassName =
-      accent === "orange"
-        ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
-        : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
+      accent === "yellow"
+        ? "rounded-xl border border-[#F4F401] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#F4F401] transition-colors hover:bg-[#F4F401]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F401]/60"
+        : accent === "orange"
+          ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
+          : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
 
     const secondaryCtaText =
-      secondaryCtaLabel ?? (accent === "orange" ? "Join" : "Inquire");
+      secondaryCtaLabel ?? (accent === "orange" || accent === "yellow" ? "Join" : "Inquire");
 
     // Default static micro logos (filenames are case-sensitive on Vercel/Linux)
     const defaultOrangeMicroLogos: MicroLogoItem[] = [
@@ -206,8 +217,9 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
 
               <div
                 className={cn(
-                  "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium text-white w-fit",
-                  accentClasses.bg
+                  "inline-flex items-center gap-2 px-3 py-1 rounded-md text-sm font-medium w-fit",
+                  accentClasses.bg,
+                  accentClasses.badgeText
                 )}
               >
                 <ShieldCheck className="h-4 w-4" />

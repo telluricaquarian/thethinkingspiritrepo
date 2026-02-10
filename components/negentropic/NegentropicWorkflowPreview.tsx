@@ -104,10 +104,10 @@ const WorkflowNodeComponent: React.FC<{ data: WorkflowNode["data"] }> = ({
       <NodeDescription>{data.description}</NodeDescription>
     </NodeHeader>
     <NodeContent>
-      <div className="bg-black/40 p-1.5 rounded-sm border border-zinc-800">
+      <div className="bg-black/40 p-1 rounded-sm border border-zinc-800">
         test
       </div>
-      <div className="bg-black/40 p-1.5 rounded-sm border border-zinc-800">
+      <div className="bg-black/40 p-1 rounded-sm border border-zinc-800">
         test
       </div>
     </NodeContent>

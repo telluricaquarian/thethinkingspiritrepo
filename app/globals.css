@@ -105,6 +105,19 @@ body {
   animation: signalPulse 2s linear infinite;
 }
 
+/* --- Dot-grid background for workflow canvas --- */
+.dot-grid {
+  background-image: radial-gradient(circle, #333 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* --- Dash animation for animated edges --- */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
 /* Respect motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .marquee-motion {
@@ -126,5 +139,9 @@ body {
 
   .signal-pulse {
     animation: none !important;
+  }
+
+  .dot-grid {
+    background-image: none !important;
   }
 }

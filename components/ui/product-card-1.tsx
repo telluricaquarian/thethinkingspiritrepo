@@ -42,6 +42,9 @@ type ProductCardProps = Omit<MotionDivProps, "children"> & {
 
   secondaryCtaLabel?: string;
   onSecondaryCtaClick?: () => void;
+
+  /** Optional React node rendered above the card grid (e.g. workflow preview) */
+  headerContent?: React.ReactNode;
 };
 
 const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
@@ -67,6 +70,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
       microLogoItems,
       secondaryCtaLabel,
       onSecondaryCtaClick,
+      headerContent,
       ...props
     },
     ref
@@ -165,6 +169,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         {...props}
       >
         <div className="flex flex-col gap-3 md:gap-4">
+          {headerContent}
           <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1.5fr] gap-4 min-h-0">
             {/* Image */}
             <div className="flex justify-center">

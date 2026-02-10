@@ -8,6 +8,7 @@ import { Marquee } from "../components/ui/marquee";
 import WaitlistModal from "../components/ui/waitlist-modal";
 import EoiModal from "../components/ui/eoi-modal";
 import { TemplatePromoCard } from "../components/ui/template-promo-card";
+import { NegentropicWorkflowPreview } from "../components/negentropic/NegentropicWorkflowPreview";
 
 function ProfilePill() {
   return (
@@ -185,6 +186,30 @@ export default function Page() {
                       "Accelerated delivery via Negentropic Agentic® Workflows in your I.D.E.",
                     ]}
                     secondaryCtaLabel="Enter Queue"
+                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                  />
+                </div>
+
+                {/* Negentropic Agentic Workflows — mobile only */}
+                <div className="block md:hidden">
+                  <ProductCard
+                    accent="orange"
+                    imageUrl="/images/negentropicyellowlogo.png"
+                    imageUrlMobile="/images/negentropicyellowlogo.png"
+                    imageUrlDesktop="/images/negentropicyellowlogo.png"
+                    title="Negentropic Agentic Workflows"
+                    toolingLine="Claude Code · Cursor · VS Code · Coolify"
+                    ctaLabel="View Workflows"
+                    specifications={[
+                      "Self-annealing agentic workflows built for your I.D.E.",
+                      "Open the workflow, enter provided prompts — work done in seconds",
+                      "Speech-to-flow: dictate your desired workflow via voice",
+                      "Lead generation, document generation & more",
+                    ]}
+                    headerContent={
+                      <NegentropicWorkflowPreview className="rounded-lg overflow-hidden" />
+                    }
+                    secondaryCtaLabel="Join"
                     onSecondaryCtaClick={() => setWaitlistOpen(true)}
                   />
                 </div>

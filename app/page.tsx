@@ -195,7 +195,6 @@ export default function Page() {
                   <ProductCard
                     accent="yellow"
                     title="Negentropic Agentic Workflows"
-                    toolingLine="Claude Code · Cursor · VS Code · Coolify"
                     ctaLabel="View Workflows"
                     specifications={[
                       "Self-annealing agentic workflows built for your I.D.E.",

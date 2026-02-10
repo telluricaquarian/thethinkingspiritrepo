@@ -35,46 +35,48 @@ export const Canvas: React.FC<CanvasProps> = ({
 
   return (
     <div className="w-full h-full relative dot-grid overflow-hidden bg-black/40 border border-[#222222] rounded-lg">
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ zIndex: 0 }}
-      >
-        {edges.map((edge) => {
-          const sourceNode = nodes.find((n) => n.id === edge.source);
-          const targetNode = nodes.find((n) => n.id === edge.target);
-          if (!sourceNode || !targetNode) return null;
-
-          const EdgeComp = edgeTypes[edge.type];
-          if (!EdgeComp) return null;
-
-          return (
-            <EdgeComp
-              key={edge.id}
-              id={edge.id}
-              sourceX={
-                sourceNode.position.x * zoom + offsetX + nodeW * zoom * 2 + handleOffset
-              }
-              sourceY={
-                sourceNode.position.y * zoom +
-                offsetY +
-                nodeH * zoom
-              }
-              targetX={targetNode.position.x * zoom + offsetX - handleOffset}
-              targetY={
-                targetNode.position.y * zoom +
-                offsetY +
-                nodeH * zoom
-              }
-            />
-          );
-        })}
-      </svg>
-
       <div className="absolute inset-0 p-4 overflow-auto scrollbar-hide">
         <div
           className="relative"
           style={{ width: "1200px", height: "600px" }}
         >
+          {/* Edge SVG layer — inside scroll container so it pans with nodes */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            style={{ zIndex: 0 }}
+          >
+            {edges.map((edge) => {
+              const sourceNode = nodes.find((n) => n.id === edge.source);
+              const targetNode = nodes.find((n) => n.id === edge.target);
+              if (!sourceNode || !targetNode) return null;
+
+              const EdgeComp = edgeTypes[edge.type];
+              if (!EdgeComp) return null;
+
+              return (
+                <EdgeComp
+                  key={edge.id}
+                  id={edge.id}
+                  sourceX={
+                    sourceNode.position.x * zoom + offsetX + nodeW * zoom * 2 + handleOffset
+                  }
+                  sourceY={
+                    sourceNode.position.y * zoom +
+                    offsetY +
+                    nodeH * zoom
+                  }
+                  targetX={targetNode.position.x * zoom + offsetX - handleOffset}
+                  targetY={
+                    targetNode.position.y * zoom +
+                    offsetY +
+                    nodeH * zoom
+                  }
+                />
+              );
+            })}
+          </svg>
+
+          {/* Node layer */}
           {nodes.map((node) => {
             const NodeComp = nodeTypes[node.type];
             if (!NodeComp) return null;

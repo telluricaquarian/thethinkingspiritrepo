@@ -81,17 +81,11 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
             text: "text-[#FF751F]",
             pill: "bg-[#FF751F]/15 text-[#FF751F]",
           }
-        : accent === "blue"
-          ? {
-              bg: "bg-[#0000FB]",
-              text: "text-[#0000FB]",
-              pill: "bg-[#0000FB]/15 text-[#0000FB]",
-            }
-          : {
-              bg: "bg-green-600",
-              text: "text-green-600",
-              pill: "bg-green-500/10 text-green-500",
-            };
+        : {
+            bg: "bg-green-600",
+            text: "text-green-600",
+            pill: "bg-green-500/10 text-green-500",
+          };
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -134,14 +128,12 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const researchGateHref =
       "https://www.researchgate.net/publication/307111070_Mathematical_Model_of_Kangen_WaterR_Biophysical_and_Biochemical_Effects_of_Catholyte";
 
-    const showSecondaryCta = accent === "orange" || accent === "green" || accent === "blue";
+    const showSecondaryCta = accent === "orange" || accent === "green";
 
     const secondaryCtaClassName =
       accent === "orange"
         ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
-        : accent === "blue"
-          ? "rounded-xl border border-[#0000FB] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#0000FB] transition-colors hover:bg-[#0000FB]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0000FB]/60"
-          : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
+        : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
 
     const secondaryCtaText =
       secondaryCtaLabel ?? (accent === "orange" ? "Join" : "Inquire");

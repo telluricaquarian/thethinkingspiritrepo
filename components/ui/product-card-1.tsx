@@ -94,7 +94,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               badgeText: "text-white",
             }
           : {
-              bg: "bg-green-600",
+              bg: "bg-[#0532F1]",
               text: "text-green-600",
               pill: "bg-green-500/10 text-green-500",
               badgeText: "text-white",
@@ -148,7 +148,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
         ? "rounded-xl border border-[#F4F401] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#F4F401] transition-colors hover:bg-[#F4F401]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F401]/60"
         : accent === "orange"
           ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
-          : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
+          : "rounded-xl border border-[#0532F1] bg-[#0532F1] px-7 py-2 text-[18px] font-medium leading-none text-white transition-colors hover:bg-[#0428C0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0532F1]/60";
 
     const secondaryCtaText =
       secondaryCtaLabel ?? (accent === "orange" || accent === "yellow" ? "Join" : "Inquire");

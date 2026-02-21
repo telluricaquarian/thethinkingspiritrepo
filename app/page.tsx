@@ -96,7 +96,7 @@ export default function Page() {
               <div className="min-w-0 space-y-6">
                 {/* K8 card */}
                 <ProductCard
-                  accent="green"
+                  accent="white"
                   eyebrow="Electrochemical Medical Grade Device engineered by Enagic®"
                   imageUrl="/images/k8mob.png"
                   title="Leveluk K8 Water Ionizer"
@@ -171,7 +171,7 @@ export default function Page() {
                 {/* Client Acquisition — mobile only */}
                 <div className="block md:hidden">
                   <ProductCard
-                    accent="green"
+                    accent="blue"
                     imageUrl="/images/clientacquisition.png"
                     imageUrlMobile="/images/clientacquisition.png"
                     imageUrlDesktop="/images/clientacquisition.png"

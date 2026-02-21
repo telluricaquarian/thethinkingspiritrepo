@@ -93,12 +93,26 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
               pill: "bg-[#FF751F]/15 text-[#FF751F]",
               badgeText: "text-white",
             }
-          : {
-              bg: "bg-[#0532F1]",
-              text: "text-green-600",
-              pill: "bg-green-500/10 text-green-500",
-              badgeText: "text-white",
-            };
+          : accent === "blue"
+            ? {
+                bg: "bg-[#0532F1]",
+                text: "text-[#0532F1]",
+                pill: "bg-[#0532F1]/15 text-[#0532F1]",
+                badgeText: "text-white",
+              }
+            : accent === "white"
+              ? {
+                  bg: "bg-white",
+                  text: "text-white",
+                  pill: "bg-white/15 text-white",
+                  badgeText: "text-black",
+                }
+              : {
+                  bg: "bg-green-600",
+                  text: "text-green-600",
+                  pill: "bg-green-500/10 text-green-500",
+                  badgeText: "text-white",
+                };
 
     const cardVariants: Variants = {
       hidden: { opacity: 0, y: 20 },
@@ -141,14 +155,18 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
     const researchGateHref =
       "https://www.researchgate.net/publication/307111070_Mathematical_Model_of_Kangen_WaterR_Biophysical_and_Biochemical_Effects_of_Catholyte";
 
-    const showSecondaryCta = accent === "orange" || accent === "green" || accent === "yellow";
+    const showSecondaryCta = accent === "orange" || accent === "green" || accent === "yellow" || accent === "blue" || accent === "white";
 
     const secondaryCtaClassName =
       accent === "yellow"
         ? "rounded-xl border border-[#F4F401] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#F4F401] transition-colors hover:bg-[#F4F401]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F401]/60"
         : accent === "orange"
           ? "rounded-xl border border-[#FF751F] bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-[#FF751F] transition-colors hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60"
-          : "rounded-xl border border-[#0532F1] bg-[#0532F1] px-7 py-2 text-[18px] font-medium leading-none text-white transition-colors hover:bg-[#0428C0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0532F1]/60";
+          : accent === "blue"
+            ? "rounded-xl border border-[#0532F1] bg-[#0532F1] px-7 py-2 text-[18px] font-medium leading-none text-white transition-colors hover:bg-[#0428C0] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0532F1]/60"
+            : accent === "white"
+              ? "rounded-xl border border-white bg-white px-7 py-2 text-[18px] font-medium leading-none text-black transition-colors hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+              : "rounded-xl border border-green-600 bg-transparent px-7 py-2 text-[18px] font-medium leading-none text-green-600 transition-colors hover:bg-green-600/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500/60";
 
     const secondaryCtaText =
       secondaryCtaLabel ?? (accent === "orange" || accent === "yellow" ? "Join" : "Inquire");

@@ -66,6 +66,8 @@ function ProfilePill() {
 export default function Page() {
   const [waitlistOpen, setWaitlistOpen] = React.useState(false);
   const [eoiOpen, setEoiOpen] = React.useState(false);
+  const [clientAcqOpen, setClientAcqOpen] = React.useState(false);
+  const [negentropicOpen, setNegentropicOpen] = React.useState(false);
 
   return (
     <>
@@ -186,7 +188,7 @@ export default function Page() {
                       "Accelerated delivery via Negentropic Agentic® Workflows in your I.D.E.",
                     ]}
                     secondaryCtaLabel="Enter Queue"
-                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                    onSecondaryCtaClick={() => setClientAcqOpen(true)}
                   />
                 </div>
 
@@ -206,7 +208,7 @@ export default function Page() {
                       <NegentropicWorkflowPreview className="rounded-lg overflow-hidden" />
                     }
                     secondaryCtaLabel="Join"
-                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                    onSecondaryCtaClick={() => setNegentropicOpen(true)}
                   />
                 </div>
               </div>
@@ -238,6 +240,22 @@ export default function Page() {
       </main>
 
       <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
+      <WaitlistModal
+        open={clientAcqOpen}
+        onOpenChange={setClientAcqOpen}
+        theme="blue"
+        title="Enter Queue"
+        subtitle="Share your details and Llewellyn will reach out to discuss your client acquisition setup."
+        source="blue_client_acquisition_card"
+      />
+      <WaitlistModal
+        open={negentropicOpen}
+        onOpenChange={setNegentropicOpen}
+        theme="yellow"
+        title="Join Waitlist"
+        subtitle="Get early access to Negentropic Agentic® Workflows for your I.D.E."
+        source="yellow_negentropic_card"
+      />
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </>
   );

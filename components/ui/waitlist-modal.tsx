@@ -8,9 +8,28 @@ import { X } from "lucide-react";
 type WaitlistModalProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  theme?: "orange" | "blue" | "yellow";
+  title?: string;
+  subtitle?: string;
+  source?: string;
 };
 
-export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps) {
+const themeCtaClass: Record<"orange" | "blue" | "yellow", string> = {
+  orange:
+    "rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60 disabled:cursor-not-allowed disabled:opacity-50",
+  blue: "rounded-xl border border-[#0532F1] bg-transparent px-5 py-2 text-sm font-medium text-[#0532F1] transition hover:bg-[#0532F1]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0532F1]/60 disabled:cursor-not-allowed disabled:opacity-50",
+  yellow:
+    "rounded-xl border border-[#F4F401] bg-transparent px-5 py-2 text-sm font-medium text-[#F4F401] transition hover:bg-[#F4F401]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F401]/60 disabled:cursor-not-allowed disabled:opacity-50",
+};
+
+export default function WaitlistModal({
+  open,
+  onOpenChange,
+  theme = "orange",
+  title = "Join Waitlist",
+  subtitle = "Get a free prototype / MVP built by Llewellyn.",
+  source = "orange_service_card",
+}: WaitlistModalProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [social, setSocial] = React.useState("");
@@ -39,7 +58,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
           name: name.trim(),
           email: email.trim(),
           social: social.trim() || undefined,
-          source: "orange_service_card",
+          source,
           honeypot,
         }),
       });
@@ -101,11 +120,11 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
           </div>
 
           <h2 className="mt-6 text-[26px] leading-tight font-semibold text-white md:text-[28px]">
-            Join Waitlist
+            {title}
           </h2>
 
           <p className="mt-2 text-[13px] leading-relaxed text-white/55 md:text-sm">
-            Get a free prototype / MVP built by Llewellyn.
+            {subtitle}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -181,7 +200,7 @@ export default function WaitlistModal({ open, onOpenChange }: WaitlistModalProps
               <button
                 type="submit"
                 disabled={loading}
-                className="rounded-xl border border-[#FF751F] bg-transparent px-5 py-2 text-sm font-medium text-[#FF751F] transition hover:bg-[#FF751F]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF751F]/60 disabled:cursor-not-allowed disabled:opacity-50"
+                className={themeCtaClass[theme]}
               >
                 {loading ? "Submitting..." : "Join Waitlist"}
               </button>

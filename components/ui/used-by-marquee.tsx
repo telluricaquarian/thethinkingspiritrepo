@@ -89,8 +89,7 @@ function PersonChip({ name, handle, role, avatarSrc, verified }: UsedByItem) {
         {/* Verified badge (outside the clipped circle) */}
         {verified && (
           <div className="absolute -top-1 -right-1 z-10 flex h-4 w-4 items-center justify-center rounded-full bg-black ring-1 ring-green-400/60">
-            {/* swap this to your /images/verified.png if you want */}
-            <span className="text-[10px] leading-none text-green-400">✓</span>
+            <Image src="/images/verified.png" alt="Verified" width={10} height={10} className="object-contain" />
           </div>
         )}
       </div>

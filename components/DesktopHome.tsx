@@ -1,70 +1,40 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { UsedByMarquee } from "./ui/used-by-marquee";
-import type { UsedByItem } from "./ui/used-by-marquee";
+import { ProductCard } from "./ui/product-card-1";
+import { TemplatePromoCard } from "./ui/template-promo-card";
+import WaitlistModal from "./ui/waitlist-modal";
 import EoiModal from "./ui/eoi-modal";
-
-const K8_USED_BY: UsedByItem[] = [
-  {
-    name: "Bryson DeChambeau",
-    handle: "@brysondechambeau",
-    role: "Professional Golfer",
-    avatarSrc: "/images/bryson.jpeg",
-    verified: true,
-  },
-  {
-    name: "Wardell Stephen Curry II",
-    handle: "@stephencurry30",
-    role: "Olympic Gold Medalist",
-    avatarSrc: "/images/stephencurry.jpeg",
-    verified: true,
-  },
-  {
-    name: "Jhene Aiko Efuru Chilombo",
-    handle: "@jheneaiko",
-    role: "Musician",
-    avatarSrc: "/images/jheneaiko.jpg",
-    verified: true,
-  },
-  {
-    name: "Diplo",
-    handle: "@diplo",
-    role: "DJ / Producer",
-    avatarSrc: "/images/diplo.jpeg",
-    verified: true,
-  },
-];
-
-const K8_SPECS = [
-  "8 platinum-coated titanium plates for high ORP stability",
-  "Electrolyzed, hydrogen-rich water (et al. 2025)",
-  "Supports cellular hydration & metabolic efficiency",
-  "Reduced deuterium concentration vs. standard water",
-  "Designed for long-term daily use & durability",
-];
 
 const EXPLAINER_COLS = [
   {
-    heading: "ORP Stability",
-    body: "8 platinum-coated titanium plates for high ORP stability",
+    heading: "Setting the stage:",
+    body: "What the right information and technology can do is cataclysmic and shifts paradigms so exponentially, so much so, that the shift itself just simply seems too good to be true, misinterpreted and or specious.",
   },
   {
-    heading: "Hydrogen-Rich",
-    body: "Electrolyzed, hydrogen-rich water (et al. 2025)",
+    heading: "Introducing water electrolyzer technology:",
+    body: "This is especially the case when applied to specific machinery, a device or apparatus known as a \"water electrolyzer\" or \"water ioniser\"",
   },
   {
-    heading: "Cellular Hydration",
-    body: "Supports cellular hydration & metabolic efficiency",
+    heading: "Working Principle:",
+    body: "Electrolysis is the process whereby electricity is used to break apart a compound, add water to this, and you can see quite simply that water electrolysis is simply the use of electricity to break apart the compound known as water.",
   },
   {
-    heading: "Deuterium Control",
-    body: "Reduced deuterium concentration vs. standard water",
+    heading: "Useful byproducts",
+    body: "One of the central benefits of water electrolysis is that the electrolysed water can gain and or contain high amounts of hydrogen and thus become hydrogen-rich water.\n\nHydrogen can function as a powerful selective antioxidant, which basically stops your body from losing electrons and or experience oxidative stress.",
+  },
+  {
+    heading: "Understanding Oxidation and Reduction",
+    body: "These are both electrochemical terms used and derived from the field of electrochemistry.\n\nOxidation means loss of electrons\n\nand\n\nReduction means addition of electrons.",
+  },
+  {
+    heading: "Electrolysis Products / Electrochemical reaction products",
+    body: "Hydrogen-Rich Water is but one electrolysis product that is found to be beneficial for consumption.\n\nTwo other notable electrolysis products that can be created, especially by and from the machine mentioned on this page known as Hypochlorous acid and NaOH Ionostat can both offer tremendous valuable use cases, especially in regards to cleaning.",
   },
 ];
 
 export default function DesktopHome() {
+  const [waitlistOpen, setWaitlistOpen] = React.useState(false);
   const [eoiOpen, setEoiOpen] = React.useState(false);
 
   return (
@@ -72,7 +42,7 @@ export default function DesktopHome() {
       <div className="flex min-h-screen">
 
         {/* ── Sidebar ── */}
-        <aside className="w-60 shrink-0 border-r border-neutral-200 p-6 sticky top-0 h-screen">
+        <aside className="w-40 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/blacktts.png" alt="TTS" className="mb-8 h-6 w-auto" />
           <nav>
@@ -87,24 +57,29 @@ export default function DesktopHome() {
 
         {/* ── Main scroll area ── */}
         <main className="flex-1 overflow-y-auto">
-          <div className="max-w-[980px] mx-auto pt-20 px-10 pb-24 space-y-16">
 
-            {/* ── A: Top pill ── */}
+          {/* ── Hero / intro (white section) ── */}
+          <div className="pt-10 px-10 pb-10 space-y-6">
+
+            {/* Top pill */}
             <div className="flex justify-center">
-              <span className="rounded-full bg-blue-600 px-4 py-1.5 text-xs text-white shadow-sm">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-1.5 text-xs text-neutral-700 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-blue-500" aria-hidden="true">
+                  <path d="M10 2C8 5 4 7.5 4 11a6 6 0 0 0 12 0c0-3.5-4-6-6-9Z" />
+                </svg>
                 Dive into a whole new understanding of water
               </span>
             </div>
 
-            {/* ── B: Headline row ── */}
+            {/* Headline row */}
             <div className="flex items-center gap-6">
               <h1 className="text-3xl font-light whitespace-nowrap">
-                Change your life by education and information alone.
+                Change your life by <em>education</em> and <em>information</em> alone.
               </h1>
               <div className="flex-1 border-t border-gray-300" />
             </div>
 
-            {/* ── C: Maxwell quote ── */}
+            {/* Maxwell quote */}
             <div className="max-w-[760px] space-y-1">
               <p className="text-sm italic text-gray-400">
                 Of all electrical phenomena electrolysis appears the most likely to furnish us with a real insight into the true nature of the electric current. because we find currents of ordinary matter and current of electricity forming essential parts of the same phenomenon.
@@ -114,8 +89,8 @@ export default function DesktopHome() {
               <p className="text-xs italic text-gray-400">Vol. 1, Oxford, 1873</p>
             </div>
 
-            {/* ── D: Multi-column explainer row ── */}
-            <div className="grid grid-cols-4 gap-6 border-t border-gray-200 pt-8">
+            {/* Multi-column explainer row */}
+            <div className="grid grid-cols-6 gap-4 border-t border-gray-200 pt-6">
               {EXPLAINER_COLS.map((col) => (
                 <div key={col.heading} className="space-y-2">
                   <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
@@ -125,108 +100,270 @@ export default function DesktopHome() {
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* ── E: K8 product card ── */}
-            <div className="border border-neutral-200 rounded-2xl overflow-hidden">
+          {/* ── Product section (white) ── */}
+          <div className="bg-white px-10 py-10">
+            {/* ── K8 Detail: 2-col layout ── */}
+            <div className="grid grid-cols-[1fr_1fr] gap-10 border-b border-neutral-200 pb-10">
 
-              {/* Top: image left + details right */}
-              <div className="grid grid-cols-2">
-                <div className="relative min-h-[340px] bg-neutral-50">
-                  <Image
-                    src="/images/newaqua.png"
-                    alt="Leveluk K8 Water Ionizer"
-                    fill
-                    className="object-contain p-6"
-                    unoptimized
-                  />
+              {/* Left: image */}
+              <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/newaqua.png"
+                  alt="Level uk K8 Water Ioniser"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              {/* Right: product details */}
+              <div className="flex flex-col gap-4">
+
+                {/* Title block */}
+                <div className="space-y-0.5">
+                  <h2 className="text-base font-medium leading-snug">
+                    The &ldquo;Level uk K8&rdquo; water ioniser/water electrolyzer from enagic&reg;
+                  </h2>
+                  <p className="text-xs text-blue-600">
+                    Level uk K8 | Water Ioniser / Electrolyzer
+                  </p>
+                  <p className="text-xs text-neutral-400">[ SKU 1018 ]</p>
                 </div>
 
-                <div className="p-8 space-y-5 border-l border-neutral-200">
-                  <p className="text-xs text-neutral-400 leading-snug">
-                    Electrochemical Medical Grade Device engineered by Enagic®
-                  </p>
-                  <h2 className="text-2xl font-semibold">Leveluk K8 Water Ionizer</h2>
-                  <ul className="space-y-2">
-                    {K8_SPECS.map((spec) => (
-                      <li key={spec} className="flex items-start gap-2 text-sm text-neutral-600">
-                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-400" />
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="pt-2">
-                    <span className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-xs text-neutral-500">
-                      Enagic® Quality Assured
-                    </span>
+                {/* Used by box */}
+                <div className="border border-neutral-200 rounded px-4 py-3 flex items-center gap-2">
+                  <span className="text-xs font-medium text-neutral-700">Used by:</span>
+                  <span className="text-xs text-neutral-400">Tap to view verified posts</span>
+                </div>
+
+                {/* Price columns */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <p className="text-[10px] uppercase tracking-wide text-blue-600 font-medium">
+                      Methods &amp; Options
+                    </p>
+                    <p className="text-[10px] uppercase tracking-wide text-neutral-500 font-semibold">
+                      Total One-Time Payment
+                    </p>
+                    <p className="text-xl font-semibold text-black">$6,787.00</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] uppercase tracking-wide text-blue-600 font-medium">
+                      Methods &amp; Options
+                    </p>
+                    <p className="text-[10px] uppercase tracking-wide text-neutral-500 font-semibold">
+                      Payment Plan + Deposit
+                    </p>
+                    <p className="text-xl font-semibold text-black">$6,787.00</p>
                   </div>
                 </div>
-              </div>
 
-              {/* Used by bar */}
-              <div className="border-t border-neutral-200 bg-black px-4 py-3">
-                <UsedByMarquee items={K8_USED_BY} duration={28} />
-              </div>
-
-              {/* Pricing row */}
-              <div className="grid grid-cols-3 divide-x divide-neutral-200 border-t border-neutral-200">
-                <div className="p-6">
-                  <p className="text-xs text-neutral-400 mb-1">AUD</p>
-                  <p className="text-3xl font-semibold">$6,787</p>
-                </div>
-                <div className="p-6 flex flex-col justify-center">
-                  <p className="text-sm text-neutral-500">Payment options available</p>
-                  <p className="text-sm text-neutral-500">From ~$252/mo (E-Payment or finance)</p>
-                </div>
-                <div className="p-6 flex flex-col justify-center gap-3">
-                  <button className="w-full rounded-full bg-black text-white text-sm py-2.5 px-4 hover:bg-neutral-800 transition-colors">
-                    Contact for Procurement
-                  </button>
+                {/* Enquire CTA */}
+                <div>
                   <button
+                    type="button"
                     onClick={() => setEoiOpen(true)}
-                    className="w-full rounded-full border border-neutral-300 text-sm py-2.5 px-4 hover:bg-neutral-50 transition-colors"
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded transition-colors"
                   >
-                    Inquire
+                    Enquire Now
+                    <span aria-hidden="true">&rarr;</span>
                   </button>
                 </div>
-              </div>
 
-              {/* Patents / certs row */}
-              <div className="border-t border-neutral-200 px-6 py-3 flex items-center gap-6 text-xs text-neutral-400">
-                <span>Enagic® Certified</span>
-                <span>·</span>
-                <span>Medical Grade Device</span>
-                <span>·</span>
-                <span>Electrolysis Technology</span>
-                <span>·</span>
-                <span>Designed for long-term daily use &amp; durability</span>
+                {/* Patents + Certifications */}
+                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-neutral-100">
+                  <div className="space-y-1">
+                    <p className="text-[10px] uppercase tracking-wide text-neutral-400 font-semibold">Patents</p>
+                    <p className="text-xs text-neutral-600 leading-relaxed">
+                      JP2005152847A<br />
+                      JP2005144418A<br />
+                      JP2005074388A<br />
+                      JP2006087987A
+                    </p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] uppercase tracking-wide text-neutral-400 font-semibold">Certifications</p>
+                    <p className="text-xs text-neutral-600 leading-relaxed">
+                      ISO 9001<br />
+                      ISO 13485<br />
+                      ISO 14001
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
 
+            {/* ── Hydrogen-Rich Water benefits ── */}
+            <div className="py-8 border-b border-neutral-200">
+              <h3 className="text-sm font-medium text-black mb-5">
+                Hydrogen-Rich Water &ndash; Benefits made simple
+              </h3>
+              <div className="grid grid-cols-3 gap-8">
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-neutral-700">Powerful Selective Antioxidant</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Hydrogen-Rich Water acts as a powerful selective antioxidant. Unlike traditional supplements, molecular hydrogen specifically targets and eliminates harmful hydroxyl radicals while leaving beneficial species intact. This precision helps protect your cells and DNA from oxidative damage throughout your body.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-neutral-700">Therapeutic Potential</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Regular Consumption can alleviate various conditions, including metabolic syndromes, cardiovascular issues, and rheumatoid arthritis. Because hydrogen molecules are small, they easily permeate cell membranes, reaching vital organs like the brain to help manage inflammations and promote healthy cellular metabolism.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-neutral-700">Increased Energy</p>
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    Electrolysis is the process whereby electricity is used to break apart a compound, add water to this, and you can see quite simply that water electrolysis is simply the use of electricity to break apart the compound known as water.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Remaining product cards kept below placeholder */}
+            <div className="mt-8">
+              <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] xl:items-stretch gap-6">
+
+                {/* Left column: primary cards */}
+                <div className="min-w-0 space-y-6">
+
+                  {/* K8 */}
+                  <ProductCard
+                    accent="white"
+                    eyebrow="Electrochemical Medical Grade Device engineered by Enagic®"
+                    imageUrl="/images/newaqua.png"
+                    title="Leveluk K8 Water Ionizer"
+                    specifications={[
+                      "8 platinum-coated titanium plates for high ORP stability",
+                      "Electrolyzed, hydrogen-rich water (et al. 2025)",
+                      "Supports cellular hydration & metabolic efficiency",
+                      "Reduced deuterium concentration vs. standard water",
+                      "Designed for long-term daily use & durability",
+                    ]}
+                    price={6787}
+                    currencyLabel="AUD"
+                    isAssured={true}
+                    bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
+                    ctaLabel="Contact for Procurement"
+                    usedByItems={[
+                      {
+                        name: "Bryson DeChambeau",
+                        handle: "@brysondechambeau",
+                        role: "Professional Golfer",
+                        avatarSrc: "/images/bryson.jpeg",
+                        verified: true,
+                      },
+                      {
+                        name: "Wardell Stephen Curry II",
+                        handle: "@stephencurry30",
+                        role: "Olympic Gold Medalist",
+                        avatarSrc: "/images/stephencurry.jpeg",
+                        verified: true,
+                      },
+                      {
+                        name: "Jhene Aiko Efuru Chilombo",
+                        handle: "@jheneaiko",
+                        role: "Musician",
+                        avatarSrc: "/images/jheneaiko.jpg",
+                        verified: true,
+                      },
+                      {
+                        name: "Diplo",
+                        handle: "@diplo",
+                        role: "DJ / Producer",
+                        avatarSrc: "/images/diplo.jpeg",
+                        verified: true,
+                      },
+                    ]}
+                    secondaryCtaLabel="Inquire"
+                    onSecondaryCtaClick={() => setEoiOpen(true)}
+                  />
+
+                  {/* Full-Stack Build */}
+                  <ProductCard
+                    accent="orange"
+                    imageUrl="/images/onitos.png"
+                    imageUrlMobile="/images/internal-os.png"
+                    rightImageUrlDesktop="/images/internal-os.png"
+                    title="Full-Stack Build"
+                    specifications={[
+                      "High-end UI build with conversion-first layout + polish",
+                      "Automation & integrations (forms, email, CRM, Sheets, etc.)",
+                      "Fast iteration: ship in stages (prototype → MVP → scale)",
+                      "Optional AI/agentic workflows where it actually helps",
+                    ]}
+                    price={2800}
+                    currencyLabel="AUD"
+                    bankOffer="Payment options also available"
+                    ctaLabel="Contact to join Waitlist"
+                    toolingLine="VS Code · Claude Code · UI Libraries"
+                    secondaryCtaLabel="Join"
+                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
+                  />
+                </div>
+
+                {/* Right column: template promo cards (xl only) */}
+                <div className="hidden xl:grid xl:grid-rows-2 xl:gap-6 xl:h-full">
+                  <TemplatePromoCard
+                    variant="bentoHero"
+                    imageSrc="/images/LHT.png"
+                    title="LHT Template"
+                    description="Functional workflows, on-site scheduling, estimates & invoicing."
+                    ctaLabel="Purchase"
+                    href="https://buy.stripe.com/00wbJ35WndwL8wnc3XfQI03"
+                  />
+                  <TemplatePromoCard
+                    variant="bentoHero"
+                    imageSrc="/images/tts-card3.png"
+                    title="TTS Template"
+                    description="Want this site as an empty skeletal template?"
+                    ctaLabel="Purchase"
+                    href="https://buy.stripe.com/5kQ28t2Kb3Wb8wn8RLfQI02"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* ── Footer ── */}
-          <footer className="border-t border-neutral-200 px-10 py-6">
-            <div className="max-w-[980px] mx-auto flex items-center justify-between">
-              <div className="flex items-center gap-3">
+          <footer className="border-t border-neutral-200 bg-white px-10 py-4">
+            <div className="flex items-center justify-between gap-6">
+
+              {/* Left: copyright */}
+              <div className="flex items-center gap-2 shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/blacktts.png" alt="TTS" className="h-5 w-auto" />
                 <p className="text-xs text-neutral-400">
-                  Building and designing anew. {new Date().getFullYear()}©
+                  &copy;{new Date().getFullYear()} Building &amp; designing anew.
                 </p>
               </div>
-              <div className="relative h-7 w-7">
-                <Image
-                  src="/images/telluricaquarian.png"
-                  alt="Telluric Aquarian"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+
+              {/* Center: nav links */}
+              <nav className="flex items-center gap-4">
+                <a href="#" className="text-xs text-neutral-400 hover:text-neutral-700 transition-colors">Terms of Service</a>
+                <a href="#" className="text-xs text-neutral-400 hover:text-neutral-700 transition-colors">Privacy Policy</a>
+                <a href="#" className="text-xs text-neutral-400 hover:text-neutral-700 transition-colors">Branding Guidelines</a>
+              </nav>
+
+              {/* Right: Book a Call */}
+              <button
+                type="button"
+                className="inline-flex items-center gap-1.5 rounded border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-50 transition-colors shrink-0"
+              >
+                Book a Call
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3.5 w-3.5 text-neutral-500" aria-hidden="true">
+                  <path fillRule="evenodd" d="M2 3a1 1 0 0 1 1-1h2.153a1 1 0 0 1 .986.836l.74 4.435a1 1 0 0 1-.54 1.06l-1.548.773a11.04 11.04 0 0 0 6.105 6.105l.774-1.548a1 1 0 0 1 1.059-.54l4.435.74a1 1 0 0 1 .836.986V13a1 1 0 0 1-1 1h-2C7.82 14 2 8.18 2 5V3Z" clipRule="evenodd" />
+                </svg>
+              </button>
+
             </div>
           </footer>
         </main>
       </div>
 
+      <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </div>
   );

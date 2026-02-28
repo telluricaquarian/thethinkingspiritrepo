@@ -22,6 +22,12 @@ const themeCtaClass: Record<"orange" | "blue" | "yellow", string> = {
     "rounded-xl border border-[#F4F401] bg-transparent px-5 py-2 text-sm font-medium text-[#F4F401] transition hover:bg-[#F4F401]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F401]/60 disabled:cursor-not-allowed disabled:opacity-50",
 };
 
+const themeLogoSrc: Record<"orange" | "blue" | "yellow", string> = {
+  orange: "/images/ttsorange.png",
+  blue: "/images/bluetts.png",
+  yellow: "/images/yellowtts.png",
+};
+
 export default function WaitlistModal({
   open,
   onOpenChange,
@@ -103,7 +109,7 @@ export default function WaitlistModal({
           <div className="flex items-start gap-3">
             <div className="relative h-9 w-9 overflow-hidden rounded-md ring-1 ring-white/10 bg-white/5">
               <Image
-                src="/images/ttsorange.png"
+                src={themeLogoSrc[theme]}
                 alt="TTS"
                 fill
                 className="object-contain"

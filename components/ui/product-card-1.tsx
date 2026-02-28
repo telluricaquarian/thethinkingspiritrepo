@@ -210,6 +210,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                     fill
                     className={cn("object-cover", imageUrlDesktop ? "block" : "block xl:hidden")}
                     priority
+                    unoptimized
                   />
                   {!imageUrlDesktop && (
                     <Image
@@ -218,6 +219,7 @@ const ProductCard = React.forwardRef<HTMLDivElement, ProductCardProps>(
                       fill
                       className="object-cover hidden xl:block"
                       priority
+                      unoptimized
                     />
                   )}
                 </div>

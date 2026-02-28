@@ -98,7 +98,7 @@ export default function Page() {
                 <ProductCard
                   accent="white"
                   eyebrow="Electrochemical Medical Grade Device engineered by Enagic®"
-                  imageUrl="/images/k8mob.png"
+                  imageUrl="/images/newaqua.png"
                   title="Leveluk K8 Water Ionizer"
                   specifications={[
                     "8 platinum-coated titanium plates for high ORP stability",

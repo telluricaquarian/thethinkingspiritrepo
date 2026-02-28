@@ -34,9 +34,11 @@ export default function DesktopHome() {
             {/* Quote block */}
             <div className="max-w-[760px] space-y-1">
               <p className="text-sm italic text-gray-400">
-                &ldquo;The greatest medicine of all is teaching people how not to need it.&rdquo;
+                Of all electrical phenomena electrolysis appears the most likely to furnish us with a real insight into the true nature of the electric current. because we find currents of ordinary matter and current of electricity forming essential parts of the same phenomenon.
               </p>
-              <p className="text-xs text-gray-400">— Hippocrates</p>
+              <p className="text-xs text-gray-400">— James Clerk Maxwell</p>
+              <p className="text-xs italic text-gray-400">A Treatise on Electricity and Magnetism</p>
+              <p className="text-xs italic text-gray-400">Vol. 1, Oxford, 1873</p>
             </div>
           </div>
         </main>

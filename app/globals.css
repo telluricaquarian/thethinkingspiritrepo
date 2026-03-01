@@ -160,3 +160,17 @@ body {
 .font-editorial-ultralight-italic {
   font-family: "PPEditorialUltralightItalic", serif;
 }
+
+/* --- Video thumbnail pulse / radar rings --- */
+@keyframes vsl-pulse {
+  0%   { transform: scale(1);   opacity: 0.35; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.vsl-pulse {
+  animation: vsl-pulse 2.2s ease-out infinite;
+}
+
+.vsl-pulse-delay {
+  animation: vsl-pulse 2.2s ease-out 1.1s infinite;
+}

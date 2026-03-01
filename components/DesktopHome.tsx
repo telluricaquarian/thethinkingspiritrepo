@@ -104,7 +104,7 @@ export default function DesktopHome() {
             {/* ── K8 Detail: 2-col layout ── */}
             <div className="grid grid-cols-[3fr_2fr] gap-10 border-b border-neutral-200 pb-10">
 
-              {/* Left: image */}
+              {/* Left: image / video thumbnail */}
               <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -112,6 +112,22 @@ export default function DesktopHome() {
                   alt="Level uk K8 Water Ioniser"
                   className="absolute inset-0 w-full h-full object-contain"
                 />
+                {/* Play overlay — TODO: wire to video modal */}
+                <button
+                  type="button"
+                  aria-label="Play video"
+                  className="absolute inset-0 grid place-items-center"
+                >
+                  {/* Radar pulse rings */}
+                  <span aria-hidden="true" className="absolute h-16 w-16 rounded-full bg-blue-600 vsl-pulse" />
+                  <span aria-hidden="true" className="absolute h-16 w-16 rounded-full bg-blue-600 vsl-pulse-delay" />
+                  {/* Play icon */}
+                  <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <polygon points="7,4 17,10 7,16" className="fill-blue-600" />
+                    </svg>
+                  </span>
+                </button>
               </div>
 
               {/* Right: product details */}

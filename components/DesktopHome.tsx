@@ -58,7 +58,7 @@ export default function DesktopHome() {
           <div className="pt-10 px-8 pb-10 space-y-6">
 
             {/* Top pill */}
-            <div className="flex justify-center">
+            <div className="flex">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-1.5 text-xs text-neutral-700 shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/diveicon.png" alt="" aria-hidden="true" className="h-[18px] w-[18px] mr-2 object-contain" />

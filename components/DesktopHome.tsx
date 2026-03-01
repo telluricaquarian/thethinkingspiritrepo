@@ -89,7 +89,7 @@ export default function DesktopHome() {
             </div>
 
             {/* Multi-column explainer row */}
-            <div className="grid grid-cols-6 gap-4 border-t border-gray-200 pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 border-t border-gray-200 pt-6">
               {EXPLAINER_COLS.map((col) => (
                 <div key={col.heading} className="space-y-2">
                   <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">

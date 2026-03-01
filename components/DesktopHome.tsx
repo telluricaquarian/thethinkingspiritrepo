@@ -58,7 +58,7 @@ export default function DesktopHome() {
           <div className="pt-10 px-8 pb-10 space-y-6">
 
             {/* Top pill */}
-            <div className="flex">
+            <div className="flex justify-center">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-1.5 text-xs text-neutral-700 shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/diveicon.png" alt="" aria-hidden="true" className="h-[18px] w-[18px] mr-2 object-contain" />
@@ -88,10 +88,10 @@ export default function DesktopHome() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 border-t border-gray-200 pt-6">
               {EXPLAINER_COLS.map((col) => (
                 <div key={col.heading} className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                  <p className="text-xs font-medium text-neutral-700">
                     {col.heading}
                   </p>
-                  <p className="text-sm text-neutral-600 leading-snug">{col.body}</p>
+                  <p className="text-xs text-neutral-600 leading-snug">{col.body}</p>
                 </div>
               ))}
             </div>
@@ -100,7 +100,7 @@ export default function DesktopHome() {
           {/* ── Product section (white) ── */}
           <div className="bg-white px-8 py-10">
             {/* ── K8 Detail: 2-col layout ── */}
-            <div className="grid grid-cols-[1fr_1fr] gap-10 border-b border-neutral-200 pb-10">
+            <div className="grid grid-cols-[3fr_2fr] gap-10 border-b border-neutral-200 pb-10">
 
               {/* Left: image */}
               <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded overflow-hidden">
@@ -127,8 +127,8 @@ export default function DesktopHome() {
                 </div>
 
                 {/* Used by box */}
-                <div className="border border-neutral-200 rounded px-4 py-3 flex items-center gap-2">
-                  <span className="text-xs font-medium text-neutral-700">Used by:</span>
+                <div className="border border-neutral-200 rounded px-4 py-5 flex items-center justify-between">
+                  <span className="text-xs italic text-blue-600">Used by:</span>
                   <span className="text-xs text-neutral-400">Tap to view verified posts</span>
                 </div>
 
@@ -154,18 +154,6 @@ export default function DesktopHome() {
                   </div>
                 </div>
 
-                {/* Enquire CTA */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() => setEoiOpen(true)}
-                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded transition-colors"
-                  >
-                    Enquire Now
-                    <span aria-hidden="true">&rarr;</span>
-                  </button>
-                </div>
-
                 {/* Patents + Certifications */}
                 <div className="grid grid-cols-2 gap-4 pt-2 border-t border-neutral-100">
                   <div className="space-y-1">
@@ -185,6 +173,18 @@ export default function DesktopHome() {
                       ISO 14001
                     </p>
                   </div>
+                </div>
+
+                {/* Enquire CTA */}
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setEoiOpen(true)}
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded transition-colors"
+                  >
+                    Enquire Now
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
                 </div>
 
               </div>

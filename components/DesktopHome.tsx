@@ -59,7 +59,7 @@ export default function DesktopHome() {
         <main className="flex-1 overflow-y-auto pb-14">
 
           {/* ── Hero / intro (white section) ── */}
-          <div className="pt-10 px-10 pb-10 space-y-6">
+          <div className="pt-10 px-8 pb-10 space-y-6">
 
             {/* Top pill */}
             <div className="flex">
@@ -102,7 +102,7 @@ export default function DesktopHome() {
           </div>
 
           {/* ── Product section (white) ── */}
-          <div className="bg-white px-10 py-10">
+          <div className="bg-white px-8 py-10">
             {/* ── K8 Detail: 2-col layout ── */}
             <div className="grid grid-cols-[1fr_1fr] gap-10 border-b border-neutral-200 pb-10">
 
@@ -327,7 +327,7 @@ export default function DesktopHome() {
           </div>
 
           {/* ── Footer ── */}
-          <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-neutral-200 bg-white px-10 py-4">
+          <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">
             <div className="flex items-center justify-between gap-6">
 
               {/* Left: copyright */}

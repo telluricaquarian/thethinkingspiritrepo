@@ -102,10 +102,10 @@ export default function DesktopHome() {
           {/* ── Product section (white) ── */}
           <div className="bg-white px-8 py-10">
             {/* ── K8 Detail: 2-col layout ── */}
-            <div className="grid grid-cols-[3fr_2fr] gap-10 border-b border-neutral-200 pb-10">
+            <div className="grid grid-cols-[3fr_2fr] gap-10 items-start border-b border-neutral-200 pb-10">
 
               {/* Left: image / video thumbnail */}
-              <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded overflow-hidden">
+              <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded-md border border-neutral-200 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/newaqua.png"

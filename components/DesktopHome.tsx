@@ -39,7 +39,7 @@ export default function DesktopHome() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="flex min-h-screen">
+      <div className="flex h-screen overflow-hidden">
 
         {/* ── Sidebar ── */}
         <aside className="w-40 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
@@ -56,7 +56,7 @@ export default function DesktopHome() {
         </aside>
 
         {/* ── Main scroll area ── */}
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto pb-14">
 
           {/* ── Hero / intro (white section) ── */}
           <div className="pt-10 px-10 pb-10 space-y-6">
@@ -328,7 +328,7 @@ export default function DesktopHome() {
           </div>
 
           {/* ── Footer ── */}
-          <footer className="border-t border-neutral-200 bg-white px-10 py-4">
+          <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-neutral-200 bg-white px-10 py-4">
             <div className="flex items-center justify-between gap-6">
 
               {/* Left: copyright */}

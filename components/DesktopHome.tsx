@@ -1,9 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { ProductCard } from "./ui/product-card-1";
-import { TemplatePromoCard } from "./ui/template-promo-card";
-import WaitlistModal from "./ui/waitlist-modal";
 import EoiModal from "./ui/eoi-modal";
 
 const EXPLAINER_COLS = [
@@ -34,7 +31,6 @@ const EXPLAINER_COLS = [
 ];
 
 export default function DesktopHome() {
-  const [waitlistOpen, setWaitlistOpen] = React.useState(false);
   const [eoiOpen, setEoiOpen] = React.useState(false);
 
   return (
@@ -221,109 +217,6 @@ export default function DesktopHome() {
               </div>
             </div>
 
-            {/* Remaining product cards kept below placeholder */}
-            <div className="mt-8">
-              <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] xl:items-stretch gap-6">
-
-                {/* Left column: primary cards */}
-                <div className="min-w-0 space-y-6">
-
-                  {/* K8 */}
-                  <ProductCard
-                    accent="white"
-                    eyebrow="Electrochemical Medical Grade Device engineered by Enagic®"
-                    imageUrl="/images/newaqua.png"
-                    title="Leveluk K8 Water Ionizer"
-                    specifications={[
-                      "8 platinum-coated titanium plates for high ORP stability",
-                      "Electrolyzed, hydrogen-rich water (et al. 2025)",
-                      "Supports cellular hydration & metabolic efficiency",
-                      "Reduced deuterium concentration vs. standard water",
-                      "Designed for long-term daily use & durability",
-                    ]}
-                    price={6787}
-                    currencyLabel="AUD"
-                    isAssured={true}
-                    bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
-                    ctaLabel="Contact for Procurement"
-                    usedByItems={[
-                      {
-                        name: "Bryson DeChambeau",
-                        handle: "@brysondechambeau",
-                        role: "Professional Golfer",
-                        avatarSrc: "/images/bryson.jpeg",
-                        verified: true,
-                      },
-                      {
-                        name: "Wardell Stephen Curry II",
-                        handle: "@stephencurry30",
-                        role: "Olympic Gold Medalist",
-                        avatarSrc: "/images/stephencurry.jpeg",
-                        verified: true,
-                      },
-                      {
-                        name: "Jhene Aiko Efuru Chilombo",
-                        handle: "@jheneaiko",
-                        role: "Musician",
-                        avatarSrc: "/images/jheneaiko.jpg",
-                        verified: true,
-                      },
-                      {
-                        name: "Diplo",
-                        handle: "@diplo",
-                        role: "DJ / Producer",
-                        avatarSrc: "/images/diplo.jpeg",
-                        verified: true,
-                      },
-                    ]}
-                    secondaryCtaLabel="Inquire"
-                    onSecondaryCtaClick={() => setEoiOpen(true)}
-                  />
-
-                  {/* Full-Stack Build */}
-                  <ProductCard
-                    accent="orange"
-                    imageUrl="/images/onitos.png"
-                    imageUrlMobile="/images/internal-os.png"
-                    rightImageUrlDesktop="/images/internal-os.png"
-                    title="Full-Stack Build"
-                    specifications={[
-                      "High-end UI build with conversion-first layout + polish",
-                      "Automation & integrations (forms, email, CRM, Sheets, etc.)",
-                      "Fast iteration: ship in stages (prototype → MVP → scale)",
-                      "Optional AI/agentic workflows where it actually helps",
-                    ]}
-                    price={2800}
-                    currencyLabel="AUD"
-                    bankOffer="Payment options also available"
-                    ctaLabel="Contact to join Waitlist"
-                    toolingLine="VS Code · Claude Code · UI Libraries"
-                    secondaryCtaLabel="Join"
-                    onSecondaryCtaClick={() => setWaitlistOpen(true)}
-                  />
-                </div>
-
-                {/* Right column: template promo cards (xl only) */}
-                <div className="hidden xl:grid xl:grid-rows-2 xl:gap-6 xl:h-full">
-                  <TemplatePromoCard
-                    variant="bentoHero"
-                    imageSrc="/images/LHT.png"
-                    title="LHT Template"
-                    description="Functional workflows, on-site scheduling, estimates & invoicing."
-                    ctaLabel="Purchase"
-                    href="https://buy.stripe.com/00wbJ35WndwL8wnc3XfQI03"
-                  />
-                  <TemplatePromoCard
-                    variant="bentoHero"
-                    imageSrc="/images/tts-card3.png"
-                    title="TTS Template"
-                    description="Want this site as an empty skeletal template?"
-                    ctaLabel="Purchase"
-                    href="https://buy.stripe.com/5kQ28t2Kb3Wb8wn8RLfQI02"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* ── Footer ── */}
@@ -362,7 +255,6 @@ export default function DesktopHome() {
         </main>
       </div>
 
-      <WaitlistModal open={waitlistOpen} onOpenChange={setWaitlistOpen} />
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
     </div>
   );

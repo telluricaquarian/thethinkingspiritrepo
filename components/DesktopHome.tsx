@@ -220,7 +220,7 @@ export default function DesktopHome() {
           </div>
 
           {/* ── Footer ── */}
-          <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">
+          <footer className="fixed bottom-0 left-40 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">
             <div className="flex items-center justify-between gap-6">
 
               {/* Left: copyright */}

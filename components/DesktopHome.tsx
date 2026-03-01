@@ -38,11 +38,11 @@ export default function DesktopHome() {
       <div className="flex h-screen overflow-hidden">
 
         {/* ── Sidebar ── */}
-        <aside className="w-40 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
+        <aside className="w-48 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/blacktts.png" alt="TTS" className="mb-8 h-6 w-auto" />
+          <img src="/images/blacktts.png" alt="TTS" className="mb-8 h-7 w-auto" />
           <nav>
-            <ul className="space-y-3 text-sm text-neutral-700">
+            <ul className="space-y-3 text-base text-neutral-700">
               <li>Home</li>
               <li>Water Resources</li>
               <li>Tools &amp; Functions</li>
@@ -61,7 +61,7 @@ export default function DesktopHome() {
             <div className="flex">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-1.5 text-xs text-neutral-700 shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/diveicon.png" alt="" aria-hidden="true" className="h-[18px] w-[18px] mr-2 object-contain" />
+                <img src="/images/diveicon.png" alt="" aria-hidden="true" className="h-[24px] w-[24px] mr-2 object-contain" />
                 Dive into a whole new understanding of water
               </span>
             </div>
@@ -220,13 +220,11 @@ export default function DesktopHome() {
           </div>
 
           {/* ── Footer ── */}
-          <footer className="fixed bottom-0 left-40 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">
+          <footer className="fixed bottom-0 left-48 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">
             <div className="flex items-center justify-between gap-6">
 
               {/* Left: copyright */}
               <div className="flex items-center gap-2 shrink-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/blacktts.png" alt="TTS" className="h-5 w-auto" />
                 <p className="text-xs text-neutral-400">
                   &copy;{new Date().getFullYear()} Building &amp; designing anew.
                 </p>

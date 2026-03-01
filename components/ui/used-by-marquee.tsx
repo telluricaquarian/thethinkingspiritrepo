@@ -36,7 +36,7 @@ export function UsedByMarquee({
   return (
     <div
       className={clsx(
-        "relative flex items-center gap-3 rounded-md px-3 py-2 md:px-4 md:py-2.5",
+        "relative flex min-w-0 items-center gap-3 rounded-md px-3 py-2 md:px-4 md:py-2.5",
         isLight
           ? "bg-neutral-50 ring-1 ring-neutral-200"
           : "bg-white/5 ring-1 ring-white/10",
@@ -52,7 +52,7 @@ export function UsedByMarquee({
       </span>
 
       {/* Scrolling viewport */}
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative min-w-0 flex-1 overflow-hidden">
         {/* Track */}
         <div
           className="flex w-max items-center gap-3 will-change-transform"

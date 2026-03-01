@@ -1,15 +1,9 @@
 "use client";
 
 import * as React from "react";
-import localFont from "next/font/local";
 import EoiModal from "./ui/eoi-modal";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
-
-const ppEditorial = localFont({
-  src: "../public/PPEditorialNew-UltralightItalic.otf",
-  display: "swap",
-});
 
 const EXPLAINER_COLS = [
   {
@@ -76,8 +70,8 @@ export default function DesktopHome() {
 
             {/* Headline row */}
             <div className="flex items-center gap-6">
-              <h1 className="text-3xl font-light whitespace-nowrap">
-                Change your life by <span className={ppEditorial.className}>education</span> and <span className={ppEditorial.className}>information</span> alone.
+              <h1 className="text-3xl font-light lg:whitespace-nowrap">
+                Change your life by <span style={{ fontFamily: "var(--font-pp-editorial)" }}>education</span> and <span style={{ fontFamily: "var(--font-pp-editorial)" }}>information</span> alone.
               </h1>
               <div className="flex-1 border-t border-gray-300" />
             </div>
@@ -116,12 +110,12 @@ export default function DesktopHome() {
                 <img
                   src="/images/newaqua.png"
                   alt="Level uk K8 Water Ioniser"
-                  className="w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
 
               {/* Right: product details */}
-              <div className="flex flex-col gap-4">
+              <div className="flex min-w-0 flex-col gap-4">
 
                 {/* Title block */}
                 <div className="space-y-0.5">

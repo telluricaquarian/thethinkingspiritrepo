@@ -255,10 +255,10 @@ export default function DesktopHome() {
               {/* Right: Book a Call */}
               <button
                 type="button"
-                className="inline-flex items-center gap-1.5 rounded border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 hover:bg-neutral-50 transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 rounded bg-black px-3 py-1.5 text-xs font-medium text-white hover:bg-neutral-800 transition-colors shrink-0"
               >
                 Book a Call
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3.5 w-3.5 text-neutral-500" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
                   <path fillRule="evenodd" d="M2 3a1 1 0 0 1 1-1h2.153a1 1 0 0 1 .986.836l.74 4.435a1 1 0 0 1-.54 1.06l-1.548.773a11.04 11.04 0 0 0 6.105 6.105l.774-1.548a1 1 0 0 1 1.059-.54l4.435.74a1 1 0 0 1 .836.986V13a1 1 0 0 1-1 1h-2C7.82 14 2 8.18 2 5V3Z" clipRule="evenodd" />
                 </svg>
               </button>

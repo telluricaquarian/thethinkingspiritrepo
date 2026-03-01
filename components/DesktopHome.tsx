@@ -35,6 +35,13 @@ const EXPLAINER_COLS = [
 export default function DesktopHome() {
   const [eoiOpen, setEoiOpen] = React.useState(false);
   const [verifiedOpen, setVerifiedOpen] = React.useState(false);
+  const panelRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (verifiedOpen) {
+      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [verifiedOpen]);
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -159,7 +166,7 @@ export default function DesktopHome() {
 
                 {/* Verified posts panel */}
                 {verifiedOpen && (
-                  <div className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
+                  <div ref={panelRef} className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
                     {/* Panel header */}
                     <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-100">
                       <div>

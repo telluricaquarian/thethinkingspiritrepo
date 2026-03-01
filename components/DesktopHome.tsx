@@ -62,11 +62,10 @@ export default function DesktopHome() {
           <div className="pt-10 px-10 pb-10 space-y-6">
 
             {/* Top pill */}
-            <div className="flex justify-center">
+            <div className="flex">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-1.5 text-xs text-neutral-700 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5 text-blue-500" aria-hidden="true">
-                  <path d="M10 2C8 5 4 7.5 4 11a6 6 0 0 0 12 0c0-3.5-4-6-6-9Z" />
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/diveicon.png" alt="" aria-hidden="true" className="h-[18px] w-[18px] mr-2 object-contain" />
                 Dive into a whole new understanding of water
               </span>
             </div>

@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
+import localFont from "next/font/local";
 import EoiModal from "./ui/eoi-modal";
+
+const ppEditorial = localFont({
+  src: "../public/PPEditorialNew-UltralightItalic.otf",
+  display: "swap",
+});
 
 const EXPLAINER_COLS = [
   {
@@ -69,7 +75,7 @@ export default function DesktopHome() {
             {/* Headline row */}
             <div className="flex items-center gap-6">
               <h1 className="text-3xl font-light whitespace-nowrap">
-                Change your life by <em>education</em> and <em>information</em> alone.
+                Change your life by <span className={ppEditorial.className}>education</span> and <span className={ppEditorial.className}>information</span> alone.
               </h1>
               <div className="flex-1 border-t border-gray-300" />
             </div>

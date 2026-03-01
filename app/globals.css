@@ -149,3 +149,14 @@ body {
 .font-times {
   font-family: "Times New Roman", Times, serif;
 }
+
+@font-face {
+  font-family: "PPEditorialUltralightItalic";
+  src: url("/PPEditorialNew-UltralightItalic.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-editorial-ultralight-italic {
+  font-family: "PPEditorialUltralightItalic", serif;
+}

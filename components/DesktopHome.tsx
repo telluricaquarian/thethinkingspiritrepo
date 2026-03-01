@@ -32,7 +32,7 @@ const EXPLAINER_COLS = [
   },
   {
     heading: "Electrolysis Products / Electrochemical reaction products",
-    body: "Hydrogen-Rich Water is but one electrolysis product that is found to be beneficial for consumption.\n\nTwo other notable electrolysis products that can be created, especially by and from the machine mentioned on this page known as Hypochlorous acid and NaOH Ionostat can both offer tremendous valuable use cases, especially in regards to cleaning.",
+    body: "Hydrogen-Rich Water is one electrolysis product that is found to be beneficial for consumption.\n\nTwo other notable electrolysis byproducts that can be generated (depending on feed water composition) are hypochlorous acid (HOCl) and sodium hydroxide (NaOH), which can have valuable cleaning/sanitation use cases.",
   },
 ];
 

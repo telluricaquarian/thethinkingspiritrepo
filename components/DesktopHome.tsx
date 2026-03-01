@@ -71,7 +71,7 @@ export default function DesktopHome() {
             {/* Headline row */}
             <div className="flex items-center gap-6">
               <h1 className="text-3xl font-light lg:whitespace-nowrap">
-                Change your life by <span className="font-editorial-ultralight-italic">education</span> and <span className="font-editorial-ultralight-italic">information</span> alone.
+                Change your life by <span className="font-editorial-ultralight-italic text-blue-600">education</span> and <span className="font-editorial-ultralight-italic text-blue-600">information</span> alone.
               </h1>
               <div className="flex-1 border-t border-gray-300" />
             </div>

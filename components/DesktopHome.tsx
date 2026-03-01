@@ -78,7 +78,7 @@ export default function DesktopHome() {
 
             {/* Maxwell quote */}
             <div className="max-w-[760px] space-y-1">
-              <p className="text-sm italic text-gray-400">
+              <p className="font-times text-sm italic text-black">
                 Of all electrical phenomena electrolysis appears the most likely to furnish us with a real insight into the true nature of the electric current. because we find currents of ordinary matter and current of electricity forming essential parts of the same phenomenon.
               </p>
               <p className="text-xs text-gray-400">— James Clerk Maxwell</p>

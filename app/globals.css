@@ -145,3 +145,7 @@ body {
     background-image: none !important;
   }
 }
+
+.font-times {
+  font-family: "Times New Roman", Times, serif;
+}

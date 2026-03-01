@@ -105,12 +105,12 @@ export default function DesktopHome() {
             <div className="grid grid-cols-[3fr_2fr] gap-10 items-start border-b border-neutral-200 pb-10">
 
               {/* Left: image / video thumbnail */}
-              <div className="relative w-full aspect-[4/3] bg-neutral-50 rounded-md border border-neutral-200 overflow-hidden">
+              <div className="relative w-full aspect-[4/3] rounded-md border border-neutral-200 overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/newaqua.png"
                   alt="Level uk K8 Water Ioniser"
-                  className="absolute inset-0 w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 {/* Play overlay — TODO: wire to video modal */}
                 <button

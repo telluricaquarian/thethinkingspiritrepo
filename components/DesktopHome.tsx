@@ -3,6 +3,8 @@
 import * as React from "react";
 import localFont from "next/font/local";
 import EoiModal from "./ui/eoi-modal";
+import { UsedByMarquee } from "./ui/used-by-marquee";
+import { K8_USED_BY } from "../lib/usedBy";
 
 const ppEditorial = localFont({
   src: "../public/PPEditorialNew-UltralightItalic.otf",
@@ -32,7 +34,7 @@ const EXPLAINER_COLS = [
   },
   {
     heading: "Electrolysis Products / Electrochemical reaction products",
-    body: "Hydrogen-Rich Water is one electrolysis product that is found to be beneficial for consumption.\n\nTwo other notable electrolysis byproducts that can be generated (depending on feed water composition) are hypochlorous acid (HOCl) and sodium hydroxide (NaOH), which can have valuable cleaning/sanitation use cases.",
+    body: "Hydrogen-Rich Water is but one electrolysis product that is found to be beneficial for consumption.\n\nTwo other notable electrolysis products that can be generated (depending on feed water composition) are hypochlorous acid (HOCl) and sodium hydroxide (NaOH), which can have valuable cleaning/sanitation use cases.",
   },
 ];
 
@@ -132,11 +134,8 @@ export default function DesktopHome() {
                   <p className="text-xs text-neutral-400">[ SKU 1018 ]</p>
                 </div>
 
-                {/* Used by box */}
-                <div className="border border-neutral-200 rounded px-4 py-5 flex items-center justify-between">
-                  <span className="text-xs italic text-blue-600">Used by:</span>
-                  <span className="text-xs text-neutral-400">Tap to view verified posts</span>
-                </div>
+                {/* Used by marquee */}
+                <UsedByMarquee items={K8_USED_BY} theme="light" duration={28} />
 
                 {/* Price columns */}
                 <div className="grid grid-cols-2 gap-4">

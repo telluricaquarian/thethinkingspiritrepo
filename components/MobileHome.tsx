@@ -9,6 +9,7 @@ import WaitlistModal from "../components/ui/waitlist-modal";
 import EoiModal from "../components/ui/eoi-modal";
 import { TemplatePromoCard } from "../components/ui/template-promo-card";
 import { NegentropicWorkflowPreview } from "../components/negentropic/NegentropicWorkflowPreview";
+import { K8_USED_BY } from "../lib/usedBy";
 
 function ProfilePill() {
   return (
@@ -114,36 +115,7 @@ export default function MobileHome() {
                   isAssured={true}
                   bankOffer="Payment options available · From ~$252/mo (E-Payment or finance)"
                   ctaLabel="Contact for Procurement"
-                  usedByItems={[
-                    {
-                      name: "Bryson DeChambeau",
-                      handle: "@brysondechambeau",
-                      role: "Professional Golfer",
-                      avatarSrc: "/images/bryson.jpeg",
-                      verified: true,
-                    },
-                    {
-                      name: "Wardell Stephen Curry II",
-                      handle: "@stephencurry30",
-                      role: "Olympic Gold Medalist",
-                      avatarSrc: "/images/stephencurry.jpeg",
-                      verified: true,
-                    },
-                    {
-                      name: "Jhene Aiko Efuru Chilombo",
-                      handle: "@jheneaiko",
-                      role: "Musician",
-                      avatarSrc: "/images/jheneaiko.jpg",
-                      verified: true,
-                    },
-                    {
-                      name: "Diplo",
-                      handle: "@diplo",
-                      role: "DJ / Producer",
-                      avatarSrc: "/images/diplo.jpeg",
-                      verified: true,
-                    },
-                  ]}
+                  usedByItems={K8_USED_BY}
                   secondaryCtaLabel="Inquire"
                   onSecondaryCtaClick={() => setEoiOpen(true)}
                 />

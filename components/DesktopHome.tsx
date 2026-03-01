@@ -34,6 +34,7 @@ const EXPLAINER_COLS = [
 
 export default function DesktopHome() {
   const [eoiOpen, setEoiOpen] = React.useState(false);
+  const [verifiedOpen, setVerifiedOpen] = React.useState(false);
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -146,6 +147,60 @@ export default function DesktopHome() {
 
                 {/* Used by marquee */}
                 <UsedByMarquee items={K8_USED_BY} theme="light" duration={28} />
+
+                {/* Verified posts toggle */}
+                <button
+                  type="button"
+                  onClick={() => setVerifiedOpen((v) => !v)}
+                  className="self-start text-[10px] font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                >
+                  {verifiedOpen ? "Hide verified posts" : "View verified posts →"}
+                </button>
+
+                {/* Verified posts panel */}
+                {verifiedOpen && (
+                  <div className="rounded-lg border border-neutral-200 bg-white overflow-hidden">
+                    {/* Panel header */}
+                    <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-100">
+                      <div>
+                        <p className="text-xs font-semibold text-black">Verified Posts</p>
+                        <p className="text-[10px] text-neutral-400">Real people using Kangen Water®</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setVerifiedOpen(false)}
+                        aria-label="Close verified posts"
+                        className="text-neutral-400 hover:text-neutral-700 transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-3.5 w-3.5" aria-hidden="true">
+                          <path d="M2.22 2.22a.75.75 0 0 1 1.06 0L8 6.94l4.72-4.72a.75.75 0 1 1 1.06 1.06L9.06 8l4.72 4.72a.75.75 0 1 1-1.06 1.06L8 9.06l-4.72 4.72a.75.75 0 0 1-1.06-1.06L6.94 8 2.22 3.28a.75.75 0 0 1 0-1.06Z" />
+                        </svg>
+                      </button>
+                    </div>
+                    {/* Panel rows */}
+                    {K8_USED_BY.map((item) => (
+                      <div key={item.handle} className="flex items-center gap-3 px-4 py-3 border-b border-neutral-100 last:border-b-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={item.avatarSrc} alt={item.name} className="h-9 w-9 rounded-full object-cover shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-semibold text-black truncate">{item.name}</p>
+                          <p className="text-[10px] text-blue-600">{item.handle}</p>
+                          <p className="text-[10px] text-neutral-400">{item.role}</p>
+                        </div>
+                        {item.postUrl && (
+                          <a
+                            href={item.postUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0 inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-medium px-2.5 py-1 rounded transition-colors"
+                          >
+                            View Post
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Price columns */}
                 <div className="grid grid-cols-2 gap-4">

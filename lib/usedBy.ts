@@ -7,6 +7,7 @@ export const K8_USED_BY: UsedByItem[] = [
     role: "Professional Golfer",
     avatarSrc: "/images/bryson.jpeg",
     verified: true,
+    postUrl: "https://www.instagram.com/brysondechambeau/",
   },
   {
     name: "Wardell Stephen Curry II",
@@ -14,6 +15,7 @@ export const K8_USED_BY: UsedByItem[] = [
     role: "Olympic Gold Medalist",
     avatarSrc: "/images/stephencurry.jpeg",
     verified: true,
+    postUrl: "https://www.instagram.com/stephencurry30/",
   },
   {
     name: "Jhene Aiko Efuru Chilombo",
@@ -21,6 +23,7 @@ export const K8_USED_BY: UsedByItem[] = [
     role: "Musician",
     avatarSrc: "/images/jheneaiko.jpg",
     verified: true,
+    postUrl: "https://www.instagram.com/jheneaiko/",
   },
   {
     name: "Diplo",
@@ -28,5 +31,6 @@ export const K8_USED_BY: UsedByItem[] = [
     role: "DJ / Producer",
     avatarSrc: "/images/diplo.jpeg",
     verified: true,
+    postUrl: "https://www.instagram.com/diplo/",
   },
 ];

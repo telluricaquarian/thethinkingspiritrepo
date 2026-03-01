@@ -9,6 +9,7 @@ export type UsedByItem = {
   role: string;
   avatarSrc: string;
   verified?: boolean;
+  postUrl?: string;
 };
 
 type UsedByMarqueeProps = {

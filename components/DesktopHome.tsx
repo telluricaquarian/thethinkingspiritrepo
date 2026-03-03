@@ -227,9 +227,20 @@ export default function DesktopHome() {
                       Methods &amp; Options
                     </p>
                     <p className="text-[10px] uppercase tracking-wide text-neutral-500 font-semibold">
-                      Payment Plan + Deposit
+                      Payment Plan – Australia
                     </p>
-                    <p className="text-xl font-semibold text-black">$6,787.00</p>
+                    <div className="space-y-1 pt-0.5">
+                      <div>
+                        <p className="text-xs font-semibold text-black">10 Months</p>
+                        <p className="text-[10px] text-neutral-500">Initial: AU$1,900</p>
+                        <p className="text-[10px] text-neutral-700 font-medium">AU$514 / month</p>
+                      </div>
+                      <div className="pt-1">
+                        <p className="text-xs font-semibold text-black">24 Months</p>
+                        <p className="text-[10px] text-neutral-500">Initial: AU$1,123</p>
+                        <p className="text-[10px] text-neutral-700 font-medium">AU$252 / month</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

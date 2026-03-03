@@ -73,8 +73,15 @@ export default function HeroEnquireModal({
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr]">
           {/* LEFT: video player — controls only, no extra click handler */}
           <div className="relative aspect-[4/3] md:aspect-video bg-black overflow-hidden rounded-tl-2xl rounded-bl-2xl flex items-center">
+            {/* Pill overlay */}
+            <div className="pointer-events-none absolute top-3 left-3 md:top-4 md:left-4 z-10">
+              <span className="inline-flex items-center rounded-full border border-white/30 bg-white/20 px-3 py-1 text-[10px] md:text-xs text-white shadow-sm backdrop-blur-sm">
+                Dive into a whole new understanding of water
+              </span>
+            </div>
             <video
               src={videoSrc}
+              poster="/images/k8mob.png"
               controls
               playsInline
               preload="metadata"

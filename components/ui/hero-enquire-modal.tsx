@@ -55,7 +55,7 @@ export default function HeroEnquireModal({
 
       {/* Modal container */}
       <div
-        className="relative w-full max-w-4xl rounded-2xl border border-neutral-200 bg-white shadow-xl overflow-hidden"
+        className="relative w-full max-w-6xl rounded-2xl border border-neutral-200 bg-white shadow-xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -70,9 +70,9 @@ export default function HeroEnquireModal({
           </svg>
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr]">
           {/* LEFT: video player — controls only, no extra click handler */}
-          <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[400px] bg-black overflow-hidden rounded-tl-2xl rounded-bl-2xl flex items-center">
+          <div className="relative aspect-[4/3] md:aspect-video bg-black overflow-hidden rounded-tl-2xl rounded-bl-2xl flex items-center">
             <video
               src={videoSrc}
               controls

@@ -48,7 +48,7 @@ export default function DesktopHome() {
       <div className="flex h-screen overflow-hidden">
 
         {/* ── Sidebar ── */}
-        <aside className="w-48 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
+        <aside className="relative w-48 shrink-0 border-r border-neutral-200 px-4 py-6 sticky top-0 h-screen">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/blacktts.png" alt="TTS" className="mb-8 h-7 w-auto" />
           <nav>
@@ -59,6 +59,8 @@ export default function DesktopHome() {
               <li>Products &amp; Services</li>
             </ul>
           </nav>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/ta-2.png" alt="Telluricaquarian x TheThinkingSpirit" className="absolute left-4 bottom-4 h-8 w-auto opacity-90 z-20" />
         </aside>
 
         {/* ── Main scroll area ── */}

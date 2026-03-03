@@ -273,7 +273,7 @@ export default function DesktopHome() {
                 <div>
                   <button
                     type="button"
-                    onClick={() => setEoiOpen(true)}
+                    onClick={() => setEnquiryOpen(true)}
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded transition-colors"
                   >
                     Enquire Now

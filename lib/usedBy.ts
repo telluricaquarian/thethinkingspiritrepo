@@ -9,14 +9,7 @@ export const K8_USED_BY: UsedByItem[] = [
     verified: true,
     postUrl: "https://www.instagram.com/brysondechambeau/",
   },
-  {
-    name: "Wardell Stephen Curry II",
-    handle: "@stephencurry30",
-    role: "Olympic Gold Medalist",
-    avatarSrc: "/images/stephencurry.jpeg",
-    verified: true,
-    postUrl: "https://www.instagram.com/stephencurry30/",
-  },
+
   {
     name: "Jhene Aiko Efuru Chilombo",
     handle: "@jheneaiko",

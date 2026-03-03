@@ -33,4 +33,12 @@ export const K8_USED_BY: UsedByItem[] = [
     verified: true,
     postUrl: "https://www.instagram.com/diplo/",
   },
+  {
+    name: "Sean Michael Leonard Anderson",
+    handle: "@bigsean",
+    role: "Musician",
+    avatarSrc: "/images/displaypicture.png",
+    verified: true,
+    postUrl: "https://youtu.be/_o3gtr1brLo?t=390",
+  },
 ];

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import EoiModal from "./ui/eoi-modal";
+import VideoModal from "./ui/video-modal";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
 
@@ -35,6 +36,7 @@ const EXPLAINER_COLS = [
 export default function DesktopHome() {
   const [eoiOpen, setEoiOpen] = React.useState(false);
   const [verifiedOpen, setVerifiedOpen] = React.useState(false);
+  const [videoOpen, setVideoOpen] = React.useState(false);
   const panelRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -122,11 +124,13 @@ export default function DesktopHome() {
                   alt="Level uk K8 Water Ioniser"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                {/* Play overlay — TODO: wire to video modal */}
+                {/* Play overlay */}
                 <button
                   type="button"
                   aria-label="Play video"
-                  className="absolute inset-0 grid place-items-center"
+                  className="absolute inset-0 grid place-items-center cursor-pointer"
+                  onClick={() => setVideoOpen(true)}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setVideoOpen(true); }}
                 >
                   {/* Radar pulse rings */}
                   <span aria-hidden="true" className="absolute h-16 w-16 rounded-full bg-blue-600 vsl-pulse" />
@@ -354,6 +358,8 @@ export default function DesktopHome() {
       </div>
 
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
+      {/* TODO: replace src with actual video file path once asset is added to /public */}
+      <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} src="" title="Level uk K8 Water Ioniser" />
     </div>
   );
 }

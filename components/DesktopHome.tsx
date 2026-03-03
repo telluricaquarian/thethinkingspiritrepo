@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import EoiModal from "./ui/eoi-modal";
-import EnquiryVideoModal from "./ui/enquiry-video-modal";
+import HeroEnquireModal from "./ui/hero-enquire-modal";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
 
@@ -358,7 +358,7 @@ export default function DesktopHome() {
       </div>
 
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
-      <EnquiryVideoModal open={enquiryOpen} onOpenChange={setEnquiryOpen} />
+      <HeroEnquireModal open={enquiryOpen} onOpenChange={setEnquiryOpen} videoSrc="" />
     </div>
   );
 }

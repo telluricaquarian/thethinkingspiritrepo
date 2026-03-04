@@ -358,7 +358,7 @@ export default function DesktopHome() {
       </div>
 
       <EoiModal open={eoiOpen} onOpenChange={setEoiOpen} />
-      <HeroEnquireModal open={enquiryOpen} onOpenChange={setEnquiryOpen} videoSrc="" />
+      <HeroEnquireModal open={enquiryOpen} onOpenChange={setEnquiryOpen} videoSrc="https://www.youtube.com/embed/BNDTtW-d6E0?si=bKgDXW9bLhOB8tS7" />
     </div>
   );
 }

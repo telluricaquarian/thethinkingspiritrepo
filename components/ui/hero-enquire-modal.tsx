@@ -2,15 +2,19 @@
 
 import * as React from "react";
 
+const DEFAULT_VIDEO_URL = "https://www.youtube.com/embed/BNDTtW-d6E0?si=bKgDXW9bLhOB8tS7";
+
 type HeroEnquireModalProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  videoSrc?: string;
   title?: string;
 };
 
 export default function HeroEnquireModal({
   open,
   onOpenChange,
+  videoSrc,
   title = "The Level uk K8\u00ae water ioniser/water electrolyzer from enagic\u00ae",
 }: HeroEnquireModalProps) {
   // Body scroll lock
@@ -78,7 +82,7 @@ export default function HeroEnquireModal({
               </span>
             </div>
             <iframe
-              src="https://www.youtube.com/embed/BNDTtW-d6E0?si=bKgDXW9bLhOB8tS7"
+              src={videoSrc ?? DEFAULT_VIDEO_URL}
               title="Level uk K8 Water Ioniser"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"

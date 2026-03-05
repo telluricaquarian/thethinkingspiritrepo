@@ -55,29 +55,12 @@ const READING_ITEMS = [
 
 export default function RecommendedReadingSection() {
   return (
-    <div className="flex border-t border-neutral-200">
-      {/* Ghost sidebar — visual only, desktop only, non-interactive */}
-      <div
-        aria-hidden="true"
-        className="hidden md:block w-48 shrink-0 border-r border-neutral-200 px-4 py-6 pointer-events-none select-none"
-      >
-        <nav>
-          <ul className="space-y-3 text-base text-neutral-700">
-            <li>Home</li>
-            <li>Water Resources</li>
-            <li>Tools &amp; Functions</li>
-            <li>Products &amp; Services</li>
-          </ul>
-        </nav>
-      </div>
-
-      {/* Content area */}
-      <div className="flex-1 px-8 py-10">
-        {/* Heading */}
-        <h2 className="text-2xl font-light text-black mb-8">
-          Recommended{" "}
-          <span className="font-editorial-ultralight-italic text-blue-600">Reading</span>
-        </h2>
+    <div className="border-t border-neutral-200 px-8 py-10">
+      {/* Heading */}
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black mb-8">
+        Recommended{" "}
+        <span className="font-editorial-ultralight-italic text-blue-600">Reading</span>
+      </h2>
 
         {/* Reading items grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
@@ -88,7 +71,6 @@ export default function RecommendedReadingSection() {
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import * as React from "react";
 import EoiModal from "./ui/eoi-modal";
 import HeroEnquireModal from "./ui/hero-enquire-modal";
 import RecommendedReadingSection from "./RecommendedReadingSection";
+import { Component as Globe } from "@/components/ui/interactive-globe";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
 
@@ -316,6 +317,11 @@ export default function DesktopHome() {
 
           {/* ── Recommended Reading ── */}
           <RecommendedReadingSection />
+
+          {/* ── Globe ── */}
+          <div className="border-t border-neutral-200 px-8 py-10 flex justify-center">
+            <Globe size={600} />
+          </div>
 
           {/* ── Footer ── */}
           <footer className="fixed bottom-0 left-48 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">

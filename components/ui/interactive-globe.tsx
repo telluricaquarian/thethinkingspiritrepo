@@ -69,9 +69,9 @@ function project(x: number, y: number, z: number, cx: number, cy: number, fov: n
 export function Component({
   className,
   size = 600,
-  dotColor = "rgba(100, 180, 255, ALPHA)",
-  arcColor = "rgba(100, 180, 255, 0.5)",
-  markerColor = "rgba(100, 220, 255, 1)",
+  dotColor = "rgba(20,20,20, ALPHA)",
+  arcColor = "rgba(20,20,20,0.35)",
+  markerColor = "rgba(0,0,0,1)",
   autoRotateSpeed = 0.002,
   connections = DEFAULT_CONNECTIONS,
   markers = DEFAULT_MARKERS,
@@ -134,8 +134,8 @@ export function Component({
     ctx.clearRect(0, 0, w, h);
 
     const glowGrad = ctx.createRadialGradient(cx, cy, radius * 0.8, cx, cy, radius * 1.5);
-    glowGrad.addColorStop(0, "rgba(60, 140, 255, 0.03)");
-    glowGrad.addColorStop(1, "rgba(60, 140, 255, 0)");
+    glowGrad.addColorStop(0, "rgba(0,0,0,0.05)");
+    glowGrad.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = glowGrad;
     ctx.fillRect(0, 0, w, h);
 

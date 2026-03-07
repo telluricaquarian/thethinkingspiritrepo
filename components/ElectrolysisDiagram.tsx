@@ -2,8 +2,9 @@
 
 // ── White-background palette ─────────────────────────────────────────────────
 const STRUCT = "#1a1a1a";   // charcoal — chamber outline, pipes, engineering lines
-const FLOW   = "#3b82f6";   // medium blue — water flow arrows
-const ALK    = "#15803d";   // forest green — alkaline / drinking-water path + cathode accent
+const FLOW   = "#38bdf8";   // sky blue — water flow arrows (lighter than cathode blue)
+const CATH   = "#1d4ed8";   // dark indigo-blue — cathode plates
+const ALK    = "#15803d";   // forest green — alkaline / drinking-water path
 const ACD    = "#b91c1c";   // dark red — acidic path + anode accent
 const H2C    = "#0891b2";   // steel blue — hydrogen generation callout + bubbles
 const TEXT   = "#111827";   // near-black — primary labels

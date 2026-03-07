@@ -24,7 +24,7 @@ export default function ElectrolysisSection() {
         </div>
 
         {/* Right: schematic */}
-        <div className="w-full">
+        <div className="w-full max-w-4xl">
           <ElectrolysisDiagram />
         </div>
 

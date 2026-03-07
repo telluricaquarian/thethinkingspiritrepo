@@ -199,8 +199,13 @@ function CardGroup() {
         copy="Research includes isotope regulation, cancer-related investigations, metabolic adaptation, and broader biological effects."
       />
 
-      {/* Landscape — info20265 */}
-      <LandscapeCard src="/images/info20265.mp4" />
+      {/* Landscape — info20265 — Demarjay Smith */}
+      <LandscapeCard
+        src="/images/info20265.mp4"
+        name="Demarjay Smith"
+        nameVerified
+        role="Verified Instagram creator"
+      />
 
       {/* Portrait — info20261 */}
       <PortraitCard src="/images/info20261.mp4" />

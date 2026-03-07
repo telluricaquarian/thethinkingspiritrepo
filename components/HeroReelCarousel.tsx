@@ -4,17 +4,18 @@
 // One group: portrait cards, landscape video cards, research info cards.
 // Group is duplicated for seamless looping via translateX(-50%).
 
-const PORTRAIT_W = 200;
-const LANDSCAPE_W = 480;
+// 9:16 portrait at 320px height → 180px wide; 16:9 landscape → 568px wide
+const CARD_H = 320;    // within 260–340 target range
+const PORTRAIT_W = 180; // 9/16 × CARD_H
+const LANDSCAPE_W = 568; // 16/9 × CARD_H
 const RESEARCH_W = 280;
-const CARD_H = 360; // px — explicit height guarantees video render
 
 // ── Portrait video card ──────────────────────────────────────────────────────
 function PortraitCard({ src, name, role }: { src: string; name?: string; role?: string }) {
   return (
     <div
       className="relative shrink-0 overflow-hidden rounded-2xl"
-      style={{ width: `${PORTRAIT_W}px`, height: `${CARD_H}px` }}
+      style={{ width: `${PORTRAIT_W}px`, height: `${CARD_H}px`, minHeight: "260px", maxHeight: "340px", aspectRatio: "9 / 16" }}
     >
       <video
         src={src}
@@ -46,7 +47,7 @@ function LandscapeCard({ src }: { src: string }) {
   return (
     <div
       className="relative shrink-0 overflow-hidden rounded-2xl"
-      style={{ width: `${LANDSCAPE_W}px`, height: `${CARD_H}px` }}
+      style={{ width: `${LANDSCAPE_W}px`, height: `${CARD_H}px`, minHeight: "260px", maxHeight: "340px", aspectRatio: "16 / 9" }}
     >
       <video
         src={src}
@@ -143,11 +144,11 @@ function CardGroup() {
       {/* Portrait — info20261 */}
       <PortraitCard src="/images/info20261.mp4" />
 
+      {/* Portrait — info20263 (between 261 and 262) */}
+      <PortraitCard src="/images/info20263.mp4" />
+
       {/* Portrait — info20262 */}
       <PortraitCard src="/images/info20262.mp4" />
-
-      {/* Portrait — info20263 */}
-      <PortraitCard src="/images/info20263.mp4" />
     </>
   );
 }
@@ -170,7 +171,7 @@ export default function HeroReelCarousel() {
       `}</style>
 
       {/* Section wrapper — overflow-hidden clips the marquee, position-relative anchors the fades */}
-      <div className="hreel-root relative overflow-hidden" style={{ paddingBlock: "3px" }}>
+      <div className="hreel-root relative overflow-hidden" style={{ paddingBlock: "3px", maxWidth: "1400px", margin: "0 auto" }}>
 
         {/* Marquee track — two identical groups for seamless looping */}
         <div

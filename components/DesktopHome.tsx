@@ -5,6 +5,7 @@ import EoiModal from "./ui/eoi-modal";
 import HeroEnquireModal from "./ui/hero-enquire-modal";
 import RecommendedReadingSection from "./RecommendedReadingSection";
 import InteractiveGlobeSection from "@/components/InteractiveGlobeSection";
+import ElectrolysisSection from "./ElectrolysisSection";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
 
@@ -161,16 +162,13 @@ export default function DesktopHome() {
                 </div>
 
                 {/* Used by marquee */}
-                <UsedByMarquee items={K8_USED_BY} theme="light" duration={28} />
-
-                {/* Verified posts toggle */}
-                <button
-                  type="button"
-                  onClick={() => setVerifiedOpen((v) => !v)}
-                  className="self-start text-[10px] font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                >
-                  {verifiedOpen ? "Hide verified posts" : "View verified posts →"}
-                </button>
+                <UsedByMarquee
+                  items={K8_USED_BY}
+                  theme="light"
+                  duration={28}
+                  onViewVerifiedPosts={() => setVerifiedOpen((v) => !v)}
+                  verifiedPostsOpen={verifiedOpen}
+                />
 
                 {/* Verified posts panel */}
                 {verifiedOpen && (
@@ -320,6 +318,9 @@ export default function DesktopHome() {
 
           {/* ── Globe ── */}
           <InteractiveGlobeSection />
+
+          {/* ── Electrolysis ── */}
+          <ElectrolysisSection />
 
           {/* ── Footer ── */}
           <footer className="fixed bottom-0 left-48 right-0 z-20 border-t border-neutral-200 bg-white px-8 py-4">

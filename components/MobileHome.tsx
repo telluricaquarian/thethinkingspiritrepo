@@ -77,19 +77,36 @@ export default function MobileHome() {
           <ProfilePill />
 
           {/* HERO INTRO COPY */}
-          <div className="w-full max-w-4xl mx-auto mb-10 px-1">
-            <p className="text-lg text-white mb-2">
-              Welcome to my custom modular / bento links repo.
-            </p>
+          <div className="relative overflow-hidden w-full max-w-4xl mx-auto mb-10 px-1">
 
-            <p className="text-lg font-medium text-green-400">
-              Currently building &amp; designing
-              <span className="inline-flex ml-1">
-                <span className="typing-dot">.</span>
-                <span className="typing-dot delay-1">.</span>
-                <span className="typing-dot delay-2">.</span>
+            {/* Ghost wordmark — decorative only, clipped by parent overflow-hidden */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 z-0 flex justify-center"
+            >
+              <span
+                className="font-bold leading-none tracking-tight select-none whitespace-nowrap text-white"
+                style={{ fontSize: "clamp(2.8rem, 16vw, 7.5rem)", opacity: 0.055 }}
+              >
+                thethinkingspirit
               </span>
-            </p>
+            </div>
+
+            {/* Foreground text — above the wordmark */}
+            <div className="relative z-10">
+              <p className="text-lg text-white mb-2">
+                Welcome to my custom modular / bento links repo.
+              </p>
+
+              <p className="text-lg font-medium text-green-400">
+                Currently building &amp; designing
+                <span className="inline-flex ml-1">
+                  <span className="typing-dot">.</span>
+                  <span className="typing-dot delay-1">.</span>
+                  <span className="typing-dot delay-2">.</span>
+                </span>
+              </p>
+            </div>
           </div>
 
           {/* PRODUCT CARDS - Bento layout on desktop */}

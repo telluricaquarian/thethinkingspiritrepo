@@ -6,6 +6,7 @@ import HeroEnquireModal from "./ui/hero-enquire-modal";
 import RecommendedReadingSection from "./RecommendedReadingSection";
 import InteractiveGlobeSection from "@/components/InteractiveGlobeSection";
 import ElectrolysisSection from "./ElectrolysisSection";
+import HeroReelCarousel from "./HeroReelCarousel";
 import { UsedByMarquee } from "./ui/used-by-marquee";
 import { K8_USED_BY } from "../lib/usedBy";
 
@@ -73,6 +74,9 @@ export default function DesktopHome() {
 
           {/* ── Hero / intro (white section) ── */}
           <div className="pt-10 px-8 pb-10 space-y-6">
+
+            {/* Hero media bento block */}
+            <HeroReelCarousel />
 
             {/* Top pill */}
             <div className="flex">

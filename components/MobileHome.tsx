@@ -82,13 +82,15 @@ export default function MobileHome() {
               Welcome to my custom modular / bento links repo.
             </p>
 
-            {/* Decorative brand line — in-flow, mono, faint */}
-            <p
+            {/* Decorative brand mark — 3×4 pixel ASCII art, IS implementation language */}
+            <pre
               aria-hidden="true"
-              className="pointer-events-none select-none font-mono tracking-[0.22em] uppercase text-white/[0.18] text-[11px] mb-2"
-            >
-              thethinkingspirit
-            </p>
+              className="pointer-events-none select-none font-mono text-white opacity-[0.14] overflow-hidden my-2"
+              style={{ fontSize: "6px", lineHeight: "1.1", letterSpacing: "0" }}
+            >{`▪▪▪ ▪·▪ ▪▪▪ ▪▪▪ ▪·▪ ▪▪▪ ▪·▪ ▪·▪ ▪▪▪ ▪·▪ ▪▪· ·▪▪ ▪▪· ▪▪▪ ▪▪· ▪▪▪ ▪▪▪
+·▪· ▪▪▪ ▪▪· ·▪· ▪▪▪ ·▪· ▪▪▪ ▪▪· ·▪· ▪▪▪ ▪·· ▪▪· ▪·▪ ·▪· ▪·▪ ·▪· ·▪·
+·▪· ▪·▪ ▪·· ·▪· ▪·▪ ·▪· ▪·▪ ▪·▪ ·▪· ▪·▪ ▪·▪ ·▪▪ ▪▪· ·▪· ▪▪· ·▪· ·▪·
+·▪· ▪·▪ ▪▪▪ ·▪· ▪·▪ ▪▪▪ ▪·▪ ▪·▪ ▪▪▪ ▪·▪ ▪▪▪ ▪▪· ▪·· ▪▪▪ ▪·▪ ▪▪▪ ·▪·`}</pre>
 
             <p className="text-lg font-medium text-green-400">
               Currently building &amp; designing

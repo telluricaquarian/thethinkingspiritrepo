@@ -27,7 +27,7 @@ export default function ElectrolysisDiagram() {
   return (
     <svg
       viewBox="0 0 800 648"
-      className="w-full max-w-3xl"
+      className="w-full"
       aria-label="Leveluk K8 electrolysis chamber schematic"
     >
       <defs>

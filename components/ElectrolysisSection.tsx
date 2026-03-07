@@ -3,7 +3,7 @@ import ElectrolysisDiagram from "./ElectrolysisDiagram";
 export default function ElectrolysisSection() {
   return (
     <div className="border-t border-neutral-200 px-8 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] gap-10 lg:gap-20 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 lg:gap-16 items-start">
 
         {/* Left: text block */}
         <div className="space-y-5 lg:pt-3">
@@ -24,7 +24,7 @@ export default function ElectrolysisSection() {
         </div>
 
         {/* Right: schematic */}
-        <div className="flex justify-end">
+        <div className="w-full">
           <ElectrolysisDiagram />
         </div>
 

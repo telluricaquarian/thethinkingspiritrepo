@@ -1,14 +1,44 @@
 "use client";
 
-// Static bento hero media block — no marquee, no animation.
-// Left: one tall portrait card. Right: one video card + one research stat card.
+// Hero media marquee — slow right-to-left loop with white edge fades.
+// One group = [tall portrait | landscape | research card].
+// Group is duplicated for seamless looping via translateX(-50%).
 
-export default function HeroReelCarousel() {
+const CARD_H = 360; // px — explicit card height guarantees video render
+
+// One group of cards. Duplicated below for seamless marquee loop.
+function CardGroup() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[5fr_8fr] gap-3">
+    <>
+      {/* ── Andy Ruiz Jr. — tall 9:16 portrait ── */}
+      <div
+        className="relative shrink-0 overflow-hidden rounded-2xl"
+        style={{ width: "200px", height: `${CARD_H}px` }}
+      >
+        <video
+          src="/images/21.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "90px",
+          background: "linear-gradient(to top, rgba(0,0,0,0.58), transparent)"
+        }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, padding: "14px" }}>
+          <p style={{ color: "#fff", fontSize: "13px", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>Andy Ruiz Jr.</p>
+          <p style={{ color: "rgba(255,255,255,0.56)", fontSize: "11px", lineHeight: 1.3, margin: 0 }}>Professional Boxer</p>
+        </div>
+      </div>
 
-      {/* ── Left: tall portrait video ─────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-2xl h-[380px] lg:h-[460px]">
+      {/* ── Eddie Hall — landscape card ── */}
+      <div
+        className="relative shrink-0 overflow-hidden rounded-2xl"
+        style={{ width: "480px", height: `${CARD_H}px` }}
+      >
         <video
           src="/images/beast.mp4"
           autoPlay
@@ -16,74 +46,102 @@ export default function HeroReelCarousel() {
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
-        {/* Subtle bottom fade for label legibility only */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/55 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-4 space-y-0.5">
-          <p className="text-white text-sm font-semibold leading-tight">Andy Ruiz Jr.</p>
-          <p className="text-[11px] leading-tight" style={{ color: "rgba(255,255,255,0.58)" }}>
-            Professional Boxer
-          </p>
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, height: "90px",
+          background: "linear-gradient(to top, rgba(0,0,0,0.58), transparent)"
+        }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, padding: "14px" }}>
+          <p style={{ color: "#fff", fontSize: "13px", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>Eddie Hall</p>
+          <p style={{ color: "rgba(255,255,255,0.56)", fontSize: "11px", lineHeight: 1.3, margin: 0 }}>Strongman / Powerlifter</p>
         </div>
       </div>
 
-      {/* ── Right column: video top + research card bottom ────────────── */}
-      <div className="flex flex-col gap-3 h-[380px] lg:h-[460px]">
+      {/* ── Research authority card ── */}
+      <div
+        className="shrink-0 rounded-2xl border border-neutral-200 bg-neutral-50 flex flex-col justify-between"
+        style={{ width: "280px", height: `${CARD_H}px`, padding: "20px" }}
+      >
+        <p style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#9ca3af", margin: 0 }}>
+          Peer-Reviewed Research
+        </p>
 
-        {/* Top right: second video */}
-        <div className="relative flex-1 overflow-hidden rounded-2xl">
-          <video
-            src="/images/21.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-4 space-y-0.5">
-            <p className="text-white text-sm font-semibold leading-tight">Andy Ruiz Jr.</p>
-            <p className="text-[11px] leading-tight" style={{ color: "rgba(255,255,255,0.58)" }}>
-              Professional Boxer
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div>
+            <p style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.03em", color: "#111827", lineHeight: 1, margin: 0 }}>
+              93,400<span style={{ color: "#d1d5db", fontWeight: 300 }}>+</span>
+            </p>
+            <p style={{ fontSize: "10px", color: "#6b7280", lineHeight: 1.4, marginTop: "4px" }}>
+              Google Scholar results<br />hydrogen-rich water
+            </p>
+          </div>
+          <div>
+            <p style={{ fontSize: "32px", fontWeight: 700, letterSpacing: "-0.03em", color: "#111827", lineHeight: 1, margin: 0 }}>
+              520<span style={{ color: "#d1d5db", fontWeight: 300 }}>+</span>
+            </p>
+            <p style={{ fontSize: "10px", color: "#6b7280", lineHeight: 1.4, marginTop: "4px" }}>
+              PubMed indexed studies
             </p>
           </div>
         </div>
 
-        {/* Bottom right: hydrogen-rich water research stat card */}
-        <div className="flex-1 flex flex-col justify-between rounded-2xl border border-neutral-200 bg-neutral-50 p-5">
-          <p className="text-[9px] font-semibold uppercase tracking-widest text-neutral-400">
-            Peer-Reviewed Research
-          </p>
+        <p style={{ fontSize: "9px", color: "#9ca3af", lineHeight: 1.55, margin: 0 }}>
+          Research spans metabolism, oxidative stress, inflammation, aging, and related health markers.
+        </p>
+      </div>
+    </>
+  );
+}
 
-          <div className="flex gap-6">
-            <div>
-              <p className="text-2xl font-bold tracking-tight text-black">
-                93,400<span className="text-neutral-400 font-normal">+</span>
-              </p>
-              <p className="text-[10px] text-neutral-500 leading-snug mt-0.5">
-                Google Scholar results<br />hydrogen-rich water
-              </p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold tracking-tight text-black">
-                520<span className="text-neutral-400 font-normal">+</span>
-              </p>
-              <p className="text-[10px] text-neutral-500 leading-snug mt-0.5">
-                PubMed indexed<br />studies
-              </p>
-            </div>
-          </div>
+export default function HeroReelCarousel() {
+  return (
+    <>
+      <style>{`
+        @keyframes hreel-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        .hreel-track {
+          animation: hreel-scroll 36s linear infinite;
+          will-change: transform;
+        }
+        .hreel-root:hover .hreel-track {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-          <p className="text-[9px] text-neutral-400 leading-relaxed max-w-xs">
-            Ongoing literature across metabolism, oxidative stress,
-            inflammation, aging, and radiotherapy support.
-          </p>
+      {/* Section wrapper — overflow-hidden clips the marquee, position-relative anchors the fades */}
+      <div className="hreel-root relative overflow-hidden" style={{ paddingBlock: "3px" }}>
+
+        {/* Marquee track — two identical groups for seamless looping */}
+        <div
+          className="hreel-track flex"
+          style={{ width: "max-content", gap: "12px" }}
+          aria-hidden="true"
+        >
+          <CardGroup />
+          <CardGroup />
         </div>
 
-      </div>
+        {/* Left white edge fade */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0"
+          style={{
+            width: "120px",
+            background: "linear-gradient(to right, #ffffff 10%, transparent 100%)",
+          }}
+        />
 
-    </div>
+        {/* Right white edge fade */}
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0"
+          style={{
+            width: "120px",
+            background: "linear-gradient(to left, #ffffff 10%, transparent 100%)",
+          }}
+        />
+      </div>
+    </>
   );
 }

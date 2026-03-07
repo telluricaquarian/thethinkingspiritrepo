@@ -76,7 +76,9 @@ export default function DesktopHome() {
           <div className="pt-10 px-8 pb-10 space-y-6">
 
             {/* Hero media bento block */}
-            <HeroReelCarousel />
+            <div className="mb-8">
+              <HeroReelCarousel />
+            </div>
 
             {/* Top pill */}
             <div className="flex">

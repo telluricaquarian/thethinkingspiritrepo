@@ -42,8 +42,43 @@ function PortraitCard({ src, name, role }: { src: string; name?: string; role?: 
   );
 }
 
+// Small blue verification badge — inline SVG, no external deps
+function VerifiedBadge() {
+  return (
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 13 13"
+      fill="none"
+      aria-label="Verified"
+      style={{ display: "inline-block", verticalAlign: "middle", flexShrink: 0 }}
+    >
+      <circle cx="6.5" cy="6.5" r="6.5" fill="#2563eb" />
+      <path
+        d="M3.8 6.5l1.8 1.8 3.6-3.6"
+        stroke="#fff"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 // ── Landscape video card ─────────────────────────────────────────────────────
-function LandscapeCard({ src }: { src: string }) {
+function LandscapeCard({
+  src,
+  name,
+  nameVerified,
+  role,
+  roleVerified,
+}: {
+  src: string;
+  name?: string;
+  nameVerified?: boolean;
+  role?: string;
+  roleVerified?: boolean;
+}) {
   return (
     <div
       className="relative shrink-0 overflow-hidden rounded-2xl"
@@ -58,6 +93,26 @@ function LandscapeCard({ src }: { src: string }) {
         preload="metadata"
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
       />
+      {name && (
+        <>
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "96px",
+            background: "linear-gradient(to top, rgba(0,0,0,0.55), transparent)",
+          }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, padding: "14px", display: "flex", flexDirection: "column", gap: "3px" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
+              <p style={{ color: "#fff", fontSize: "13px", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>{name}</p>
+              {nameVerified && <VerifiedBadge />}
+            </span>
+            {role && (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
+                <p style={{ color: "rgba(255,255,255,0.56)", fontSize: "11px", lineHeight: 1.3, margin: 0 }}>{role}</p>
+                {roleVerified && <VerifiedBadge />}
+              </span>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -124,8 +179,14 @@ function CardGroup() {
         copy="Research spans metabolism, oxidative stress, inflammation, aging, and related health markers."
       />
 
-      {/* Landscape — info20264 */}
-      <LandscapeCard src="/images/info20264.mp4" />
+      {/* Landscape — info20264 — Big Sean / Men's Health */}
+      <LandscapeCard
+        src="/images/info20264.mp4"
+        name="Big Sean"
+        nameVerified
+        role="Men's Health interview"
+        roleVerified
+      />
 
       {/* Portrait — Eddie Hall */}
       <PortraitCard src="/images/beast.mp4" name="Eddie Hall" role="Strongman / Powerlifter" />

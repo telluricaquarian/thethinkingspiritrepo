@@ -18,6 +18,8 @@ type UsedByMarqueeProps = {
   direction?: "left" | "right";
   theme?: "dark" | "light";
   className?: string;
+  onViewVerifiedPosts?: () => void;
+  verifiedPostsOpen?: boolean;
 };
 
 export function UsedByMarquee({
@@ -26,6 +28,8 @@ export function UsedByMarquee({
   direction = "left",
   theme = "dark",
   className,
+  onViewVerifiedPosts,
+  verifiedPostsOpen,
 }: UsedByMarqueeProps) {
   if (!items?.length) return null;
 
@@ -37,20 +41,34 @@ export function UsedByMarquee({
   return (
     <div
       className={clsx(
-        "relative flex min-w-0 items-center gap-3 rounded-md px-3 py-2 md:px-4 md:py-2.5",
+        "relative flex min-w-0 items-start gap-3 rounded-md px-3 py-2 md:px-4 md:py-2.5",
         isLight
           ? "bg-neutral-50 ring-1 ring-neutral-200"
           : "bg-white/5 ring-1 ring-white/10",
         className
       )}
     >
-      {/* Label */}
-      <span className={clsx(
-        "whitespace-nowrap text-xs font-semibold tracking-wide md:text-sm",
-        isLight ? "text-blue-600" : "text-green-400/80"
-      )}>
-        Used by:
-      </span>
+      {/* Label + optional verified posts link */}
+      <div className="flex shrink-0 flex-col">
+        <span className={clsx(
+          "whitespace-nowrap text-xs font-semibold tracking-wide md:text-sm",
+          isLight ? "text-blue-600" : "text-green-400/80"
+        )}>
+          Used by:
+        </span>
+        {onViewVerifiedPosts && (
+          <button
+            type="button"
+            onClick={onViewVerifiedPosts}
+            className={clsx(
+              "mt-1 mb-3 self-start whitespace-nowrap text-[10px] font-medium transition-colors",
+              isLight ? "text-blue-600 hover:text-blue-700" : "text-green-400/80 hover:text-green-400"
+            )}
+          >
+            {verifiedPostsOpen ? "Hide verified posts" : "View verified posts →"}
+          </button>
+        )}
+      </div>
 
       {/* Scrolling viewport */}
       <div className="relative min-w-0 flex-1 overflow-hidden">

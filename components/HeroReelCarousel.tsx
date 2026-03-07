@@ -11,7 +11,19 @@ const LANDSCAPE_W = 568; // 16/9 × CARD_H
 const RESEARCH_W = 280;
 
 // ── Portrait video card ──────────────────────────────────────────────────────
-function PortraitCard({ src, name, role }: { src: string; name?: string; role?: string }) {
+function PortraitCard({
+  src,
+  name,
+  nameVerified,
+  username,
+  role,
+}: {
+  src: string;
+  name?: string;
+  nameVerified?: boolean;
+  username?: string;
+  role?: string;
+}) {
   return (
     <div
       className="relative shrink-0 overflow-hidden rounded-2xl"
@@ -32,9 +44,17 @@ function PortraitCard({ src, name, role }: { src: string; name?: string; role?: 
             position: "absolute", bottom: 0, left: 0, right: 0, height: "90px",
             background: "linear-gradient(to top, rgba(0,0,0,0.58), transparent)",
           }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, padding: "14px" }}>
-            <p style={{ color: "#fff", fontSize: "13px", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>{name}</p>
-            {role && <p style={{ color: "rgba(255,255,255,0.56)", fontSize: "11px", lineHeight: 1.3, margin: 0 }}>{role}</p>}
+          <div style={{ position: "absolute", bottom: 0, left: 0, padding: "14px", display: "flex", flexDirection: "column", gap: "2px" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "5px" }}>
+              <p style={{ color: "#fff", fontSize: "13px", fontWeight: 600, lineHeight: 1.3, margin: 0 }}>{name}</p>
+              {nameVerified && <VerifiedBadge />}
+            </span>
+            {username && (
+              <p style={{ color: "rgba(255,255,255,0.46)", fontSize: "10px", lineHeight: 1.3, margin: 0 }}>{username}</p>
+            )}
+            {role && (
+              <p style={{ color: "rgba(255,255,255,0.56)", fontSize: "11px", lineHeight: 1.3, margin: 0 }}>{role}</p>
+            )}
           </div>
         </>
       )}
@@ -169,7 +189,7 @@ function CardGroup() {
   return (
     <>
       {/* Portrait — Andy Ruiz Jr. */}
-      <PortraitCard src="/images/21.mp4" name="Andy Ruiz Jr." role="Professional Boxer" />
+      <PortraitCard src="/images/21.mp4" name="Andy Ruiz Jr." nameVerified username="@andy_destroyer13" role="Professional Boxer" />
 
       {/* Research card — Hydrogen-rich water */}
       <ResearchCard
@@ -189,7 +209,7 @@ function CardGroup() {
       />
 
       {/* Portrait — Eddie Hall */}
-      <PortraitCard src="/images/beast.mp4" name="Eddie Hall" role="Strongman / Powerlifter" />
+      <PortraitCard src="/images/beast.mp4" name="Eddie Hall" nameVerified username="@eddiehallwsm" role="Strongman / Powerlifter" />
 
       {/* Research card — Deuterium-depleted water */}
       <ResearchCard
